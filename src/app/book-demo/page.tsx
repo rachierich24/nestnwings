@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function BookDemoPage() {
     return (
-        <div className="min-h-screen bg-[#020617] text-white pt-32 pb-24 relative overflow-hidden">
+        <div className="min-h-screen bg-[#020617] text-white pt-28 pb-12 relative overflow-hidden">
             {/* Cinematic Background Glows */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-b from-primary/10 via-blue-600/5 to-transparent blur-[120px] pointer-events-none rounded-full" />
             <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-emerald-500/5 blur-[150px] pointer-events-none rounded-full" />
@@ -89,7 +89,7 @@ export default function BookDemoPage() {
                             */}
                             <div className="w-full h-[700px] overflow-hidden rounded-[24px]">
                                 <InlineWidget
-                                    url="https://calendly.com/nestnwings/30min"
+                                    url="https://calendly.com/rachitvij24/nest-n-wings-product-demo-consultation"
                                     styles={{
                                         height: '100%',
                                         width: '100%',

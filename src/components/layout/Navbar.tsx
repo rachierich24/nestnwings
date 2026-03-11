@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
@@ -9,6 +10,8 @@ import { Menu, X } from "lucide-react";
 export function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const pathname = usePathname();
+    const isDarkPage = pathname === "/book-demo" || pathname === "/admin/login";
 
     useEffect(() => {
         const handleScroll = () => {
@@ -25,7 +28,8 @@ export function Navbar() {
                     "pointer-events-auto transition-all duration-500 rounded-full border",
                     scrolled
                         ? "bg-white/95 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.15)] border-white/20 py-3 px-6 text-slate-900 w-full max-w-5xl"
-                        : "bg-white/5 backdrop-blur-sm border-transparent py-4 px-6 text-foreground w-full max-w-7xl"
+                        : "bg-white/5 backdrop-blur-sm border-transparent py-4 px-6 w-full max-w-7xl",
+                    !scrolled && isDarkPage ? "text-white" : "text-slate-900"
                 )}
             >
                 <div className="flex items-center justify-between w-full">
@@ -48,7 +52,9 @@ export function Navbar() {
                                 href={`/${item.toLowerCase()}`}
                                 className={cn(
                                     "relative text-sm font-semibold transition-colors group",
-                                    scrolled ? "text-slate-600 hover:text-primary font-bold" : "text-foreground/80 hover:text-primary"
+                                    scrolled
+                                        ? "text-slate-600 hover:text-primary font-bold"
+                                        : isDarkPage ? "text-white/80 hover:text-white" : "text-slate-700/80 hover:text-primary"
                                 )}
                             >
                                 {item}
@@ -75,7 +81,7 @@ export function Navbar() {
                     <button
                         className={cn(
                             "md:hidden flex items-center justify-center p-2 z-10 transition-colors",
-                            scrolled ? "text-slate-800" : "text-foreground"
+                            scrolled ? "text-slate-800" : (isDarkPage ? "text-white" : "text-slate-800")
                         )}
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     >
