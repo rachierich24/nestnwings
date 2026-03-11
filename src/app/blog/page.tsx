@@ -1,16 +1,32 @@
-import { getSortedPostsData } from "@/lib/markdown";
 import Link from "next/link";
 import Image from "next/image";
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 import { OpsMockup, ResMockup, FinMockup } from "@/components/home/ProductShowcase";
+import prisma from "@/lib/prisma";
 
 export const metadata = {
     title: "Blog - Nest n Wings",
     description: "Insights, product updates, and thought leadership for modern co-living and hostel management.",
 };
 
-export default function BlogIndex() {
-    const allPosts = getSortedPostsData();
+export const revalidate = 60; // Refresh every 60 seconds
+
+export default async function BlogIndex() {
+    const rawPosts = await prisma.post.findMany({
+        where: { published: true },
+        orderBy: { createdAt: 'desc' },
+        include: { author: { select: { email: true } } }
+    });
+
+    const allPosts = rawPosts.map(post => ({
+        id: post.slug,
+        title: post.title,
+        description: post.description,
+        date: post.createdAt.toISOString(),
+        author: "Admin Editor", // Simplified for MVP
+        image: post.image,
+        category: post.category
+    }));
 
     return (
         <div className="min-h-screen bg-[#020617] text-white pt-32 pb-24">
@@ -75,7 +91,7 @@ export default function BlogIndex() {
                                     <div>
                                         <div className="flex items-center gap-4 text-xs font-medium text-slate-400 mb-4 uppercase tracking-wider">
                                             <time dateTime={post.date}>
-                                                {format(parseISO(post.date), "MMMM d, yyyy")}
+                                                {format(new Date(post.date), "MMMM d, yyyy")}
                                             </time>
                                             <span className="w-1 h-1 rounded-full bg-slate-600" />
                                             <span>{post.author}</span>
