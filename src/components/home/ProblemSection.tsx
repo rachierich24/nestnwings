@@ -3,19 +3,30 @@
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 
+import { FileText, Unplug, UserX } from "lucide-react";
+
 const problems = [
     {
         number: "01",
+        icon: FileText,
+        iconColor: "text-blue-400",
+        iconBg: "bg-blue-500/10",
         title: "Manual & Paper Systems",
         description: "Applications, approvals, and room allotments are still tracked offline, leading to lost records and miscommunication.",
     },
     {
         number: "02",
+        icon: Unplug,
+        iconColor: "text-rose-400",
+        iconBg: "bg-rose-500/10",
         title: "Disconnected Tools",
         description: "Payments, attendance, and administrative records exist in entirely separate systems that never talk to each other.",
     },
     {
         number: "03",
+        icon: UserX,
+        iconColor: "text-amber-400",
+        iconBg: "bg-amber-500/10",
         title: "Operational Chaos",
         description: "Wardens and administrators burn countless hours manually resolving basic requests instead of managing the community.",
     },
@@ -45,7 +56,7 @@ export function ProblemSection() {
     return (
         <section
             ref={containerRef}
-            className="relative py-20 md:py-28 bg-[#0F172A] overflow-hidden"
+            className="relative py-12 md:py-20 bg-[#0F172A] overflow-hidden"
         >
             {/* Cinematic Background Glows */}
             <motion.div
@@ -109,15 +120,20 @@ export function ProblemSection() {
                             initial={{ opacity: 0, y: 50, scale: 0.95, rotateX: 10 }}
                             whileInView={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
                             viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                            className="group relative flex flex-col items-start gap-4 p-6 md:p-8 rounded-2xl bg-[#1E293B]/30 border border-white/5 backdrop-blur-md hover:bg-[#1E293B]/60 hover:scale-[1.02] hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.15)] transition-all duration-500 overflow-hidden"
+                            transition={{ duration: 0.8, delay: idx * 0.2, ease: [0.16, 1, 0.3, 1] }}
+                            className="group relative flex flex-col items-start gap-6 p-6 md:p-8 rounded-2xl bg-[#1E293B]/30 border border-white/5 backdrop-blur-md hover:bg-[#1E293B]/60 hover:scale-[1.02] hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.15)] transition-all duration-500 overflow-hidden"
                             style={{ transformStyle: "preserve-3d" }}
                         >
                             {/* Hover animated background glow inside card */}
                             <div className="absolute inset-0 bg-gradient-to-r from-[#14B8A6]/0 via-[#2563EB]/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out pointer-events-none" />
 
-                            <div className="text-3xl font-black text-white/10 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#14B8A6]/40 group-hover:to-[#2563EB]/40 transition-colors duration-500 font-heading">
-                                {problem.number}
+                            <div className="flex items-center justify-between w-full">
+                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${problem.iconBg} ${problem.iconColor} transition-transform duration-500 group-hover:scale-110`}>
+                                    <problem.icon size={24} />
+                                </div>
+                                <div className="text-3xl font-black text-white/10 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#14B8A6]/40 group-hover:to-[#2563EB]/40 transition-colors duration-500 font-heading">
+                                    {problem.number}
+                                </div>
                             </div>
 
                             <div className="flex-1 mt-2">

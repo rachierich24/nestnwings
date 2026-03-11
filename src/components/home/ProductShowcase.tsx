@@ -312,82 +312,92 @@ const dashboards = [
     {
         id: 1,
         title: "Operations Dashboard",
-        color: "from-blue-500/20 to-indigo-500/20",
+        description: "A centralized command center visualizing live occupancy, pending tickets, and overall campus health.",
+        color: "from-blue-500/30 via-[#0a0a0a] to-blue-900/10",
         image: <OpsMockup />,
     },
     {
         id: 2,
         title: "Resident Management",
-        color: "from-slate-200/50 to-slate-400/50",
+        description: "Directly manage student profiles, approve leaves, and oversee block allotments effortlessly.",
+        color: "from-slate-500/30 via-[#0a0a0a] to-slate-900/10",
         image: <ResMockup />,
     },
     {
         id: 3,
-        title: "Financial Analytics",
-        color: "from-purple-500/20 to-pink-500/20",
+        title: "Payments & Billing",
+        description: "Automated invoice generation, live collection stats, and 1-click ledger reporting.",
+        color: "from-purple-500/30 via-[#0a0a0a] to-pink-900/10",
         image: <FinMockup />,
     },
 ];
 
-export function ProductShowcase() {
-    const targetRef = useRef<HTMLDivElement>(null);
-
+function ShowcaseItem({ title, description, color, children, index }: any) {
+    const sectionRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
-        target: targetRef,
+        target: sectionRef,
+        offset: ["start end", "center center"]
     });
 
-    // The precise calculation to end exactly on the last item:
-    // With 3 items of width 65vw and gap of 3rem (48px roughly 3vw),
-    // Total width = (65 * 3) + (3 * 2) = 201vw. 
-    // Container is 100vw. We need to shift by: -(201vw - 100vw) = -101vw.
-    // Adding a bit of padding at the end (~5vw).
-    const x = useTransform(scrollYProgress, [0, 1], ["5%", "-106vw"]);
+    // Smooth 0.95 -> 1 scale on scroll entry
+    const scale = useTransform(scrollYProgress, [0, 1], [0.95, 1]);
+    const opacity = useTransform(scrollYProgress, [0, 1], [0.4, 1]);
 
     return (
-        <section ref={targetRef} className="relative h-[300vh] bg-[#0a0a0a]">
-            <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+        <div ref={sectionRef} className="min-h-screen py-12 md:py-24 flex flex-col items-center justify-center relative z-10 w-full overflow-hidden">
+            {/* Background ambient glow matching the specific mockup */}
+            <div className={`absolute inset-0 bg-gradient-to-b ${color} opacity-30 pointer-events-none`} />
 
-                <div className="container mx-auto px-4 md:px-6 mb-12 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-center"
-                    >
-                        <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">
-                            One Dashboard. <span className="text-secondary">Total Control.</span>
-                        </h2>
-                        <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-                            Swipe through our powerful interfaces, perfectly crafted for performance and ease of use.
-                        </p>
-                    </motion.div>
+            <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 px-4 relative z-20">
+                <div className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white font-semibold tracking-widest text-[10px] md:text-xs uppercase mb-6 backdrop-blur-md">
+                    Module 0{index + 1}
                 </div>
+                <h3 className="font-heading text-4xl md:text-[56px] font-bold tracking-tight text-white mb-6 leading-tight">
+                    {title}
+                </h3>
+                <p className="text-lg text-[#94A3B8]">
+                    {description}
+                </p>
+            </div>
 
-                <div className="relative w-full overflow-hidden">
-                    {/* Glow behind product area */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[400px] bg-primary/20 rounded-full blur-[150px] -z-10" />
-
-                    <motion.div
-                        style={{ x }}
-                        className="flex gap-10 md:gap-12 px-4 md:px-[5vw] pb-12 w-max"
-                    >
-                        {dashboards.map((dashboard) => (
-                            <div
-                                key={dashboard.id}
-                                className="w-[85vw] lg:w-[65vw] h-[50vh] lg:h-[65vh] flex-shrink-0"
-                            >
-                                <div className={`w-full h-full relative rounded-2xl bg-gradient-to-br ${dashboard.color} p-[1px]`}>
-                                    {dashboard.image}
-
-                                    {/* Title Badge inside the dashboard border */}
-                                    <div className="absolute -top-4 -left-4 bg-white/10 backdrop-blur-md border border-white/20 text-white px-6 py-2 rounded-full font-heading font-semibold shadow-lg">
-                                        {dashboard.title}
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </motion.div>
+            <motion.div
+                style={{ scale, opacity }}
+                className="w-full max-w-7xl px-4 md:px-8 mx-auto aspect-[16/10] md:aspect-[16/9] relative z-20 perspective-[2000px]"
+            >
+                <div className="w-full h-full p-[1px] rounded-[1.5rem] bg-gradient-to-b from-white/20 to-transparent shadow-[0_0_100px_rgba(0,0,0,0.5)] overflow-hidden transform-style-3d">
+                    {children}
                 </div>
+            </motion.div>
+        </div>
+    );
+}
+
+export function ProductShowcase() {
+    return (
+        <section className="bg-[#020617] relative flex flex-col pb-24">
+            <div className="container mx-auto px-4 md:px-6 mb-8 mt-24 relative z-10">
+                <div className="text-center">
+                    <h2 className="font-heading text-4xl md:text-[56px] font-bold tracking-tight text-white mb-6 leading-tight">
+                        One Dashboard. <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#14B8A6] to-[#2563EB]">Total Control.</span>
+                    </h2>
+                    <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+                        Explore our powerful modules designed to scale from single boutique properties to massive campus networks.
+                    </p>
+                </div>
+            </div>
+
+            <div className="w-full relative flex flex-col gap-0 md:gap-12">
+                {dashboards.map((dashboard, idx) => (
+                    <ShowcaseItem
+                        key={dashboard.id}
+                        index={idx}
+                        title={dashboard.title}
+                        description={dashboard.description}
+                        color={dashboard.color}
+                    >
+                        {dashboard.image}
+                    </ShowcaseItem>
+                ))}
             </div>
         </section>
     );
