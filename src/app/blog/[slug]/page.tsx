@@ -4,6 +4,7 @@ import prisma from "@/lib/prisma";
 import { remark } from "remark";
 import html from "remark-html";
 
+export const dynamic = 'force-dynamic';
 export const revalidate = 60;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {

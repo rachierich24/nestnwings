@@ -9,6 +9,7 @@ export const metadata = {
     description: "Insights, product updates, and thought leadership for modern co-living and hostel management.",
 };
 
+export const dynamic = 'force-dynamic';
 export const revalidate = 60; // Refresh every 60 seconds
 
 export default async function BlogIndex() {
