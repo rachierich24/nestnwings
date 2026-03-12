@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, User, Home, Activity, CheckCircle2 } from "lucide-react";
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
+import { Activity, User, Home, CheckCircle2 } from "lucide-react";
 
 export function Hero() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -12,12 +12,39 @@ export function Hero() {
         offset: ["start start", "end start"],
     });
 
+    // Mouse tracking for "Next Level" parallax
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    const springConfig = { damping: 25, stiffness: 150 };
+    const springX = useSpring(mouseX, springConfig);
+    const springY = useSpring(mouseY, springConfig);
+
+    useEffect(() => {
+        const handleMouseMove = (e: MouseEvent) => {
+            const { clientX, clientY } = e;
+            const { innerWidth, innerHeight } = window;
+            const x = (clientX / innerWidth - 0.5) * 40;
+            const y = (clientY / innerHeight - 0.5) * 40;
+            mouseX.set(x);
+            mouseY.set(y);
+        };
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, [mouseX, mouseY]);
+
     const textY = useTransform(scrollYProgress, [0, 1], ["0px", "-40px"]);
     const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
     const uiY = useTransform(scrollYProgress, [0, 1], ["0px", "-15px"]);
     const auraY = useTransform(scrollYProgress, [0, 1], ["0px", "50px"]);
     const illustrationY = useTransform(scrollYProgress, [0, 1], ["0px", "-10px"]);
     const backgroundColor = useTransform(scrollYProgress, [0.7, 1], ["#FAFAFA", "#0F172A"]);
+
+    // Parallax values for elements
+    const auraTranslateX = useTransform(springX, (val) => val * -1.5);
+    const auraTranslateY = useTransform(springY, (val) => val * -1.5);
+    const cardTranslateX = useTransform(springX, (val) => val * 1);
+    const cardTranslateY = useTransform(springY, (val) => val * 1);
 
     return (
         <motion.section
@@ -27,7 +54,7 @@ export function Hero() {
         >
             {/* The $1B Aesthetic Background: Massive, heavily blurred organic brand aura */}
             <motion.div
-                style={{ y: auraY, opacity }}
+                style={{ y: auraY, opacity, x: auraTranslateX, translateY: auraTranslateY }}
                 className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden"
             >
                 {/* Orange/Blue Mesh Gradient Aura */}
@@ -35,11 +62,14 @@ export function Hero() {
                 <div className="absolute top-[10%] right-[10%] w-[600px] h-[600px] rounded-full bg-[#2563EB]/10 blur-[120px] mix-blend-multiply" />
                 <div className="absolute bottom-[-10%] left-[20%] w-[700px] h-[700px] rounded-full bg-[#22D3EE]/10 blur-[150px] mix-blend-multiply" />
 
-                {/* Subtle noise texture overlay for organic feel */}
-                <div
-                    className="absolute inset-0 opacity-[0.015] mix-blend-overlay"
-                    style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}
-                />
+                {/* Next Level: Liquid Noise Texture filter */}
+                <svg className="absolute inset-0 w-full h-full opacity-[0.4] mix-blend-soft-light">
+                    <filter id="liquidNoise">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" seed="2" />
+                        <feDisplacementMap in="SourceGraphic" scale="30" />
+                    </filter>
+                    <rect width="100%" height="100%" filter="url(#liquidNoise)" />
+                </svg>
             </motion.div>
 
             {/* Layer 2: Hostel Illustration Merged Background */}
@@ -104,9 +134,10 @@ export function Hero() {
                             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-6">
                                 <Link
                                     href="/book-demo"
-                                    className="group inline-flex items-center justify-center gap-2 h-14 px-[28px] py-[14px] rounded-full bg-[#020617] text-white font-medium text-base transition-all duration-300 hover:bg-[#1e293b] hover:scale-[1.02] hover:shadow-xl active:scale-[0.98]"
+                                    className="group relative inline-flex items-center justify-center gap-2 h-14 px-[28px] py-[14px] rounded-full bg-[#020617] text-white font-medium text-base overflow-hidden transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                                 >
-                                    👉 Book a Demo
+                                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/0 via-white/10 to-blue-600/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+                                    <span className="relative">👉 Book a Demo</span>
                                 </Link>
                                 <Link
                                     href="/#how-it-works"
@@ -133,7 +164,7 @@ export function Hero() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                        style={{ y: uiY }}
+                        style={{ y: uiY, x: cardTranslateX, translateY: cardTranslateY }}
                         className="lg:col-span-7 relative h-[650px] w-full mt-4 lg:mt-0 flex flex-col lg:block z-20 perspective-[2000px]"
                     >
                         <AllocationFlow />
@@ -161,27 +192,27 @@ export function Hero() {
     );
 }
 
-// New Interactive Allocation Flow Visualizer
+// Fixed Interactive Allocation Flow Visualizer - Now Blended with Backdrop
 function AllocationFlow() {
     return (
         <div className="w-full h-full relative flex items-center justify-center perspective-[2000px]">
             {/* Background glowing orb */}
-            <div className="absolute w-[300px] h-[300px] bg-[#14B8A6]/15 rounded-full blur-[80px]" />
-            <div className="absolute w-[200px] h-[200px] bg-[#2563EB]/15 rounded-full blur-[60px] translate-x-20 translate-y-20" />
+            <div className="absolute w-[300px] h-[300px] bg-[#14B8A6]/10 rounded-full blur-[80px]" />
+            <div className="absolute w-[200px] h-[200px] bg-[#2563EB]/10 rounded-full blur-[60px] translate-x-20 translate-y-20" />
 
             <motion.div
                 animate={{ rotateY: [-2, 2, -2], rotateX: [1, -1, 1], y: [-5, 5, -5] }}
                 transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}
-                className="relative w-full max-w-[420px] bg-white/90 backdrop-blur-2xl border border-white/60 shadow-[0_20px_40px_rgba(0,0,0,0.08),0_1px_3px_rgba(0,0,0,0.05)] rounded-3xl p-6 flex flex-col gap-8 transform-style-3d"
+                className="relative w-full max-w-[420px] bg-white/10 backdrop-blur-2xl border border-white/20 shadow-[0_20px_40px_rgba(0,0,0,0.04)] rounded-3xl p-6 flex flex-col gap-8 transform-style-3d"
             >
                 <div className="flex items-center justify-between z-10">
                     <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-500 flex items-center justify-center shadow-md">
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500/80 to-indigo-500/80 flex items-center justify-center shadow-md">
                             <Activity size={14} className="text-white" />
                         </div>
-                        <span className="text-sm font-bold text-slate-800 tracking-tight">Smart Match Engine</span>
+                        <span className="text-sm font-bold text-slate-800/80 tracking-tight">Smart Match Engine</span>
                     </div>
-                    <div className="px-2.5 py-1 bg-emerald-100/50 text-emerald-600 rounded-lg text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5">
+                    <div className="px-2.5 py-1 bg-emerald-500/10 text-emerald-600 rounded-lg text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                         Running
                     </div>
@@ -190,18 +221,18 @@ function AllocationFlow() {
                 <div className="relative h-[120px] w-full mt-4 z-10">
                     {/* Background Connection Path */}
                     <svg className="absolute top-1/2 left-0 w-full -translate-y-1/2 h-16 overflow-visible pointer-events-none" preserveAspectRatio="none">
-                        <path d="M 40,32 C 100,32 150,-10 200,32 C 250,74 300,32 360,32" fill="none" stroke="#E2E8F0" strokeWidth="2" strokeDasharray="4 4" />
+                        <path d="M 40,32 C 100,32 150,-10 200,32 C 250,74 300,32 360,32" fill="none" stroke="rgba(0,0,0,0.05)" strokeWidth="2" strokeDasharray="4 4" />
                         <motion.path
                             d="M 40,32 C 100,32 150,-10 200,32 C 250,74 300,32 360,32"
                             fill="none"
-                            stroke="url(#gradient)"
+                            stroke="url(#gradient-blend)"
                             strokeWidth="3"
                             initial={{ pathLength: 0, opacity: 0 }}
                             animate={{ pathLength: 1, opacity: [0, 1, 0] }}
                             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                         />
                         <defs>
-                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <linearGradient id="gradient-blend" x1="0%" y1="0%" x2="100%" y2="0%">
                                 <stop offset="0%" stopColor="#3B82F6" />
                                 <stop offset="100%" stopColor="#10B981" />
                             </linearGradient>
@@ -209,19 +240,17 @@ function AllocationFlow() {
                     </svg>
 
                     <div className="absolute inset-0 flex items-center justify-between px-2">
-                        {/* 1. Student */}
                         <motion.div
-                            className="w-14 h-14 bg-white rounded-2xl shadow-lg border border-slate-100 flex flex-col items-center justify-center gap-1 z-10"
+                            className="w-14 h-14 bg-white/40 backdrop-blur-md rounded-2xl shadow-sm border border-white/40 flex flex-col items-center justify-center gap-1 z-10"
                             animate={{ y: [0, -5, 0] }}
                             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                         >
                             <User size={18} className="text-blue-500" />
-                            <span className="text-[9px] font-bold text-slate-500">New App</span>
+                            <span className="text-[9px] font-bold text-slate-600/80">New App</span>
                         </motion.div>
 
-                        {/* 2. Room Algorithm */}
                         <motion.div
-                            className="w-16 h-16 bg-[#0F172A] rounded-2xl shadow-xl border border-slate-800 flex flex-col items-center justify-center gap-1.5 z-10"
+                            className="w-16 h-16 bg-[#0F172A]/80 backdrop-blur-md rounded-2xl shadow-xl border border-slate-700/50 flex flex-col items-center justify-center gap-1.5 z-10"
                             animate={{ scale: [1, 1.05, 1], rotate: [0, 5, -5, 0] }}
                             transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                         >
@@ -229,31 +258,30 @@ function AllocationFlow() {
                             <span className="text-[9px] font-bold text-slate-300">Matching</span>
                         </motion.div>
 
-                        {/* 3. Approved Room */}
                         <motion.div
-                            className="w-14 h-14 bg-white rounded-2xl shadow-lg border border-emerald-100 flex flex-col items-center justify-center gap-1 z-10"
+                            className="w-14 h-14 bg-white/40 backdrop-blur-md rounded-2xl shadow-sm border border-emerald-500/20 flex flex-col items-center justify-center gap-1 z-10"
                             animate={{ y: [0, -5, 0] }}
                             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                         >
                             <Home size={18} className="text-emerald-500" />
-                            <span className="text-[9px] font-bold text-slate-500">Assigned</span>
+                            <span className="text-[9px] font-bold text-slate-600/80">Assigned</span>
                         </motion.div>
                     </div>
                 </div>
 
-                <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 mt-2 z-10">
+                <div className="bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/20 mt-2 z-10">
                     <motion.div
                         initial={{ opacity: 0.5 }}
                         animate={{ opacity: [0.5, 1, 0.5] }}
                         transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                         className="flex items-center gap-3"
                     >
-                        <div className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+                        <div className="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-500/20">
                             <CheckCircle2 size={16} />
                         </div>
                         <div>
-                            <div className="text-xs font-bold text-slate-800">Auto-Approved: Block B, Room 302</div>
-                            <div className="text-[10px] text-slate-500 font-medium">Payment link dispatched automatically.</div>
+                            <div className="text-xs font-bold text-slate-800/80">Auto-Approved: Block B, Room 302</div>
+                            <div className="text-[10px] text-slate-600/70 font-medium">Payment link dispatched automatically.</div>
                         </div>
                     </motion.div>
                 </div>
