@@ -386,7 +386,7 @@ export function ProductShowcase() {
                                     </p>
                                 </div>
 
-                                <div className="w-full aspect-[16/10] md:aspect-[16/9] relative z-20 perspective-[2000px]">
+                                <div className="w-full aspect-[16/10] md:aspect-auto md:min-h-[650px] relative z-20 perspective-[2000px]">
                                     <div className="w-full h-full p-[1px] md:rounded-[1.5rem] rounded-xl bg-gradient-to-b from-white/20 to-transparent shadow-[0_0_100px_rgba(0,0,0,0.5)] overflow-hidden">
                                         {dashboard.image}
                                     </div>

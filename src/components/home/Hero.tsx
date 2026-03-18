@@ -109,7 +109,7 @@ export function Hero() {
                                     👉 Book a Demo
                                 </Link>
                                 <Link
-                                    href="/#how-it-works"
+                                    href="/product"
                                     className="group inline-flex items-center justify-center gap-2 h-14 px-[28px] py-[14px] rounded-full bg-white border border-black/[0.08] shadow-sm text-[#020617] font-medium text-base transition-all duration-300 hover:border-black/[0.12] hover:bg-gray-50 active:scale-[0.98]"
                                 >
                                     👉 See How It Works
