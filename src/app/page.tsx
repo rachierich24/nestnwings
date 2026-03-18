@@ -5,7 +5,6 @@ import { FeaturesSection } from "@/components/home/FeaturesSection";
 import { ProductShowcase } from "@/components/home/ProductShowcase";
 import { RoomAllocatorSim } from "@/components/home/RoomAllocatorSim";
 import { PersonaCards } from "@/components/home/PersonaCards";
-import { BlogSection } from "@/components/home/BlogSection";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 export default function Home() {
@@ -14,12 +13,10 @@ export default function Home() {
       <Hero />
       <ProblemSection />
       <PathFlow />
-      {/* Solution Section (The 3D Dashboard) is now merged as the top half of FeaturesSection */}
       <FeaturesSection />
       <ProductShowcase />
       <RoomAllocatorSim />
       <PersonaCards />
-      <BlogSection />
       <FinalCTA />
     </>
   );

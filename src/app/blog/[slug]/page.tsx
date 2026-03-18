@@ -12,6 +12,7 @@ const blogPosts: Record<string, {
     readTime: string;
     keywords: string[];
     contentHtml: string;
+    mockup: string;
 }> = {
     "digital-hostel-management-transforming-universities": {
         title: "How Digital Hostel Management Systems Are Transforming Universities",
@@ -43,6 +44,7 @@ const blogPosts: Record<string, {
             <p>As universities continue to grow and compete for students, the quality of hostel experience becomes a differentiator. Institutions that adopt modern hostel management platforms will find themselves better equipped to handle scale, improve student satisfaction, and reduce operational costs.</p>
             <p>The future of university hostel management is digital, automated, and student-centric. The question is no longer <em>whether</em> to adopt technology, but <em>how quickly</em> you can implement it.</p>
         `,
+        mockup: "blog1",
     },
     "top-challenges-hostel-management-technology": {
         title: "Top Challenges in Hostel Management and How Technology Solves Them",
@@ -82,6 +84,7 @@ const blogPosts: Record<string, {
             <p>Not all hostel management solutions are created equal. Look for platforms that offer modular design (so you can start small and scale), intuitive interfaces (so staff adoption is easy), and strong reporting capabilities (so you can make data-driven decisions).</p>
             <p>The best platforms don't just digitize existing processes — they reimagine them for efficiency, transparency, and scale.</p>
         `,
+        mockup: "blog2",
     },
 };
 
@@ -121,6 +124,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         category: post.category,
         readTime: post.readTime,
         contentHtml: post.contentHtml,
+        mockup: post.mockup,
     };
 
     // Get other posts for "Keep Reading"
@@ -132,6 +136,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             description: p.description,
             date: p.date,
             category: p.category,
+            mockup: p.mockup,
         }));
 
     return <BlogPostClient postData={postData} allPosts={otherPosts} />;
