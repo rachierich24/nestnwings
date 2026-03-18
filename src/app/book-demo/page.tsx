@@ -89,7 +89,7 @@ export default function BookDemoPage() {
                             */}
                             <div className="w-full h-[700px] overflow-hidden rounded-[24px]">
                                 <InlineWidget
-                                    url="https://calendly.com/rachitvij24/nest-n-wings-product-demo-consultation"
+                                    url="https://calendly.com/nestnwings/30min"
                                     styles={{
                                         height: '100%',
                                         width: '100%',
