@@ -22,13 +22,13 @@ export function Footer() {
 
                 {/* Socials & Contact */}
                 <div className="flex items-center gap-4 mb-20">
-                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-slate-100 hover:text-slate-700 hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-sm">
+                    <a href="https://www.instagram.com/nestnwings" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-slate-100 hover:text-slate-700 hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-sm">
                         <Instagram size={20} />
                     </a>
                     <a href="https://www.linkedin.com/company/nest-n-wings/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-slate-100 hover:text-slate-700 hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-sm">
                         <Linkedin size={20} />
                     </a>
-                    <a href="mailto:hello@nestnwings.com" className="w-12 h-12 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-slate-100 hover:text-slate-700 hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-sm">
+                    <a href="mailto:nestnwings@gmail.com" className="w-12 h-12 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-slate-100 hover:text-slate-700 hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-sm">
                         <Mail size={20} />
                     </a>
                 </div>
