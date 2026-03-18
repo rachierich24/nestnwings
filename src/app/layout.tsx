@@ -18,6 +18,11 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Nest n Wings | Hostel Management OS",
   description: "The Operating System for Hostels & Co-Living. Automate allotment, payments, attendance, and daily operations.",
+  icons: {
+    icon: "/logo_transparent.png",
+    shortcut: "/logo_transparent.png",
+    apple: "/logo_transparent.png",
+  },
 };
 
 export default function RootLayout({
