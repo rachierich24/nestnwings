@@ -339,13 +339,13 @@ export function ProductShowcase() {
         target: targetRef,
     });
 
-    // Translate on the X axis to slide through the modules
     const x = useTransform(scrollYProgress, [0, 1], ["5%", "-106vw"]);
 
     return (
-        <section ref={targetRef} className="relative h-[300vh] bg-[#020617] mt-12 md:mt-24">
-            <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-                <div className="container mx-auto px-4 md:px-6 mb-12 relative z-10">
+        <section ref={targetRef} className="relative h-[300vh] bg-[#020617]">
+            <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden pt-[100px] pb-[120px]">
+                {/* Centered Header */}
+                <div className="w-full max-w-[1200px] mx-auto px-6 mb-12 relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -361,33 +361,33 @@ export function ProductShowcase() {
                     </motion.div>
                 </div>
 
-                <div className="relative w-full overflow-hidden">
-                    {/* Glow behind product area */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[400px] bg-primary/10 rounded-full blur-[150px] -z-10" />
-
+                {/* Horizontal Slider */}
+                <div className="relative w-full overflow-hidden flex-1 min-h-0">
                     <motion.div
                         style={{ x }}
-                        className="flex gap-10 md:gap-16 px-4 md:px-[5vw] pb-12 w-max"
+                        className="flex gap-10 md:gap-16 px-6 md:px-[5vw] h-full w-max"
                     >
                         {dashboards.map((dashboard, index) => (
                             <div
                                 key={dashboard.id}
-                                className="w-[85vw] lg:w-[65vw] flex-shrink-0 flex flex-col gap-6"
+                                className="w-[85vw] lg:w-[65vw] flex-shrink-0 flex flex-col gap-5 h-full"
                             >
-                                <div className="px-2 md:px-4">
-                                     <div className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white font-semibold tracking-widest text-[10px] md:text-xs uppercase mb-4 backdrop-blur-md">
+                                {/* Module Label + Title */}
+                                <div className="px-2 md:px-4 shrink-0">
+                                    <div className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white font-semibold tracking-widest text-[10px] md:text-xs uppercase mb-3 backdrop-blur-md">
                                         Module 0{index + 1}
                                     </div>
-                                    <h3 className="font-heading text-3xl md:text-4xl font-bold tracking-tight text-white mb-3">
+                                    <h3 className="font-heading text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">
                                         {dashboard.title}
                                     </h3>
-                                    <p className="text-slate-400 text-lg max-w-xl">
+                                    <p className="text-slate-400 text-base max-w-xl">
                                         {dashboard.description}
                                     </p>
                                 </div>
 
-                                <div className="w-full aspect-[16/10] md:aspect-auto md:min-h-[650px] relative z-20 perspective-[2000px]">
-                                    <div className="w-full h-full p-[1px] md:rounded-[1.5rem] rounded-xl bg-gradient-to-b from-white/20 to-transparent shadow-[0_0_100px_rgba(0,0,0,0.5)] overflow-hidden">
+                                {/* Dashboard Container — scales proportionally, no cropping */}
+                                <div className="w-full max-w-[1000px] mx-auto flex-1 min-h-0 relative">
+                                    <div className="w-full h-full p-[1px] md:rounded-[1.5rem] rounded-xl bg-gradient-to-b from-white/20 to-transparent shadow-[0_0_60px_rgba(0,0,0,0.4)] overflow-hidden">
                                         {dashboard.image}
                                     </div>
                                 </div>
