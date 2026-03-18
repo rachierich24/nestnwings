@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
+import { Logo } from "@/components/ui/Logo";
 
 export function Navbar() {
     const [scrolled, setScrolled] = useState(false);
@@ -34,12 +35,10 @@ export function Navbar() {
             >
                 <div className="flex items-center justify-between w-full">
                     <Link href="/" className="flex items-center gap-2 z-10">
-                        <img
-                            src="/nest-n-wings-logo.png"
-                            alt="Nest n Wings Logo"
+                        <Logo
                             className={cn(
                                 "w-auto object-contain transition-all duration-300",
-                                scrolled ? "h-12" : "h-16"
+                                scrolled ? "h-10" : "h-14"
                             )}
                         />
                     </Link>

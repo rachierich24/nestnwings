@@ -332,72 +332,69 @@ const dashboards = [
     },
 ];
 
-function ShowcaseItem({ title, description, color, children, index }: any) {
-    const sectionRef = useRef<HTMLDivElement>(null);
+export function ProductShowcase() {
+    const targetRef = useRef<HTMLDivElement>(null);
+
     const { scrollYProgress } = useScroll({
-        target: sectionRef,
-        offset: ["start end", "center center"]
+        target: targetRef,
     });
 
-    // Smooth 0.95 -> 1 scale on scroll entry
-    const scale = useTransform(scrollYProgress, [0, 1], [0.95, 1]);
-    const opacity = useTransform(scrollYProgress, [0, 1], [0.4, 1]);
+    // Translate on the X axis to slide through the modules
+    const x = useTransform(scrollYProgress, [0, 1], ["5%", "-106vw"]);
 
     return (
-        <div ref={sectionRef} className="min-h-screen py-12 md:py-24 flex flex-col items-center justify-center relative z-10 w-full overflow-hidden">
-            {/* Background ambient glow matching the specific mockup */}
-            <div className={`absolute inset-0 bg-gradient-to-b ${color} opacity-30 pointer-events-none`} />
-
-            <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16 px-4 relative z-20">
-                <div className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white font-semibold tracking-widest text-[10px] md:text-xs uppercase mb-6 backdrop-blur-md">
-                    Module 0{index + 1}
-                </div>
-                <h3 className="font-heading text-4xl md:text-[56px] font-bold tracking-tight text-white mb-6 leading-tight">
-                    {title}
-                </h3>
-                <p className="text-lg text-[#94A3B8]">
-                    {description}
-                </p>
-            </div>
-
-            <motion.div
-                style={{ scale, opacity }}
-                className="w-full max-w-7xl px-4 md:px-8 mx-auto aspect-[16/10] md:aspect-[16/9] relative z-20 perspective-[2000px]"
-            >
-                <div className="w-full h-full p-[1px] rounded-[1.5rem] bg-gradient-to-b from-white/20 to-transparent shadow-[0_0_100px_rgba(0,0,0,0.5)] overflow-hidden transform-style-3d">
-                    {children}
-                </div>
-            </motion.div>
-        </div>
-    );
-}
-
-export function ProductShowcase() {
-    return (
-        <section className="bg-[#020617] relative flex flex-col pb-24">
-            <div className="container mx-auto px-4 md:px-6 mb-8 mt-24 relative z-10">
-                <div className="text-center">
-                    <h2 className="font-heading text-4xl md:text-[56px] font-bold tracking-tight text-white mb-6 leading-tight">
-                        One Dashboard. <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#14B8A6] to-[#2563EB]">Total Control.</span>
-                    </h2>
-                    <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-                        Explore our powerful modules designed to scale from single boutique properties to massive campus networks.
-                    </p>
-                </div>
-            </div>
-
-            <div className="w-full relative flex flex-col gap-0 md:gap-12">
-                {dashboards.map((dashboard, idx) => (
-                    <ShowcaseItem
-                        key={dashboard.id}
-                        index={idx}
-                        title={dashboard.title}
-                        description={dashboard.description}
-                        color={dashboard.color}
+        <section ref={targetRef} className="relative h-[300vh] bg-[#020617] mt-12 md:mt-24">
+            <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+                <div className="container mx-auto px-4 md:px-6 mb-12 relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-center"
                     >
-                        {dashboard.image}
-                    </ShowcaseItem>
-                ))}
+                        <h2 className="font-heading text-4xl md:text-[56px] font-bold tracking-tight text-white mb-6 leading-tight">
+                            One Dashboard. <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#14B8A6] to-[#2563EB]">Total Control.</span>
+                        </h2>
+                        <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+                            Scroll to swipe through our powerful interfaces, perfectly crafted for performance and ease of use.
+                        </p>
+                    </motion.div>
+                </div>
+
+                <div className="relative w-full overflow-hidden">
+                    {/* Glow behind product area */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[400px] bg-primary/10 rounded-full blur-[150px] -z-10" />
+
+                    <motion.div
+                        style={{ x }}
+                        className="flex gap-10 md:gap-16 px-4 md:px-[5vw] pb-12 w-max"
+                    >
+                        {dashboards.map((dashboard, index) => (
+                            <div
+                                key={dashboard.id}
+                                className="w-[85vw] lg:w-[65vw] flex-shrink-0 flex flex-col gap-6"
+                            >
+                                <div className="px-2 md:px-4">
+                                     <div className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white font-semibold tracking-widest text-[10px] md:text-xs uppercase mb-4 backdrop-blur-md">
+                                        Module 0{index + 1}
+                                    </div>
+                                    <h3 className="font-heading text-3xl md:text-4xl font-bold tracking-tight text-white mb-3">
+                                        {dashboard.title}
+                                    </h3>
+                                    <p className="text-slate-400 text-lg max-w-xl">
+                                        {dashboard.description}
+                                    </p>
+                                </div>
+
+                                <div className="w-full aspect-[16/10] md:aspect-[16/9] relative z-20 perspective-[2000px]">
+                                    <div className="w-full h-full p-[1px] md:rounded-[1.5rem] rounded-xl bg-gradient-to-b from-white/20 to-transparent shadow-[0_0_100px_rgba(0,0,0,0.5)] overflow-hidden">
+                                        {dashboard.image}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </motion.div>
+                </div>
             </div>
         </section>
     );

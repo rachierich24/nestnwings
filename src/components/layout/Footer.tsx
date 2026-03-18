@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Twitter, Linkedin, Github, ArrowRight } from "lucide-react";
+import { Logo } from "@/components/ui/Logo";
 
 export function Footer() {
     return (
@@ -11,7 +12,7 @@ export function Footer() {
 
                 {/* Brand Logo & Core Message */}
                 <Link href="/" className="inline-block mb-8 transition-transform hover:scale-105 active:scale-95">
-                    <img src="/nest-n-wings-logo.png" alt="Nest n Wings Logo" className="h-10 md:h-12 w-auto object-contain brightness-0 invert opacity-90" />
+                    <Logo className="h-10 md:h-12 w-auto brightness-0 invert opacity-90" />
                 </Link>
 
                 <h2 className="text-xl md:text-3xl font-black text-white mb-8 tracking-tight max-w-2xl leading-snug">
