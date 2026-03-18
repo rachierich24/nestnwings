@@ -339,60 +339,87 @@ export function ProductShowcase() {
         target: targetRef,
     });
 
-    const x = useTransform(scrollYProgress, [0, 1], ["5%", "-106vw"]);
+    const x = useTransform(scrollYProgress, [0, 1], ["2%", "-110vw"]);
 
     return (
-        <section ref={targetRef} className="relative h-[300vh] bg-[#020617]">
-            <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden pt-[100px] pb-[120px]">
-                {/* Centered Header */}
-                <div className="w-full max-w-[1200px] mx-auto px-6 mb-12 relative z-10">
+        <section ref={targetRef} className="relative h-[350vh] bg-[#020617]">
+            <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
+                {/* Header */}
+                <div className="w-full max-w-[1200px] mx-auto px-6 pt-24 pb-8 relative z-10 shrink-0">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         className="text-center"
                     >
-                        <h2 className="font-heading text-4xl md:text-[56px] font-bold tracking-tight text-white mb-6 leading-tight">
+                        <h2 className="font-heading text-4xl md:text-[56px] font-bold tracking-tight text-white mb-4 leading-tight">
                             One Dashboard. <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#14B8A6] to-[#2563EB]">Total Control.</span>
                         </h2>
-                        <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-                            Scroll to swipe through our powerful interfaces, perfectly crafted for performance and ease of use.
+                        <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto">
+                            Scroll to explore our powerful interfaces — click any module to dive deeper.
                         </p>
                     </motion.div>
                 </div>
 
-                {/* Horizontal Slider */}
-                <div className="relative w-full overflow-hidden flex-1 min-h-0">
+                {/* Horizontal Slider — takes all remaining viewport height */}
+                <div className="relative w-full overflow-hidden flex-1 min-h-0 flex items-center">
+                    {/* Subtle ambient glow */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50%] h-[60%] bg-primary/8 rounded-full blur-[180px] pointer-events-none" />
+
                     <motion.div
                         style={{ x }}
-                        className="flex gap-10 md:gap-16 px-6 md:px-[5vw] h-full w-max"
+                        className="flex gap-8 md:gap-14 px-6 md:px-[4vw] w-max items-stretch"
+                        // Fill height minus some breathing room
+                        // Each card stretches to this height
                     >
                         {dashboards.map((dashboard, index) => (
-                            <div
+                            <motion.div
                                 key={dashboard.id}
-                                className="w-[85vw] lg:w-[65vw] flex-shrink-0 flex flex-col gap-5 h-full"
+                                whileHover={{ scale: 1.01 }}
+                                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                                className="w-[90vw] md:w-[80vw] lg:w-[75vw] flex-shrink-0 flex flex-col gap-4 group cursor-pointer"
+                                style={{ height: "calc(100vh - 220px)" }}
                             >
                                 {/* Module Label + Title */}
-                                <div className="px-2 md:px-4 shrink-0">
-                                    <div className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white font-semibold tracking-widest text-[10px] md:text-xs uppercase mb-3 backdrop-blur-md">
-                                        Module 0{index + 1}
+                                <div className="px-1 md:px-2 shrink-0 flex items-end gap-6">
+                                    <div>
+                                        <div className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white font-semibold tracking-widest text-[10px] md:text-xs uppercase mb-2 backdrop-blur-md">
+                                            Module 0{index + 1}
+                                        </div>
+                                        <h3 className="font-heading text-2xl md:text-3xl font-bold tracking-tight text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-primary transition-all">
+                                            {dashboard.title}
+                                        </h3>
                                     </div>
-                                    <h3 className="font-heading text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">
-                                        {dashboard.title}
-                                    </h3>
-                                    <p className="text-slate-400 text-base max-w-xl">
+                                    <p className="text-slate-500 text-sm max-w-md hidden md:block mb-1">
                                         {dashboard.description}
                                     </p>
                                 </div>
 
-                                {/* Dashboard Container — scales proportionally, no cropping */}
-                                <div className="w-full max-w-[1000px] mx-auto flex-1 min-h-0 relative">
-                                    <div className="w-full h-full p-[1px] md:rounded-[1.5rem] rounded-xl bg-gradient-to-b from-white/20 to-transparent shadow-[0_0_60px_rgba(0,0,0,0.4)] overflow-hidden">
+                                {/* Dashboard — fills remaining height, no cropping */}
+                                <div className="flex-1 min-h-0 w-full relative rounded-2xl md:rounded-[1.5rem] overflow-hidden border border-white/[0.08] group-hover:border-white/20 transition-all duration-500 shadow-[0_20px_80px_rgba(0,0,0,0.6)] group-hover:shadow-[0_20px_100px_rgba(20,184,166,0.15)]">
+                                    {/* Gradient border glow on hover */}
+                                    <div className="absolute inset-0 rounded-2xl md:rounded-[1.5rem] border border-transparent group-hover:border-primary/20 transition-all duration-500 pointer-events-none z-10" />
+                                    {/* The actual mockup fills the container */}
+                                    <div className="w-full h-full">
                                         {dashboard.image}
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
+                    </motion.div>
+                </div>
+
+                {/* Scroll hint */}
+                <div className="shrink-0 pb-6 flex justify-center">
+                    <motion.div
+                        animate={{ x: [0, 8, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        className="flex items-center gap-2 text-slate-500 text-xs font-medium"
+                    >
+                        <span>Scroll to explore</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-slate-500">
+                            <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
                     </motion.div>
                 </div>
             </div>
