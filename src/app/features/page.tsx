@@ -113,7 +113,7 @@ export default function FeaturesPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.8, delay: (i % 3) * 0.1, ease: "easeOut" }}
-                            className="group relative p-8 md:p-12 rounded-[2rem] bg-[#0A101D] border border-white/5 hover:border-white/20 transition-all duration-500 overflow-hidden flex flex-col h-full"
+                            className="group relative p-6 md:p-12 rounded-[2rem] bg-[#0A101D] border border-white/5 hover:border-white/20 transition-all duration-500 overflow-hidden flex flex-col h-full"
                         >
                             <div className="relative z-10 flex-1 flex flex-col">
                                 <div className={`w-14 h-14 rounded-2xl bg-${feature.color}-500/10 flex items-center justify-center border border-${feature.color}-500/20 mb-6 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500`}>

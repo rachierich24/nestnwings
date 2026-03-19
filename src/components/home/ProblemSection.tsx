@@ -85,7 +85,7 @@ export function ProblemSection() {
                     </div>
 
                     {/* Massive Typography Set */}
-                    <h2 className="font-heading text-[56px] font-bold tracking-[-0.03em] leading-[1.1]">
+                    <h2 className="font-heading text-4xl md:text-[56px] font-bold tracking-[-0.03em] leading-[1.1]">
                         <div className="overflow-hidden py-1">
                             <motion.div initial="hidden" animate={isInView ? "visible" : "hidden"} variants={maskReveal} transition={{ delay: 0.1 }} className="text-white">
                                 Hostel management
@@ -100,6 +100,15 @@ export function ProblemSection() {
                                     WebkitTextStroke: "1px rgba(255,255,255,0.15)",
                                     color: "transparent"
                                 }}
+                                className="hidden md:block"
+                            >
+                                is still stuck
+                            </motion.div>
+                            <motion.div
+                                initial="hidden"
+                                animate={isInView ? "visible" : "hidden"}
+                                variants={maskReveal}
+                                className="md:hidden text-white/20"
                             >
                                 is still stuck
                             </motion.div>

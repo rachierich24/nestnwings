@@ -78,19 +78,29 @@ export function PathFlow() {
                             return (
                                 <div key={step.id} className="relative flex flex-col md:flex-row items-center justify-between w-full group">
                                     {/* Numbered Central Node */}
-                                    <div className="absolute left-[-16px] md:left-1/2 w-8 h-8 md:-translate-x-1/2 rounded-full bg-[#020617] border-2 border-slate-700 group-hover:border-[#14B8A6] transition-colors duration-500 flex items-center justify-center z-20 shadow-xl">
+                                    <div className="absolute left-[-16px] md:left-1/2 w-8 h-8 md:-translate-x-1/2 rounded-full bg-blue-600 border-2 border-blue-400/50 group-hover:border-[#14B8A6] transition-colors duration-500 flex items-center justify-center z-20 shadow-[0_0_15px_rgba(37,99,235,0.4)]">
                                         <div className="text-[10px] font-bold text-white leading-none">{step.number}</div>
+                                        {/* Downward Flow Arrow on line */}
+                                        {index < steps.length - 1 && (
+                                            <div className="absolute -bottom-12 md:-bottom-16 left-1/2 -translate-x-1/2 hidden md:block opacity-40">
+                                                <motion.div
+                                                    animate={{ y: [0, 5, 0] }}
+                                                    transition={{ duration: 2, repeat: Infinity }}
+                                                >
+                                                    <ArrowRight size={12} className="rotate-90 text-blue-400 scale-y-150" />
+                                                </motion.div>
+                                            </div>
+                                        )}
                                     </div>
 
-                                    {/* Desktop Animated Arrow (Pointing from Card to Line or Line to Card) */}
-                                    {/* This is a subtle UX touch for the "Animated arrows between steps" request */}
-                                    <div className={`hidden md:flex absolute top-1/2 -translate-y-1/2 ${isEven ? 'right-1/2 translate-x-8' : 'left-1/2 -translate-x-8'} w-12 items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500`}>
+                                    {/* Desktop Animated Arrow (Pointing from Line to Card) */}
+                                    <div className={`hidden md:flex absolute top-1/2 -translate-y-1/2 ${isEven ? 'right-1/2 translate-x-4' : 'left-1/2 -translate-x-4'} w-12 items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500`}>
                                         <motion.div
-                                            animate={{ x: isEven ? [0, 5, 0] : [0, -5, 0] }}
+                                            animate={{ x: isEven ? [0, -5, 0] : [0, 5, 0] }}
                                             transition={{ duration: 1.5, repeat: Infinity }}
                                             className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#2563EB] to-transparent relative"
                                         >
-                                            <div className={`absolute top-1/2 -translate-y-1/2 ${isEven ? 'right-0' : 'left-0 rotate-180'} w-2 h-2 border-t border-r border-[#2563EB] rotate-45 transform origin-center`} />
+                                            <div className={`absolute top-1/2 -translate-y-1/2 ${isEven ? 'left-0 -rotate-[135deg]' : 'right-0 rotate-45'} w-2 h-2 border-t border-r border-[#2563EB] transform origin-center`} />
                                         </motion.div>
                                     </div>
 

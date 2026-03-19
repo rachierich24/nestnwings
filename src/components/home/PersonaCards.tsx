@@ -14,7 +14,7 @@ const personas = [
             "Easy request submission"
         ],
         uiMockup: (
-            <div className="absolute top-6 -right-12 w-64 p-4 rounded-xl bg-[#0F172A] border border-white/10 shadow-2xl transform rotate-6 group-hover:rotate-2 group-hover:-translate-x-4 transition-all duration-500 z-0">
+            <div className="absolute top-6 -right-16 md:-right-12 w-64 p-4 rounded-xl bg-[#0F172A] border border-white/10 shadow-2xl transform rotate-6 group-hover:rotate-2 group-hover:-translate-x-4 transition-all duration-500 z-0 scale-90 md:scale-100">
                 <div className="flex gap-3 mb-4">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold shadow-lg shadow-blue-500/20 text-xs">RS</div>
                     <div>
@@ -47,7 +47,7 @@ const personas = [
             "Faster decision making"
         ],
         uiMockup: (
-            <div className="absolute top-8 right-[-10px] w-64 p-3 rounded-xl bg-[#0F172A] border border-white/10 shadow-2xl transform -rotate-3 group-hover:rotate-0 group-hover:-translate-y-2 transition-all duration-500 z-0 flex flex-col gap-2">
+            <div className="absolute top-8 right-[-20px] md:right-[-10px] w-64 p-3 rounded-xl bg-[#0F172A] border border-white/10 shadow-2xl transform -rotate-3 group-hover:rotate-0 group-hover:-translate-y-2 transition-all duration-500 z-0 flex flex-col gap-2 scale-90 md:scale-100">
                 <div className="flex justify-between items-center pb-2 border-b border-white/10">
                     <div className="text-xs font-semibold text-white flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" /> Pending Actions</div>
                     <div className="text-[10px] bg-white/10 px-1.5 py-0.5 rounded text-slate-300">12 Total</div>
@@ -79,7 +79,7 @@ const personas = [
             "Better overall operational control"
         ],
         uiMockup: (
-            <div className="absolute top-12 -right-8 w-60 p-4 rounded-xl bg-[#0F172A] border border-white/10 shadow-2xl transform rotate-3 group-hover:rotate-0 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-500 z-0">
+            <div className="absolute top-12 -right-12 md:-right-8 w-60 p-4 rounded-xl bg-[#0F172A] border border-white/10 shadow-2xl transform rotate-3 group-hover:rotate-0 group-hover:-translate-x-2 group-hover:-translate-y-2 transition-all duration-500 z-0 scale-90 md:scale-100">
                 <div className="grid grid-cols-2 gap-2 mb-3">
                     <div className="p-2 rounded bg-emerald-500/10 border border-emerald-500/20 flex flex-col">
                         <span className="text-[9px] text-emerald-400 uppercase tracking-widest">Revenue</span>
@@ -180,7 +180,7 @@ function MagneticCard({ index, persona, Icon, isInView }: { index: number, perso
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.7, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
             onMouseMove={handleMouseMove}
-            className="flex flex-col h-[500px] bg-[#1E293B]/40 rounded-[32px] border border-white/[0.08] relative overflow-hidden group shadow-2xl"
+            className="flex flex-col h-[450px] md:h-[500px] bg-[#1E293B]/40 rounded-[32px] border border-white/[0.08] relative overflow-hidden group shadow-2xl"
             style={{ isolation: 'isolate' }}
         >
             {/* Magnetic Flashlight Glow */}

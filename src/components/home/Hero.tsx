@@ -133,8 +133,7 @@ export function Hero() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                        style={{ y: uiY }}
-                        className="lg:col-span-7 relative h-[650px] w-full mt-4 lg:mt-0 flex flex-col lg:block z-20 perspective-[2000px]"
+                        className="lg:col-span-7 relative h-[400px] md:h-[500px] lg:h-[650px] w-full mt-12 lg:mt-0 flex flex-col lg:block z-20 perspective-[2000px]"
                     >
                         <AllocationFlow />
                     </motion.div>

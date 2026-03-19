@@ -56,7 +56,7 @@ export default function ProductPage() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                        className="lg:col-span-5 w-full min-h-[500px] md:h-[600px] rounded-[24px] overflow-hidden border border-white/5 relative bg-[#020617] shadow-2xl"
+                        className="lg:col-span-5 w-full min-h-[350px] md:h-[600px] rounded-[24px] overflow-hidden border border-white/5 relative bg-[#020617] shadow-2xl"
                     >
                         <OpsMockup />
                     </motion.div>
@@ -79,7 +79,7 @@ export default function ProductPage() {
                                     Maintain detailed profiles for every student. Track allotment history, payment status, and leave requests effortlessly.
                                 </p>
                             </div>
-                            <div className="w-full min-h-[500px] md:h-[500px] flex-grow rounded-2xl overflow-hidden bg-[#020617] border border-white/5 group-hover:border-teal-500/30 transition-all duration-700">
+                            <div className="w-full min-h-[350px] md:h-[500px] flex-grow rounded-2xl overflow-hidden bg-[#020617] border border-white/5 group-hover:border-teal-500/30 transition-all duration-700">
                                 <ResMockup />
                             </div>
                         </motion.div>
@@ -99,7 +99,7 @@ export default function ProductPage() {
                                     Automated invoice generation, live collection stats, payment gateway sync, and 1-click complex ledger reporting.
                                 </p>
                             </div>
-                            <div className="w-full min-h-[500px] md:h-[500px] flex-grow rounded-2xl overflow-hidden bg-[#020617] border border-white/5 group-hover:border-purple-500/30 transition-all duration-700">
+                            <div className="w-full min-h-[350px] md:h-[500px] flex-grow rounded-2xl overflow-hidden bg-[#020617] border border-white/5 group-hover:border-purple-500/30 transition-all duration-700">
                                 <FinMockup />
                             </div>
                         </motion.div>

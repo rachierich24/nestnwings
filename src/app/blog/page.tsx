@@ -59,7 +59,7 @@ export default function BlogPage() {
                                 </Link>
                             </div>
                             <div className="w-full lg:w-1/2 order-1 lg:order-2">
-                                <div className="min-h-[450px] md:h-[500px] w-full rounded-[2rem] overflow-hidden bg-[#0A101D] border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.5)] group-hover:border-purple-500/30 transition-all duration-500 p-2 relative">
+                                <div className="min-h-[350px] md:h-[500px] w-full rounded-[2rem] overflow-hidden bg-[#0A101D] border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.5)] group-hover:border-purple-500/30 transition-all duration-500 p-2 relative">
                                     <div className="relative z-10 w-full h-full">
                                         <Blog1FlowMockup />
                                     </div>
@@ -81,7 +81,7 @@ export default function BlogPage() {
                     >
                         <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
                             <div className="w-full lg:w-1/2">
-                                <div className="min-h-[450px] md:h-[500px] w-full rounded-[2rem] overflow-hidden bg-[#0A101D] border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.5)] group-hover:border-teal-500/30 transition-all duration-500 p-2 relative">
+                                <div className="min-h-[350px] md:h-[500px] w-full rounded-[2rem] overflow-hidden bg-[#0A101D] border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.5)] group-hover:border-teal-500/30 transition-all duration-500 p-2 relative">
                                     <div className="relative z-10 w-full h-full">
                                         <Blog2FlowMockup />
                                     </div>

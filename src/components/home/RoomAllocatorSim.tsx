@@ -236,7 +236,7 @@ export function RoomAllocatorSim() {
                                 <div className="absolute inset-0 bg-blue-500/5 mix-blend-overlay pointer-events-none animate-pulse" />
                             )}
 
-                            <div className="grid grid-cols-10 sm:grid-cols-12 md:grid-cols-16 gap-1 md:gap-2 auto-rows-max overflow-y-auto h-full pr-2 custom-scrollbar">
+                            <div className="grid grid-cols-8 sm:grid-cols-12 md:grid-cols-16 gap-1 md:gap-2 auto-rows-max overflow-y-auto h-full pr-2 custom-scrollbar">
                                 {grid.map((status, i) => (
                                     <motion.div
                                         key={i}

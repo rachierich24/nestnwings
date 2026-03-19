@@ -365,9 +365,9 @@ export function FinMockup() {
                                     cx="50" cy="50" r="40" fill="none" stroke="#EC4899" strokeWidth="12" strokeDashoffset="-165" strokeLinecap="round" className="origin-center -rotate-90" 
                                 />
                             </svg>
-                            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                                <span className="text-2xl font-black text-white tracking-tight group-hover:scale-110 transition-transform duration-300">65%</span>
-                                <span className="text-[10px] font-bold text-fuchsia-300 uppercase tracking-wider">UPI / Online</span>
+                            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none pb-2">
+                                <span className="text-xl lg:text-2xl font-black text-white tracking-tight group-hover:scale-110 transition-transform duration-300">65%</span>
+                                <span className="text-[8px] lg:text-[10px] text-center font-bold text-fuchsia-300 uppercase tracking-wider mt-0.5">UPI / Online</span>
                             </div>
                         </div>
                     </motion.div>
@@ -447,7 +447,7 @@ export function ProductShowcase() {
                             viewport={{ margin: "-100px", once: true }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
                             key={dashboard.id}
-                            className="sticky top-[10vh] w-full flex flex-col md:flex-row gap-6 md:gap-10 p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] border border-white/10 shadow-[0_-20px_40px_rgba(0,0,0,0.8)] overflow-hidden group"
+                            className="sticky top-[80px] md:top-[12vh] w-full flex flex-col md:flex-row gap-6 md:gap-10 p-5 md:p-10 rounded-[2rem] md:rounded-[3rem] border border-white/10 shadow-[0_-20px_40px_rgba(0,0,0,0.8)] overflow-hidden group mb-4 md:mb-0"
                             style={{ 
                                 backgroundColor: index === 0 ? "#0a0f1c" : index === 1 ? "#11111a" : "#170a1a",
                                 zIndex: index * 10
@@ -457,7 +457,7 @@ export function ProductShowcase() {
                                 <div className="inline-block self-start px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-white font-bold tracking-widest text-xs uppercase mb-6 backdrop-blur-md">
                                     Module 0{index + 1}
                                 </div>
-                                <h3 className="font-heading text-4xl md:text-6xl font-black tracking-tight text-white mb-6 uppercase">
+                                <h3 className="font-heading text-3xl md:text-6xl font-black tracking-tight text-white mb-4 md:mb-6 uppercase">
                                     {dashboard.title}
                                 </h3>
                                 <p className="text-slate-400 text-lg md:text-xl leading-relaxed">
@@ -465,7 +465,7 @@ export function ProductShowcase() {
                                 </p>
                             </div>
 
-                            <div className="w-full md:w-[60%] h-[400px] md:h-[600px] relative rounded-2xl md:rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl relative z-10 group-hover:border-white/20 transition-all duration-700">
+                            <div className="w-full md:w-[60%] h-[300px] md:h-[600px] relative rounded-2xl md:rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl relative z-10 group-hover:border-white/20 transition-all duration-700">
                                 <div className="w-full h-full bg-[#020617]">
                                     {dashboard.image}
                                 </div>
