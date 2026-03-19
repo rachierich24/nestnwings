@@ -63,14 +63,14 @@ export function FinalCTA() {
                         whileInView={{ scale: 1, opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ type: "spring", duration: 1.5, bounce: 0.4 }}
-                        className="flex h-16 md:h-20 w-auto px-6 items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-white font-bold mb-10 relative overflow-hidden group shadow-2xl"
+                        className="flex h-20 md:h-24 w-auto px-8 items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-white font-bold mb-10 relative overflow-hidden group shadow-2xl"
                     >
                         <div className="absolute inset-0 bg-gradient-to-br from-[#14B8A6] to-[#2563EB] opacity-10 group-hover:opacity-100 transition-opacity duration-500" />
                         <Image
                             src="/logo_transparent.png"
                             alt="Nest n Wings"
-                            width={160}
-                            height={40}
+                            width={240}
+                            height={60}
                             className="relative z-10 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] object-contain"
                         />
                     </motion.div>
