@@ -8,7 +8,7 @@ import { LineChart, Users, Wallet, ShieldCheck, TrendingUp, CheckCircle2, BedDou
 
 export function OpsMockup() {
     return (
-        <div className="w-full h-full bg-[#0B1120] rounded-[22px] p-3 md:p-6 flex flex-col gap-3 md:gap-6 relative overflow-hidden font-sans group/ops">
+        <div className="w-full h-full bg-[#0B1120] rounded-[24px] p-4 md:p-6 flex flex-col gap-5 md:gap-6 relative overflow-hidden font-sans group/ops border border-blue-900/30 shadow-2xl">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-transparent pointer-events-none z-0" />
 
             {/* Header */}
@@ -39,8 +39,8 @@ export function OpsMockup() {
                 </div>
             </div>
 
-            {/* Top Metrics */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 relative z-10">
+            {/* Top Metrics - Single Row Force */}
+            <div className="flex gap-2 min-w-full overflow-x-auto pb-2 scrollbar-hide relative z-10">
                 {[
                     { label: "Total Capacity", val: "1,450", sub: "Beds Available", color: "blue", trend: "+0" },
                     { label: "Occupancy Rate", val: "94.2%", sub: "1,366 Filled", color: "emerald", trend: "+1.2%" },
@@ -53,14 +53,14 @@ export function OpsMockup() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.1, duration: 0.5 }}
                         whileHover={{ y: -4, backgroundColor: "rgba(255,255,255,0.08)" }}
-                        className="bg-white/5 border border-white/5 rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col gap-1 md:gap-2 relative overflow-hidden group cursor-pointer"
+                        className="flex-1 min-w-[130px] bg-white/5 border border-white/5 rounded-xl p-3 md:p-4 flex flex-col gap-1 md:gap-1.5 relative overflow-hidden group cursor-pointer shrink-0"
                     >
                         <div className={`absolute top-0 left-0 w-full h-1 bg-${m.color}-500/50 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500`} />
-                        <span className="text-[9px] md:text-xs text-slate-400 font-bold uppercase tracking-widest">{m.label}</span>
-                        <div className="text-xl md:text-3xl font-black text-white">{m.val}</div>
+                        <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest whitespace-nowrap overflow-hidden text-ellipsis">{m.label}</span>
+                        <div className="text-xl md:text-2xl font-black text-white">{m.val}</div>
                         <div className="flex justify-between items-center mt-auto">
-                            <span className="text-[9px] md:text-xs text-slate-500">{m.sub}</span>
-                            <span className={`text-[9px] md:text-xs font-bold text-${m.color}-400 bg-${m.color}-500/10 px-1.5 md:px-2 py-0.5 rounded`}>{m.trend}</span>
+                            <span className="text-[10px] text-slate-500 hidden xl:block">{m.sub}</span>
+                            <span className={`text-[10px] font-bold text-${m.color}-400 bg-${m.color}-500/10 px-1.5 py-0.5 rounded`}>{m.trend}</span>
                         </div>
                     </motion.div>
                 ))}
@@ -140,9 +140,11 @@ export function OpsMockup() {
 
 export function ResMockup() {
     return (
-        <div className="w-full h-full bg-slate-50 rounded-[22px] border border-slate-200 p-0 flex relative overflow-hidden font-sans group">
-            {/* Sidebar */}
-            <div className="hidden md:flex w-72 border-r border-slate-200 bg-white flex-col p-5 shadow-sm z-10 transition-transform duration-500 group-hover:-translate-x-1">
+        <div className="w-full h-full bg-[#11111a] rounded-[22px] border border-white/10 p-4 md:p-6 flex relative overflow-hidden font-sans group">
+            {/* White-themed Inset Mockup */}
+            <div className="flex-grow flex bg-white rounded-xl overflow-hidden shadow-2xl relative z-10">
+                {/* Sidebar */}
+                <div className="hidden md:flex w-64 border-r border-slate-200 bg-slate-50 flex-col p-4 z-10">
                 <div className="flex items-center gap-3 text-slate-900 font-black text-lg mb-8 px-2">
                     <div className="w-8 h-8 rounded-lg bg-blue-600/10 text-blue-600 flex items-center justify-center border border-blue-600/20"><Users size={16} /></div> Directory
                 </div>
@@ -242,6 +244,7 @@ export function ResMockup() {
                     </div>
                 </div>
             </div>
+            </div>
         </div>
     );
 }
@@ -269,8 +272,8 @@ export function FinMockup() {
                 </motion.button>
             </div>
 
-            {/* Scorecards */}
-            <div className="grid grid-cols-3 gap-3 md:gap-6 relative z-10">
+            {/* Scorecards - 3 Equal Columns */}
+            <div className="grid grid-cols-3 gap-3 md:gap-4 relative z-10">
                 {[
                     { l: "Collected (MTD)", v: "₹18.4M", p: "+15.2%", c: "emerald" },
                     { l: "Pending Dues", v: "₹4.2M", p: "-2.1%", c: "amber" },
@@ -282,13 +285,12 @@ export function FinMockup() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.15, duration: 0.5 }}
                         whileHover={{ y: -5, backgroundColor: "rgba(255,255,255,0.05)" }}
-                        className="h-20 md:h-32 bg-[#171124] rounded-xl md:rounded-2xl p-3 md:p-6 border border-fuchsia-900/40 flex flex-col justify-between cursor-pointer shadow-lg relative overflow-hidden group"
+                        className="h-24 md:h-32 bg-[#171124] rounded-xl md:rounded-2xl p-3 md:p-5 border border-fuchsia-900/40 flex flex-col justify-between cursor-pointer shadow-lg relative overflow-hidden group"
                     >
                         <div className={`absolute -right-10 -bottom-10 w-24 h-24 bg-${card.c}-500/20 blur-2xl rounded-full group-hover:bg-${card.c}-500/30 transition-all duration-500`} />
-                        <span className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest relative z-10">{card.l}</span>
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest relative z-10 text-ellipsis overflow-hidden whitespace-nowrap">{card.l}</span>
                         <div className="flex justify-between items-end relative z-10">
-                            <span className="text-xl md:text-4xl font-black text-white tracking-tight">{card.v}</span>
-                            <span className={`hidden md:inline-flex text-xs font-black text-${card.c}-400 bg-${card.c}-500/10 px-2.5 py-1 rounded-md border border-${card.c}-500/20 shadow-sm`}>{card.p}</span>
+                            <span className="text-xl md:text-3xl lg:text-4xl font-black text-white tracking-widest">{card.v}</span>
                         </div>
                     </motion.div>
                 ))}
@@ -300,7 +302,7 @@ export function FinMockup() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.4, duration: 0.7 }}
-                    className="md:w-2/3 bg-[#171124] border border-fuchsia-900/40 rounded-xl md:rounded-3xl p-4 md:p-8 flex flex-col min-h-[140px] md:min-h-0 shadow-xl overflow-hidden relative group"
+                    className="md:w-2/3 mb-[20px] bg-[#171124] border border-fuchsia-900/40 rounded-xl md:rounded-3xl p-4 md:p-8 flex flex-col shadow-xl overflow-hidden relative group"
                 >
                     <div className="absolute inset-0 bg-gradient-to-t from-fuchsia-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                     <div className="flex justify-between items-center mb-4 md:mb-8 relative z-10">

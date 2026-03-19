@@ -16,48 +16,54 @@ export default function ProductPage() {
     return (
         <main ref={containerRef} className="bg-[#020617] min-h-[300vh] text-white relative selection:bg-blue-500/30 overflow-hidden">
             <div className="container mx-auto px-4 md:px-8 max-w-[1400px] relative z-10 pt-32 md:pt-48 pb-32">
-                
-                <motion.div 
-                    initial={{ opacity: 0, y: 100 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="max-w-4xl mb-24 md:mb-32"
-                >
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl leading-[1.1] md:leading-[1] font-black uppercase tracking-tighter mb-6">
-                        The Core Engine.<br/>
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">Built for scale.</span>
-                    </h1>
-                    <p className="text-lg md:text-2xl font-medium text-slate-400 max-w-2xl leading-snug">
-                        Nest OS is not just a dashboard. It is a highly robust infrastructure layer designed specifically for high-volume hostel & PG operations.
-                    </p>
-                </motion.div>
-
-                {/* Massive Bento / Scroll Sequence */}
-                <div className="flex flex-col gap-10 md:gap-24">
+                {/* Hero / Operations Matrix (60/40 Grid) */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-center mb-24 md:mb-32">
                     
-                    {/* BENTO 1: Operations */}
+                    {/* Left Column (60) */}
                     <motion.div 
-                        initial={{ opacity: 0, y: 100 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 1 }}
-                        className="w-full flex flex-col lg:flex-row gap-10 items-center justify-between rounded-[3rem] bg-[#0A101D] border border-white/10 p-8 md:p-16 relative overflow-hidden group shadow-[0_30px_60px_rgba(0,0,0,0.8)]"
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="lg:col-span-7 flex flex-col pr-0 lg:pr-10" // 40px padding right equivalent
                     >
-                        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-blue-600/10 to-transparent pointer-events-none" />
-                        <div className="lg:w-1/2 relative z-10 flex flex-col">
-                            <Zap className="text-blue-500 mb-8 w-12 h-12 md:w-16 md:h-16" />
-                            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4">Operations Matrix</h2>
-                            <p className="text-lg md:text-xl text-slate-400 mb-8 max-w-lg">
-                                Real-time visibility into your entire campus. See occupancy rates, pending maintenance, and staff availability in one unified command center.
-                            </p>
-                        </div>
-                        <div className="lg:w-1/2 w-full min-h-[500px] md:h-[550px] lg:h-[600px] rounded-[2rem] overflow-hidden border border-white/5 relative bg-[#020617] group-hover:border-blue-500/30 transition-colors duration-700">
-                            <OpsMockup />
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 tracking-tight">
+                            Operations Dashboard
+                        </h1>
+                        <p className="text-lg md:text-2xl font-medium text-slate-400 mb-10 leading-snug">
+                            A centralized command center visualizing live occupancy, pending tickets, and overall campus health in real-time.
+                        </p>
+                        
+                        <div className="flex flex-col gap-5">
+                            {[
+                                "Real-time visibility into your entire campus.",
+                                "Trace active maintenance issues automatically.",
+                                "Manage staff shifts and availability instantly."
+                            ].map((feat, i) => (
+                                <div key={i} className="flex items-center gap-4">
+                                    <div className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/30 shrink-0">
+                                        <svg className="w-5 h-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <span className="text-base md:text-lg font-medium text-slate-300">{feat}</span>
+                                </div>
+                            ))}
                         </div>
                     </motion.div>
 
-                    {/* BENTO 2 & 3: Grid */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-24">
+                    {/* Right Column (40) */}
+                    <motion.div 
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                        className="lg:col-span-5 w-full min-h-[500px] md:h-[600px] rounded-[24px] overflow-hidden border border-white/5 relative bg-[#020617] shadow-2xl"
+                    >
+                        <OpsMockup />
+                    </motion.div>
+                </div>
+
+                {/* BENTO 2 & 3: Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-24">
                         <motion.div 
                             initial={{ opacity: 0, y: 100 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -98,7 +104,6 @@ export default function ProductPage() {
                             </div>
                         </motion.div>
                     </div>
-                </div>
             </div>
         </main>
     );
