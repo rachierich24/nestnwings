@@ -31,9 +31,9 @@ export function Hero() {
                 className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden"
             >
                 {/* Orange/Blue Mesh Gradient Aura */}
-                <div className="absolute top-[20%] right-[-10%] w-[800px] h-[800px] rounded-full bg-[#14B8A6]/10 blur-[120px] mix-blend-multiply" />
-                <div className="absolute top-[10%] right-[10%] w-[600px] h-[600px] rounded-full bg-[#2563EB]/10 blur-[120px] mix-blend-multiply" />
-                <div className="absolute bottom-[-10%] left-[20%] w-[700px] h-[700px] rounded-full bg-[#22D3EE]/10 blur-[150px] mix-blend-multiply" />
+                <div className="absolute top-[20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-[#14B8A6]/10 blur-[80px] mix-blend-multiply" />
+                <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full bg-[#2563EB]/10 blur-[80px] mix-blend-multiply" />
+                <div className="absolute bottom-[-10%] left-[20%] w-[500px] h-[500px] rounded-full bg-[#22D3EE]/10 blur-[80px] mix-blend-multiply" />
 
                 {/* Subtle noise texture overlay for organic feel */}
                 <div
@@ -44,21 +44,18 @@ export function Hero() {
 
             {/* Layer 2: Hostel Illustration Merged Background */}
             <motion.div style={{ y: illustrationY }} className="absolute inset-0 z-[1] pointer-events-none flex items-center justify-end overflow-hidden opacity-40 mix-blend-multiply">
-                <motion.div
+                <div
                     className="absolute right-[-80px] bottom-[-40px] w-[140%] md:w-[130%] lg:w-[100%] max-w-[1200px]"
                     style={{
                         transform: "scale(1.15)",
-                        filter: "blur(0.4px)",
                     }}
-                    animate={{ y: [-4, 4, -4] }}
-                    transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
                 >
                     <img
                         src="/hero-illustration.png"
                         alt="Modern Hostel Campus Background"
                         className="w-full h-auto object-contain transform-gpu"
                     />
-                </motion.div>
+                </div>
 
                 {/* Aggressive radial fade on the left side to merge into text area and remove the vertical split */}
                 <div
@@ -166,13 +163,11 @@ function AllocationFlow() {
     return (
         <div className="w-full h-full relative flex items-center justify-center perspective-[2000px]">
             {/* Background glowing orb */}
-            <div className="absolute w-[300px] h-[300px] bg-[#14B8A6]/15 rounded-full blur-[80px]" />
-            <div className="absolute w-[200px] h-[200px] bg-[#2563EB]/15 rounded-full blur-[60px] translate-x-20 translate-y-20" />
+            <div className="absolute w-[250px] h-[250px] bg-[#14B8A6]/15 rounded-full blur-[50px]" />
+            <div className="absolute w-[180px] h-[180px] bg-[#2563EB]/15 rounded-full blur-[40px] translate-x-20 translate-y-20" />
 
-            <motion.div
-                animate={{ rotateY: [-2, 2, -2], rotateX: [1, -1, 1], y: [-5, 5, -5] }}
-                transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}
-                className="relative w-full max-w-[420px] bg-white/90 backdrop-blur-2xl border border-white/60 shadow-[0_20px_40px_rgba(0,0,0,0.08),0_1px_3px_rgba(0,0,0,0.05)] rounded-3xl p-6 flex flex-col gap-8 transform-style-3d"
+            <div
+                className="relative w-full max-w-[420px] bg-white border border-slate-200/60 shadow-[0_20px_40px_rgba(0,0,0,0.08),0_1px_3px_rgba(0,0,0,0.05)] rounded-3xl p-6 flex flex-col gap-8 transform-gpu"
             >
                 <div className="flex items-center justify-between z-10">
                     <div className="flex items-center gap-3">
@@ -210,42 +205,33 @@ function AllocationFlow() {
 
                     <div className="absolute inset-0 flex items-center justify-between px-2">
                         {/* 1. Student */}
-                        <motion.div
+                        <div
                             className="w-14 h-14 bg-white rounded-2xl shadow-lg border border-slate-100 flex flex-col items-center justify-center gap-1 z-10"
-                            animate={{ y: [0, -5, 0] }}
-                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                         >
                             <User size={18} className="text-blue-500" />
                             <span className="text-[9px] font-bold text-slate-500">New App</span>
-                        </motion.div>
+                        </div>
 
                         {/* 2. Room Algorithm */}
-                        <motion.div
+                        <div
                             className="w-16 h-16 bg-[#0F172A] rounded-2xl shadow-xl border border-slate-800 flex flex-col items-center justify-center gap-1.5 z-10"
-                            animate={{ scale: [1, 1.05, 1], rotate: [0, 5, -5, 0] }}
-                            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                         >
                             <Activity size={20} className="text-teal-400" />
                             <span className="text-[9px] font-bold text-slate-300">Matching</span>
-                        </motion.div>
+                        </div>
 
                         {/* 3. Approved Room */}
-                        <motion.div
+                        <div
                             className="w-14 h-14 bg-white rounded-2xl shadow-lg border border-emerald-100 flex flex-col items-center justify-center gap-1 z-10"
-                            animate={{ y: [0, -5, 0] }}
-                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                         >
                             <Home size={18} className="text-emerald-500" />
                             <span className="text-[9px] font-bold text-slate-500">Assigned</span>
-                        </motion.div>
+                        </div>
                     </div>
                 </div>
 
                 <div className="bg-slate-50 rounded-xl p-3 border border-slate-100 mt-2 z-10">
-                    <motion.div
-                        initial={{ opacity: 0.5 }}
-                        animate={{ opacity: [0.5, 1, 0.5] }}
-                        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                    <div
                         className="flex items-center gap-3"
                     >
                         <div className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
@@ -255,9 +241,9 @@ function AllocationFlow() {
                             <div className="text-xs font-bold text-slate-800">Auto-Approved: Block B, Room 302</div>
                             <div className="text-[10px] text-slate-500 font-medium">Payment link dispatched automatically.</div>
                         </div>
-                    </motion.div>
+                    </div>
                 </div>
-            </motion.div>
+            </div>
         </div>
     );
 }

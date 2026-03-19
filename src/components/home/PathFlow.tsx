@@ -82,16 +82,13 @@ export function PathFlow() {
                                         <div className="text-[10px] font-bold text-white leading-none">{step.number}</div>
                                     </div>
 
-                                    {/* Desktop Animated Arrow (Pointing from Card to Line or Line to Card) */}
-                                    {/* This is a subtle UX touch for the "Animated arrows between steps" request */}
+                                    {/* Desktop Arrow (Pointing from Card to Line or Line to Card) */}
                                     <div className={`hidden md:flex absolute top-1/2 -translate-y-1/2 ${isEven ? 'right-1/2 translate-x-8' : 'left-1/2 -translate-x-8'} w-12 items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500`}>
-                                        <motion.div
-                                            animate={{ x: isEven ? [0, 5, 0] : [0, -5, 0] }}
-                                            transition={{ duration: 1.5, repeat: Infinity }}
+                                        <div
                                             className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#2563EB] to-transparent relative"
                                         >
                                             <div className={`absolute top-1/2 -translate-y-1/2 ${isEven ? 'right-0' : 'left-0 rotate-180'} w-2 h-2 border-t border-r border-[#2563EB] rotate-45 transform origin-center`} />
-                                        </motion.div>
+                                        </div>
                                     </div>
 
                                     {/* Desktop Layout - Alternating sides */}
