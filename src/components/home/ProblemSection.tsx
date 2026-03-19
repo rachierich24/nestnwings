@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 
 import { FileText, Unplug, UserX } from "lucide-react";
 
@@ -36,7 +36,13 @@ export function ProblemSection() {
     const containerRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
+    // Slight parallax for background elements
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"],
+    });
 
+    const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
     // Cinematic Mask Reveal Variants
     const maskReveal = {
@@ -53,11 +59,13 @@ export function ProblemSection() {
             className="relative py-12 md:py-20 bg-[#0F172A] overflow-hidden"
         >
             {/* Cinematic Background Glows */}
-            <div
-                className="absolute top-[-20%] left-[-10%] w-[40%] h-[40%] rounded-full bg-[#14B8A6]/5 blur-[60px] pointer-events-none"
+            <motion.div
+                style={{ y: bgY }}
+                className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#14B8A6]/5 blur-[120px] pointer-events-none"
             />
-            <div
-                className="absolute bottom-[-20%] right-[-10%] w-[30%] h-[30%] rounded-full bg-[#2563EB]/10 blur-[60px] pointer-events-none"
+            <motion.div
+                style={{ y: bgY }}
+                className="absolute bottom-[-20%] right-[-10%] w-[40%] h-[40%] rounded-full bg-[#2563EB]/10 blur-[100px] pointer-events-none"
             />
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">

@@ -110,7 +110,7 @@ export function PersonaCards() {
     return (
         <section className="py-24 bg-[#0F172A] relative overflow-hidden">
             {/* Ambient Background Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] rounded-full bg-gradient-to-r from-[#14B8A6]/5 to-[#2563EB]/5 blur-[60px] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] rounded-full bg-gradient-to-r from-[#14B8A6]/5 to-[#2563EB]/5 blur-[120px] pointer-events-none" />
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 <div className="text-center max-w-3xl mx-auto mb-20 text-white">
