@@ -205,8 +205,8 @@ export function FeaturesSection() {
 
                             <div className="p-6 md:p-8 h-full flex flex-col relative z-20">
                                 <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
-                                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#0F172A] border border-white/10 flex items-center justify-center text-primary shrink-0 group-hover:scale-110 transition-transform duration-500">
-                                        <feature.icon size={20} strokeWidth={1.5} />
+                                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-primary/20 border border-primary/30 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-[#020617] group-hover:shadow-[0_0_25px_rgba(20,184,166,0.5)] transition-all duration-500 shadow-lg">
+                                        <feature.icon size={22} strokeWidth={2.5} />
                                     </div>
                                     <h4 className="text-lg md:text-xl font-bold text-white font-heading tracking-tight">
                                         {feature.title}
