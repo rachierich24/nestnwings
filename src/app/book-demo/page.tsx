@@ -1,8 +1,7 @@
 "use client";
 
 import { InlineWidget } from "react-calendly";
-import { CheckCircle2, Star, Shield, Zap } from "lucide-react";
-import Image from "next/image";
+import { CheckCircle2, Shield, Zap } from "lucide-react";
 
 export default function BookDemoPage() {
     return (
@@ -53,25 +52,8 @@ export default function BookDemoPage() {
                                     <CheckCircle2 size={16} className="text-blue-500" />
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-white mb-1">Pricing & Implementation</h3>
-                                    <p className="text-slate-400 text-sm leading-relaxed">Get a clear timeline on data migration and exactly what it costs to switch your operations over.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Social Proof Mini */}
-                        <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md max-w-md">
-                            <div className="flex items-center gap-1 text-amber-500 mb-3">
-                                {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
-                            </div>
-                            <p className="text-slate-300 text-sm italic mb-4">"The demo completely changed how we viewed our operational bottlenecks. We deployed Nest n Wings across 3 properties within a week."</p>
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 overflow-hidden relative">
-                                    <Image src="https://i.pravatar.cc/150?u=nestnwings" alt="Testimonial Avatar" fill className="object-cover" />
-                                </div>
-                                <div>
-                                    <p className="text-sm font-bold text-white">Sarah Jenkins</p>
-                                    <p className="text-xs text-slate-500">Operations Director, Nomad Haus</p>
+                                    <h3 className="font-bold text-white mb-1">Implementation & Support</h3>
+                                    <p className="text-slate-400 text-sm leading-relaxed">Get a clear timeline on data migration and how our dedicated success team ensures a seamless transition for your staff.</p>
                                 </div>
                             </div>
                         </div>

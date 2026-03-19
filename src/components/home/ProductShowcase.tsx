@@ -334,8 +334,8 @@ export function ProductShowcase() {
     const x = useTransform(scrollYProgress, [0, 1], ["2%", "-110vw"]);
 
     return (
-        <section ref={targetRef} className="relative h-[350vh] bg-[#020617]">
-            <div className="sticky top-0 h-screen flex flex-col overflow-hidden">
+        <section ref={targetRef} className="relative md:h-[350vh] bg-[#020617] pb-24 md:pb-0">
+            <div className="md:sticky md:top-0 md:h-screen flex flex-col md:overflow-hidden">
                 {/* Header */}
                 <div className="w-full max-w-[1200px] mx-auto px-6 pt-24 pb-8 relative z-10 shrink-0">
                     <motion.div
@@ -353,8 +353,29 @@ export function ProductShowcase() {
                     </motion.div>
                 </div>
 
-                {/* Horizontal Slider — takes all remaining viewport height */}
-                <div className="relative w-full overflow-hidden flex-1 min-h-0 flex items-center">
+                {/* Mobile View: Vertical Stack */}
+                <div className="md:hidden flex flex-col gap-16 px-5 w-full mt-4">
+                    {dashboards.map((dashboard, index) => (
+                        <div key={dashboard.id} className="w-full flex flex-col gap-5 group">
+                            <div className="px-1 shrink-0 flex flex-col items-start gap-3">
+                                <div className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white font-semibold tracking-widest text-[10px] uppercase backdrop-blur-md">
+                                    Module 0{index + 1}
+                                </div>
+                                <h3 className="font-heading text-3xl font-bold tracking-tight text-white mb-2 leading-tight">
+                                    {dashboard.title}
+                                </h3>
+                            </div>
+                            <div className="w-full h-[550px] relative rounded-3xl p-1 bg-gradient-to-br from-white/10 to-transparent p-[1px] shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
+                                <div className="w-full h-full rounded-[23px] bg-[#020617] overflow-hidden">
+                                     {dashboard.image}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Desktop View: Horizontal Slider */}
+                <div className="hidden md:flex relative w-full overflow-hidden flex-1 min-h-0 items-center">
                     {/* Subtle ambient glow */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50%] h-[60%] bg-primary/8 rounded-full blur-[180px] pointer-events-none" />
 
@@ -369,7 +390,7 @@ export function ProductShowcase() {
                                 key={dashboard.id}
                                 whileHover={{ scale: 1.01 }}
                                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                                className="w-[90vw] md:w-[80vw] lg:w-[75vw] flex-shrink-0 flex flex-col gap-4 group cursor-pointer"
+                                className="w-[80vw] lg:w-[75vw] flex-shrink-0 flex flex-col gap-4 group cursor-pointer"
                                 style={{ height: "calc(100vh - 220px)" }}
                             >
                                 {/* Module Label + Title */}
@@ -401,8 +422,8 @@ export function ProductShowcase() {
                     </motion.div>
                 </div>
 
-                {/* Scroll hint */}
-                <div className="shrink-0 pb-6 flex justify-center">
+                {/* Scroll hint (Desktop only) */}
+                <div className="hidden md:flex shrink-0 pb-6 justify-center">
                     <motion.div
                         animate={{ x: [0, 8, 0] }}
                         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}

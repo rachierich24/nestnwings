@@ -213,12 +213,7 @@ function MagneticCard({ index, persona, Icon, isInView }: { index: number, perso
                     {persona.benefits.join(" • ")}
                 </p>
 
-                <div className="mt-auto relative z-10 pt-4 border-t border-white/5">
-                    <button className="text-sm font-semibold text-white/50 group-hover:text-white flex items-center gap-2 transition-colors duration-300">
-                        {persona.buttonText}
-                        <span className="transform translate-x-0 group-hover:translate-x-1 opacity-50 group-hover:opacity-100 transition-all duration-300">→</span>
-                    </button>
-                </div>
+
             </div>
         </motion.div>
     );

@@ -1,209 +1,158 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
+import { ArrowRight, Box, ShieldCheck, Zap, BarChart3, Users, Smartphone, Key } from "lucide-react";
 import { OpsMockup, ResMockup, FinMockup } from "@/components/home/ProductShowcase";
-import { ArrowRight, CheckCircle2, BarChart3, Users, Shield } from "lucide-react";
 
 export default function ProductPage() {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end end"]
-    });
-
     return (
-        <main ref={containerRef} className="bg-[#020617] min-h-screen text-white">
-            {/* ========== Hero ========== */}
-            <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-                <div className="container mx-auto px-6 max-w-5xl text-center relative z-10">
+        <main className="bg-[#020617] min-h-screen text-white pt-32 pb-24 overflow-hidden">
+            <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10">
+                
+                {/* Hero Section */}
+                <div className="max-w-4xl mx-auto text-center mb-24 md:mb-32">
                     <motion.div
-                        initial={{ opacity: 0, y: 24 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.7 }}
+                        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-primary font-bold tracking-widest text-xs uppercase mb-8 shadow-sm backdrop-blur-md"
                     >
-                        <div className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-semibold tracking-widest text-xs uppercase mb-6">
-                            Product
-                        </div>
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight mb-6 leading-[1.05]">
-                            Your Hostel's{" "}
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500">
-                                Operating System
-                            </span>
-                        </h1>
-                        <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed mb-10">
-                            One platform to manage room allotments, student records, fee collection, and daily operations — replacing spreadsheets, WhatsApp groups, and manual registers.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Link
-                                href="/book-demo"
-                                className="inline-flex items-center justify-center gap-2 h-13 px-8 rounded-full bg-primary text-white font-bold text-base shadow-[0_0_24px_rgba(20,184,166,0.4)] hover:shadow-[0_0_36px_rgba(20,184,166,0.6)] transition-all"
-                            >
-                                Book a Demo
-                                <ArrowRight size={16} />
-                            </Link>
-                            <Link
-                                href="/features"
-                                className="inline-flex items-center justify-center gap-2 h-13 px-8 rounded-full bg-white/5 border border-white/10 text-white font-bold text-base hover:bg-white/10 transition-all"
-                            >
-                                View All Features
-                            </Link>
-                        </div>
+                        <Box size={14} /> The Platform
                     </motion.div>
-                </div>
-            </section>
-
-            {/* ========== Command Center Dashboard ========== */}
-            <section className="pb-24 md:pb-32">
-                <div className="container mx-auto px-6 max-w-6xl">
-                    <motion.div
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.7 }}
+                    <motion.h1 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 0.1 }}
+                        className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-8 leading-[1.05]"
                     >
-                        <div className="text-center mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">Operations Dashboard</h2>
-                            <p className="text-slate-400 max-w-xl mx-auto">
-                                A centralized command center showing live occupancy, pending tickets, fee collection, and campus health at a glance.
+                        Inside the <br className="hidden md:block" />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-blue-500 to-primary">Core Engine.</span>
+                    </motion.h1>
+                    <motion.p 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 0.2 }}
+                        className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed"
+                    >
+                        Nest n Wings is built on four fundamental pillars, seamlessly connecting every aspect of your hostel's operations, finances, and resident experience.
+                    </motion.p>
+                </div>
+
+                {/* Main Bento Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 max-w-6xl mx-auto">
+                    
+                    {/* BENTO 1: Command Center (Spans full width top) */}
+                    <div className="md:col-span-12 rounded-[32px] bg-[#0A101D] border border-white/10 p-8 md:p-12 relative overflow-hidden group shadow-2xl">
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                        
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+                            <div>
+                                <div className="w-12 h-12 rounded-2xl bg-blue-500/20 text-blue-400 flex items-center justify-center mb-6 border border-blue-500/30">
+                                    <BarChart3 size={24} />
+                                </div>
+                                <h3 className="text-3xl md:text-4xl font-black text-white mb-4">Operations Dashboard</h3>
+                                <p className="text-slate-400 text-lg leading-relaxed mb-6">
+                                    A centralized command center visualizing live occupancy, pending tickets, and overall campus health instantly. No more digging through spreadsheets.
+                                </p>
+                                <ul className="space-y-4">
+                                    {[
+                                        "Real-time occupancy forecasting",
+                                        "Unified ticketing for maintenance & complaints",
+                                        "Live gatepass and attendance monitoring",
+                                    ].map((feature, i) => (
+                                        <li key={i} className="flex items-center gap-3 text-slate-300 font-medium">
+                                            <ShieldCheck size={18} className="text-blue-400" /> {feature}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className="w-full h-[350px] md:h-[450px] relative rounded-2xl border border-white/10 bg-[#020617] overflow-hidden shadow-[0_0_50px_rgba(59,130,246,0.15)] group-hover:shadow-[0_0_80px_rgba(59,130,246,0.25)] transition-shadow duration-700">
+                                <OpsMockup />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* BENTO 2: Resident Management (Half width logic) */}
+                    <div className="md:col-span-12 lg:col-span-6 rounded-[32px] bg-[#0A101D] border border-white/10 p-8 md:p-10 relative overflow-hidden group shadow-2xl flex flex-col">
+                        <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                        
+                        <div className="relative z-10 mb-8">
+                            <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-6 border border-emerald-500/30">
+                                <Users size={24} />
+                            </div>
+                            <h3 className="text-2xl md:text-3xl font-black text-white mb-3">Resident Management</h3>
+                            <p className="text-slate-400 leading-relaxed mb-4">
+                                Maintain detailed profiles for every student. Track allotment history, payment status, and leave requests effortlessly.
                             </p>
                         </div>
-                        <div className="w-full aspect-[16/10] rounded-2xl border border-white/10 overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.5)]">
-                            <OpsMockup />
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* ========== Feature Modules ========== */}
-            <section className="pb-24 md:pb-32">
-                <div className="container mx-auto px-6 max-w-6xl">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-black tracking-tight text-white mb-4">
-                            Built for Every Department
-                        </h2>
-                        <p className="text-lg text-slate-400 max-w-xl mx-auto">
-                            Purpose-built modules for hostel wardens, administrators, and finance teams.
-                        </p>
-                    </div>
-
-                    <div className="space-y-24">
-                        {/* Module 1: Resident Management */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 32 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-                        >
-                            <div>
-                                <div className="flex items-center gap-2 mb-4">
-                                    <div className="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center">
-                                        <Users size={16} />
-                                    </div>
-                                    <span className="text-xs font-bold text-blue-400 uppercase tracking-widest">Student Management</span>
-                                </div>
-                                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">
-                                    Complete Resident Directory
-                                </h3>
-                                <p className="text-slate-400 leading-relaxed mb-6">
-                                    Every student gets a profile with room assignment, payment history, leave records, and emergency contacts. Search by name, roll number, or room — no more digging through registers.
-                                </p>
-                                <ul className="space-y-3">
-                                    {["Room allotment with preference matching", "Digital leave and gate-pass system", "Real-time occupancy tracking per block"].map((item, i) => (
-                                        <li key={i} className="flex items-center gap-3 text-slate-300 text-sm">
-                                            <CheckCircle2 size={14} className="text-primary shrink-0" />
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                            <div className="w-full aspect-[16/10] rounded-2xl border border-white/10 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
+                        <div className="mt-auto w-full h-[300px] relative rounded-t-2xl border border-white/10 border-b-0 bg-[#020617] overflow-hidden shadow-2xl group-hover:-translate-y-2 transition-transform duration-500">
+                            <div className="scale-[0.8] origin-top-left w-[125%] h-[125%]">
                                 <ResMockup />
                             </div>
-                        </motion.div>
+                        </div>
+                    </div>
 
-                        {/* Module 2: Finance */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 32 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-                        >
-                            <div className="order-2 lg:order-1 w-full aspect-[16/10] rounded-2xl border border-white/10 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
+                    {/* BENTO 3: Financial Engine (Half width logic) */}
+                    <div className="md:col-span-12 lg:col-span-6 rounded-[32px] bg-[#0A101D] border border-white/10 p-8 md:p-10 relative overflow-hidden group shadow-2xl flex flex-col">
+                        <div className="absolute inset-0 bg-gradient-to-tl from-purple-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                        
+                        <div className="relative z-10 mb-8">
+                            <div className="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center mb-6 border border-purple-500/30">
+                                <Zap size={24} />
+                            </div>
+                            <h3 className="text-2xl md:text-3xl font-black text-white mb-3">Billing & Payments</h3>
+                            <p className="text-slate-400 leading-relaxed mb-4">
+                                Automated invoice generation, live collection stats, payment gateway sync, and 1-click complex ledger reporting.
+                            </p>
+                        </div>
+                        <div className="mt-auto w-full h-[300px] relative rounded-t-2xl border border-white/10 border-b-0 bg-[#020617] overflow-hidden shadow-2xl group-hover:-translate-y-2 transition-transform duration-500">
+                            <div className="scale-[0.8] origin-top-left w-[125%] h-[125%]">
                                 <FinMockup />
                             </div>
-                            <div className="order-1 lg:order-2">
-                                <div className="flex items-center gap-2 mb-4">
-                                    <div className="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center">
-                                        <BarChart3 size={16} />
-                                    </div>
-                                    <span className="text-xs font-bold text-purple-400 uppercase tracking-widest">Fee Collection</span>
-                                </div>
-                                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">
-                                    Automated Payment Tracking
-                                </h3>
-                                <p className="text-slate-400 leading-relaxed mb-6">
-                                    Track hostel fees, mess charges, and utility payments in one ledger. The system sends automatic reminders before due dates, applies late fees, and syncs UPI/card payments instantly.
+                        </div>
+                    </div>
+
+                    {/* BENTO 4: Mobile Experience (Full width bottom split) */}
+                    <div className="md:col-span-12 rounded-[32px] bg-[#0A101D] border border-white/10 p-8 md:p-12 relative overflow-hidden group shadow-2xl">
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center relative z-10">
+                            <div className="lg:col-span-2">
+                                <h3 className="text-3xl font-black text-white mb-4">Native Student App</h3>
+                                <p className="text-slate-400 text-lg leading-relaxed max-w-xl">
+                                    Put power in the hands of the residents. Our beautiful native iOS and Android apps allow students to pay rent, raise maintenance tickets, request leave, and participate in community polls instantly.
                                 </p>
-                                <ul className="space-y-3">
-                                    {["Auto-generated invoices and receipts", "Payment status dashboard per block", "One-click financial reports for audits"].map((item, i) => (
-                                        <li key={i} className="flex items-center gap-3 text-slate-300 text-sm">
-                                            <CheckCircle2 size={14} className="text-purple-400 shrink-0" />
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
                             </div>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
-
-            {/* ========== Why Nest n Wings ========== */}
-            <section className="pb-24 md:pb-32">
-                <div className="container mx-auto px-6 max-w-5xl">
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-black tracking-tight text-white mb-4">Why Institutions Choose Us</h2>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {[
-                            { icon: Shield, title: "Built for Education", desc: "Designed specifically for universities, colleges, and PG hostels — not repurposed property software.", color: "primary" },
-                            { icon: Users, title: "Zero Training Needed", desc: "Wardens and staff can start using it on day one. No IT team required for setup.", color: "blue" },
-                            { icon: BarChart3, title: "Instant Reporting", desc: "Generate occupancy reports, fee collection summaries, and compliance documents in one click.", color: "purple" },
-                        ].map((item, i) => (
-                            <div key={i} className="p-6 rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition-colors">
-                                <div className={`w-10 h-10 rounded-xl bg-${item.color}-500/20 text-${item.color}-400 flex items-center justify-center mb-4`}>
-                                    <item.icon size={18} />
+                            <div className="lg:col-span-1 flex flex-col gap-4">
+                                <div className="p-4 rounded-xl bg-white/5 border border-white/10 flex items-center gap-4">
+                                    <Smartphone className="text-primary" size={24} />
+                                    <div>
+                                        <div className="text-white font-bold">Push Notifications</div>
+                                        <div className="text-xs text-slate-400">Rent reminders & announcements</div>
+                                    </div>
                                 </div>
-                                <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-                                <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
+                                <div className="p-4 rounded-xl bg-white/5 border border-white/10 flex items-center gap-4">
+                                    <Key className="text-amber-400" size={24} />
+                                    <div>
+                                        <div className="text-white font-bold">Digital Gatepass</div>
+                                        <div className="text-xs text-slate-400">QR-based entry & exit tracking</div>
+                                    </div>
+                                </div>
                             </div>
-                        ))}
+                        </div>
                     </div>
-                </div>
-            </section>
 
-            {/* ========== Bottom CTA ========== */}
-            <section className="pb-24 md:pb-32">
-                <div className="container mx-auto px-6 max-w-4xl">
-                    <div className="p-12 md:p-16 rounded-3xl border border-white/10 bg-gradient-to-b from-white/5 to-transparent text-center relative overflow-hidden">
-                        <h2 className="text-3xl md:text-4xl font-black mb-4 tracking-tight">Ready to modernize your hostel?</h2>
-                        <p className="text-lg text-slate-400 mb-8 max-w-lg mx-auto">
-                            See how Nest n Wings can replace manual processes with a single, unified platform.
-                        </p>
-                        <Link
-                            href="/book-demo"
-                            className="inline-flex items-center justify-center gap-2 rounded-full text-base font-bold transition-all bg-primary text-white shadow-[0_0_24px_rgba(20,184,166,0.4)] hover:shadow-[0_0_36px_rgba(20,184,166,0.6)] h-13 px-8"
-                        >
-                            Schedule a Demo
-                            <ArrowRight size={16} />
-                        </Link>
-                    </div>
                 </div>
-            </section>
+
+                {/* Final CTA */}
+                <div className="mt-24 text-center">
+                    <Link
+                        href="/book-demo"
+                        className="inline-flex items-center justify-center gap-2 rounded-full text-base font-bold transition-all bg-white text-slate-900 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_50px_rgba(255,255,255,0.4)] hover:scale-[1.02] active:scale-[0.98] h-14 px-10"
+                    >
+                        Schedule a Walkthrough <ArrowRight size={18} />
+                    </Link>
+                </div>
+            </div>
         </main>
     );
 }
