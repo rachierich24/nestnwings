@@ -86,7 +86,7 @@ export function Navbar() {
                                 scrolled ? "text-[13px] h-9 px-5" : "text-[14px] h-10 px-6"
                             )}
                         >
-                            Get Started
+                            Book Demo
                         </Link>
                     </div>
 
@@ -135,7 +135,7 @@ export function Navbar() {
                             onClick={() => setMobileMenuOpen(false)}
                             className="inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full text-[14px] font-semibold transition-all bg-[#0f172a] text-white h-12 px-4 py-2 mt-1 active:scale-[0.97]"
                         >
-                            Get Started
+                            Book Demo
                         </Link>
                     </div>
                 </div>

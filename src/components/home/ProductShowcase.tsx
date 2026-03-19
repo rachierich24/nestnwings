@@ -8,94 +8,130 @@ import { LineChart, Users, Wallet, ShieldCheck, TrendingUp, CheckCircle2, BedDou
 
 export function OpsMockup() {
     return (
-        <div className="w-full h-full bg-[#0B1120] rounded-xl border border-white/10 p-3 md:p-6 flex flex-col gap-3 md:gap-6 shadow-2xl relative overflow-hidden font-sans">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent pointer-events-none" />
+        <div className="w-full h-full bg-[#0B1120] rounded-[22px] p-3 md:p-6 flex flex-col gap-3 md:gap-6 relative overflow-hidden font-sans group/ops">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-transparent pointer-events-none z-0" />
 
             {/* Header */}
-            <div className="flex justify-between items-center border-b border-white/10 pb-3 md:pb-4 relative z-10">
-                <div className="flex items-center gap-2 md:gap-3">
-                    <div className="w-7 h-7 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center border border-blue-500/30">
-                        <ShieldCheck size={14} className="md:hidden" />
-                        <ShieldCheck size={20} className="hidden md:block" />
-                    </div>
+            <div className="flex justify-between items-center border-b border-white/10 pb-3 md:pb-4 relative z-10 transition-transform duration-500 group-hover/ops:translate-y-1">
+                <div className="flex items-center gap-2 md:gap-4">
+                    <motion.div 
+                        whileHover={{ rotate: 15, scale: 1.1 }}
+                        className="w-8 h-8 md:w-12 md:h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center border border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.3)] cursor-pointer"
+                    >
+                        <ShieldCheck size={16} className="md:hidden" />
+                        <ShieldCheck size={24} className="hidden md:block" />
+                    </motion.div>
                     <div>
-                        <div className="text-white font-bold text-sm md:text-lg leading-tight">Command Center</div>
-                        <div className="text-slate-400 text-[10px] md:text-xs font-medium">DTU Main Campus</div>
+                        <div className="text-white font-bold text-sm md:text-xl leading-tight tracking-tight">Command Center</div>
+                        <div className="text-blue-400 text-[10px] md:text-sm font-medium">DTU Main Campus</div>
                     </div>
                 </div>
                 <div className="flex gap-2 md:gap-3 items-center">
                     <div className="px-2 md:px-3 py-1 md:py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-md md:rounded-lg text-emerald-400 text-[10px] md:text-xs font-bold flex items-center gap-1.5">
-                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Live
+                        <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]" /> Live Connect
                     </div>
-                    <div className="w-7 h-7 md:w-10 md:h-10 bg-slate-800 rounded-full border border-white/10 flex items-center justify-center text-slate-300 font-bold text-[10px] md:text-sm">
+                    <motion.div 
+                        whileHover={{ scale: 1.05 }}
+                        className="w-7 h-7 md:w-10 md:h-10 bg-slate-800 rounded-full border border-white/10 flex items-center justify-center text-slate-300 font-bold text-[10px] md:text-sm shadow-inner cursor-pointer"
+                    >
                         AD
-                    </div>
+                    </motion.div>
                 </div>
             </div>
 
             {/* Top Metrics */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 relative z-10">
                 {[
-                    { label: "Capacity", val: "1,450", sub: "Beds", color: "blue", trend: "+0" },
-                    { label: "Occupancy", val: "94.2%", sub: "1,366", color: "emerald", trend: "+1.2%" },
-                    { label: "Dues", val: "₹4.2M", sub: "82%", color: "amber", trend: "-5.4%" },
-                    { label: "Tickets", val: "18", sub: "12 Crit", color: "rose", trend: "+3" }
+                    { label: "Total Capacity", val: "1,450", sub: "Beds Available", color: "blue", trend: "+0" },
+                    { label: "Occupancy Rate", val: "94.2%", sub: "1,366 Filled", color: "emerald", trend: "+1.2%" },
+                    { label: "Pending Dues", val: "₹4.2M", sub: "82% Collection", color: "amber", trend: "-5.4%" },
+                    { label: "Open Tickets", val: "18", sub: "12 Critical", color: "rose", trend: "+3" }
                 ].map((m, i) => (
-                    <div key={i} className="bg-white/5 border border-white/5 rounded-lg md:rounded-xl p-2 md:p-4 flex flex-col gap-0.5 md:gap-1 relative overflow-hidden">
-                        <span className="text-[8px] md:text-xs text-slate-400 font-medium uppercase tracking-wider">{m.label}</span>
-                        <div className="text-base md:text-2xl font-black text-white">{m.val}</div>
+                    <motion.div 
+                        key={i} 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.1, duration: 0.5 }}
+                        whileHover={{ y: -4, backgroundColor: "rgba(255,255,255,0.08)" }}
+                        className="bg-white/5 border border-white/5 rounded-xl md:rounded-2xl p-3 md:p-5 flex flex-col gap-1 md:gap-2 relative overflow-hidden group cursor-pointer"
+                    >
+                        <div className={`absolute top-0 left-0 w-full h-1 bg-${m.color}-500/50 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500`} />
+                        <span className="text-[9px] md:text-xs text-slate-400 font-bold uppercase tracking-widest">{m.label}</span>
+                        <div className="text-xl md:text-3xl font-black text-white">{m.val}</div>
                         <div className="flex justify-between items-center mt-auto">
-                            <span className="text-[8px] md:text-xs text-slate-500">{m.sub}</span>
-                            <span className={`text-[8px] md:text-[10px] font-bold text-${m.color}-400 bg-${m.color}-500/10 px-1 md:px-1.5 py-0.5 rounded`}>{m.trend}</span>
+                            <span className="text-[9px] md:text-xs text-slate-500">{m.sub}</span>
+                            <span className={`text-[9px] md:text-xs font-bold text-${m.color}-400 bg-${m.color}-500/10 px-1.5 md:px-2 py-0.5 rounded`}>{m.trend}</span>
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
 
             {/* Main Content Area */}
             <div className="flex flex-col md:flex-row gap-3 md:gap-4 flex-grow relative z-10 min-h-0">
                 {/* Chart Section */}
-                <div className="md:w-2/3 bg-white/5 border border-white/5 rounded-lg md:rounded-xl p-3 md:p-5 flex flex-col min-h-[120px] md:min-h-0">
-                    <div className="flex justify-between items-center mb-3 md:mb-6">
-                        <span className="text-[10px] md:text-sm font-bold text-white">Utilization (30d)</span>
-                        <div className="hidden md:flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-blue-500" /> <span className="text-xs text-slate-400">Boys</span>
-                            <div className="w-2 h-2 rounded-full bg-purple-500 ml-2" /> <span className="text-xs text-slate-400">Girls</span>
+                <motion.div 
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.3, duration: 0.6 }}
+                    className="md:w-2/3 bg-white/5 border border-white/5 rounded-xl md:rounded-2xl p-4 md:p-6 flex flex-col min-h-[140px] md:min-h-0 relative overflow-hidden group"
+                >
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-500/5 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    <div className="flex justify-between items-center mb-4 md:mb-8 relative z-10">
+                        <span className="text-xs md:text-base font-bold text-white tracking-wide">30-Day Utilization</span>
+                        <div className="hidden md:flex items-center gap-3">
+                            <motion.div whileHover={{ scale: 1.2 }} className="cursor-pointer flex items-center gap-1.5 bg-blue-500/10 px-2 py-1 rounded border border-blue-500/20"><div className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.8)]" /> <span className="text-xs text-blue-300 font-medium">Boys Block</span></motion.div>
+                            <motion.div whileHover={{ scale: 1.2 }} className="cursor-pointer flex items-center gap-1.5 bg-purple-500/10 px-2 py-1 rounded border border-purple-500/20 ml-2"><div className="w-2.5 h-2.5 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.8)]" /> <span className="text-xs text-purple-300 font-medium">Girls Block</span></motion.div>
                         </div>
                     </div>
-                    <div className="flex-grow flex items-end gap-1 md:gap-2 relative">
-                        <div className="absolute inset-x-0 bottom-1/4 h-px bg-white/5" />
-                        <div className="absolute inset-x-0 bottom-2/4 h-px bg-white/5" />
+                    <div className="flex-grow flex items-end gap-1.5 md:gap-3 relative z-10">
+                        <div className="absolute inset-x-0 bottom-[33%] h-px bg-white/5" />
+                        <div className="absolute inset-x-0 bottom-[66%] h-px bg-white/5" />
                         {[40, 70, 45, 90, 65, 85, 100, 50, 75, 60, 80, 55, 95, 70, 85, 60].map((h, i) => (
-                            <div key={i} className="flex-1 flex flex-col justify-end gap-0.5 h-full">
-                                <div className="w-full bg-gradient-to-t from-purple-500/80 to-purple-400/80 rounded-t-[2px]" style={{ height: `${h * 0.4}%` }} />
-                                <div className="w-full bg-gradient-to-t from-blue-500/80 to-blue-400/80 rounded-[2px]" style={{ height: `${h * 0.6}%` }} />
-                            </div>
+                            <motion.div 
+                                key={i} 
+                                initial={{ height: 0 }}
+                                animate={{ height: '100%' }}
+                                transition={{ duration: 1, ease: "easeOut", delay: i * 0.05 }}
+                                className="flex-1 flex flex-col justify-end gap-1"
+                            >
+                                <motion.div whileHover={{ opacity: 0.8 }} className="w-full bg-gradient-to-t from-purple-500 to-purple-400 rounded-t-[3px] shadow-[0_0_10px_rgba(168,85,247,0.4)] cursor-pointer" style={{ height: `${h * 0.4}%` }} />
+                                <motion.div whileHover={{ opacity: 0.8 }} className="w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-[3px] shadow-[0_0_10px_rgba(59,130,246,0.4)] cursor-pointer" style={{ height: `${h * 0.6}%` }} />
+                            </motion.div>
                         ))}
                     </div>
-                </div>
+                </motion.div>
 
-                {/* Activity — hidden on mobile */}
+                {/* Activity Feed */}
                 <div className="hidden md:flex md:w-1/3 flex-col gap-4">
-                    <div className="flex-1 bg-white/5 border border-white/5 rounded-xl p-5 flex flex-col">
-                        <span className="text-sm font-bold text-white mb-4">Urgent Actions</span>
+                    <motion.div 
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.4, duration: 0.6 }}
+                        className="flex-1 bg-white/5 border border-white/5 rounded-2xl p-6 flex flex-col"
+                    >
+                        <span className="text-base font-bold text-white mb-5 tracking-wide">Urgent Actions</span>
                         <div className="space-y-3 overflow-y-auto pr-2">
                             {[
-                                { t: "Room Transfer Req", b: "Aryan S. to B-201", c: "amber" },
-                                { t: "AC Maintenance", b: "Room C-104", c: "rose" },
-                                { t: "Late Entry Flag", b: "Kunal M. - 02:15 AM", c: "rose" },
-                                { t: "Fee Default", b: "Block A - 12 Students", c: "amber" }
+                                { t: "Room Transfer Req", b: "Aryan S. to B-201", c: "amber", m: "Pending Approval" },
+                                { t: "AC Maintenance", b: "Room C-104", c: "rose", m: "Escalated" },
+                                { t: "Late Entry Flag", b: "Kunal M. - 02:15 AM", c: "rose", m: "Unjustified" },
+                                { t: "Fee Default", b: "Block A - 12 Students", c: "amber", m: "2nd Notice Sent" }
                             ].map((act, i) => (
-                                <div key={i} className="flex gap-3 items-start p-2 rounded-lg bg-white/5">
-                                    <div className={`mt-1 w-2 h-2 rounded-full bg-${act.c}-500`} />
+                                <motion.div 
+                                    key={i} 
+                                    whileHover={{ scale: 1.02, x: 4, backgroundColor: "rgba(255,255,255,0.08)" }}
+                                    className="flex gap-4 items-start p-3 rounded-xl bg-white/[0.03] border border-white/[0.02] cursor-pointer transition-colors"
+                                >
+                                    <div className={`mt-1.5 w-2 h-2 rounded-full bg-${act.c}-500 shadow-[0_0_8px_rgba(var(--${act.c}-500),0.8)]`} />
                                     <div>
-                                        <div className="text-xs font-bold text-white">{act.t}</div>
-                                        <div className="text-[10px] text-slate-400 mt-0.5">{act.b}</div>
+                                        <div className="text-sm font-bold text-white">{act.t}</div>
+                                        <div className="text-xs text-slate-400 mt-1">{act.b}</div>
+                                        <div className={`text-[9px] font-bold text-${act.c}-400 mt-2 tracking-widest uppercase`}>{act.m}</div>
                                     </div>
-                                </div>
+                                </motion.div>
                             ))}
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </div>
@@ -104,98 +140,103 @@ export function OpsMockup() {
 
 export function ResMockup() {
     return (
-        <div className="w-full h-full bg-slate-50 rounded-xl border border-slate-200 p-0 flex shadow-2xl relative overflow-hidden font-sans">
-            {/* Sidebar — hidden on mobile */}
-            <div className="hidden md:flex w-64 border-r border-slate-200 bg-white flex-col p-4">
-                <div className="flex items-center gap-2 text-slate-800 font-bold mb-8 px-2">
-                    <Users className="text-blue-600" size={20} /> Directory
+        <div className="w-full h-full bg-slate-50 rounded-[22px] border border-slate-200 p-0 flex relative overflow-hidden font-sans group">
+            {/* Sidebar */}
+            <div className="hidden md:flex w-72 border-r border-slate-200 bg-white flex-col p-5 shadow-sm z-10 transition-transform duration-500 group-hover:-translate-x-1">
+                <div className="flex items-center gap-3 text-slate-900 font-black text-lg mb-8 px-2">
+                    <div className="w-8 h-8 rounded-lg bg-blue-600/10 text-blue-600 flex items-center justify-center border border-blue-600/20"><Users size={16} /></div> Directory
                 </div>
-                <div className="space-y-1">
-                    <div className="px-3 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm font-semibold flex justify-between items-center">
-                        All Residents <span className="text-xs bg-blue-100 px-2 py-0.5 rounded-full">1,248</span>
-                    </div>
-                    <div className="px-3 py-2 text-slate-600 rounded-lg text-sm font-medium flex justify-between items-center">
-                        Pending Approvals <span className="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">12</span>
-                    </div>
-                    <div className="px-3 py-2 text-slate-600 rounded-lg text-sm font-medium flex justify-between items-center">
-                        Defaulters <span className="text-xs bg-rose-100 text-rose-700 px-2 py-0.5 rounded-full">45</span>
-                    </div>
-                    <div className="px-3 py-2 text-slate-600 rounded-lg text-sm font-medium">
-                        Room Layouts
-                    </div>
+                <div className="space-y-2">
+                    <motion.div whileHover={{ scale: 1.02 }} className="px-4 py-3 bg-blue-600 text-white shadow-md shadow-blue-600/20 rounded-xl text-sm font-bold flex justify-between items-center cursor-pointer">
+                        All Residents <span className="text-[10px] bg-white/20 px-2 py-0.5 rounded-full">1,248</span>
+                    </motion.div>
+                    <motion.div whileHover={{ scale: 1.02 }} className="px-4 py-3 hover:bg-slate-50 text-slate-600 rounded-xl text-sm font-bold flex justify-between items-center cursor-pointer transition-colors">
+                        Pending Approvals <span className="text-[10px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">12</span>
+                    </motion.div>
+                    <motion.div whileHover={{ scale: 1.02 }} className="px-4 py-3 hover:bg-slate-50 text-slate-600 rounded-xl text-sm font-bold flex justify-between items-center cursor-pointer transition-colors">
+                        Defaulters <span className="text-[10px] bg-rose-100 text-rose-700 px-2 py-0.5 rounded-full">45</span>
+                    </motion.div>
                 </div>
                 <div className="mt-auto px-2">
-                    <div className="w-full h-px bg-slate-200 mb-4" />
-                    <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full border border-slate-200 bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-400">JD</div>
-                        <div className="text-xs font-semibold text-slate-700">Warden Desk</div>
+                    <div className="w-full h-px bg-slate-200 mb-5" />
+                    <div className="flex items-center gap-4 cursor-pointer hover:opacity-80 transition-opacity">
+                        <div className="w-10 h-10 rounded-full border-2 border-slate-200 bg-slate-800 flex items-center justify-center text-sm font-bold text-white shadow-sm">JD</div>
+                        <div>
+                            <div className="text-sm font-bold text-slate-900">John Doe</div>
+                            <div className="text-xs text-slate-500 font-medium">Head Warden</div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             {/* Main Content */}
-            <div className="flex-grow flex flex-col bg-slate-50/50">
+            <div className="flex-grow flex flex-col bg-[#F8FAFC]">
                 {/* Topbar */}
-                <div className="h-10 md:h-16 border-b border-slate-200 bg-white px-3 md:px-6 flex items-center justify-between">
+                <div className="h-14 md:h-20 border-b border-slate-200 bg-white px-4 md:px-8 flex items-center justify-between z-10 shadow-sm">
                     <div className="flex items-center gap-2 md:hidden">
-                        <Users className="text-blue-600" size={14} />
-                        <span className="text-xs font-bold text-slate-700">Directory</span>
-                        <span className="text-[10px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full">1,248</span>
+                        <div className="p-1.5 rounded-lg bg-blue-600 text-white"><Users size={14} /></div>
+                        <span className="text-sm font-bold text-slate-900">Directory</span>
                     </div>
-                    <div className="relative hidden md:block w-64">
-                        <input type="text" disabled placeholder="Search residents..." className="w-full pl-8 pr-3 py-1.5 text-sm bg-slate-100 border-none rounded-md text-slate-500" />
-                        <div className="absolute left-2.5 top-2 text-slate-400"><Users size={14} /></div>
+                    <div className="relative hidden md:block w-80">
+                        <input type="text" disabled placeholder="Search by name, room, or ID..." className="w-full pl-10 pr-4 py-2.5 text-sm bg-slate-100 border border-transparent focus:border-blue-500 rounded-xl text-slate-600 transition-all outline-none" />
+                        <div className="absolute left-3.5 top-3 text-slate-400"><Users size={16} /></div>
                     </div>
-                    <div className="flex gap-1.5 md:gap-2">
-                        <div className="px-2 md:px-3 py-1 md:py-1.5 bg-white border border-slate-200 rounded-md md:rounded-lg text-[10px] md:text-sm font-medium text-slate-600">Filter</div>
-                        <div className="px-2 md:px-3 py-1 md:py-1.5 bg-blue-600 rounded-md md:rounded-lg text-[10px] md:text-sm font-semibold text-white">Add New</div>
+                    <div className="flex gap-2.5 md:gap-3">
+                        <motion.button whileHover={{ scale: 1.05 }} className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-xs md:text-sm font-bold text-slate-700 shadow-sm hover:bg-slate-50 transition-colors">Filter</motion.button>
+                        <motion.button whileHover={{ scale: 1.05 }} className="px-4 py-2 bg-blue-600 rounded-xl text-xs md:text-sm font-bold text-white shadow-md shadow-blue-600/20 hover:bg-blue-700 transition-colors">Add New</motion.button>
                     </div>
                 </div>
 
                 {/* Table Area */}
-                <div className="flex-grow p-2 md:p-6 overflow-hidden flex flex-col">
-                    <div className="bg-white border border-slate-200 rounded-lg md:rounded-xl shadow-sm flex-grow flex flex-col overflow-hidden">
-                        {/* Header — simplified on mobile */}
-                        <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-3 border-b border-slate-200 bg-slate-50/80 text-xs font-bold text-slate-500 uppercase tracking-wider">
-                            <div className="col-span-4">Resident Name</div>
-                            <div className="col-span-2">Room</div>
+                <div className="flex-grow p-3 md:p-8 overflow-hidden flex flex-col">
+                    <div className="bg-white border border-slate-200 rounded-xl md:rounded-2xl shadow-sm flex-grow flex flex-col overflow-hidden">
+                        {/* Header */}
+                        <div className="hidden md:grid grid-cols-12 gap-4 px-8 py-4 border-b border-slate-200 bg-slate-50/80 text-xs font-bold text-slate-500 uppercase tracking-widest">
+                            <div className="col-span-4">Resident Profile</div>
+                            <div className="col-span-2">Allotment</div>
                             <div className="col-span-3">Status</div>
                             <div className="col-span-3 text-right">Actions</div>
                         </div>
 
-                        <div className="flex-col divide-y divide-slate-100 overflow-y-auto min-h-0">
+                        <div className="flex-col divide-y divide-slate-100 overflow-y-auto min-h-0 pt-1">
                             {[
-                                { n: "Aryan Sharma", p: "CS - Yr 3", r: "A-204", f: ["Paid"], c: ["emerald"] },
-                                { n: "Kunal Mathur", p: "ME - Yr 2", r: "B-110", f: ["Pending"], c: ["amber"] },
-                                { n: "Ritvik Kumar", p: "MBA - Yr 1", r: "C-305", f: ["Paid"], c: ["emerald"] },
-                                { n: "Devansh Patel", p: "EC - Yr 4", r: "A-412", f: ["Leave"], c: ["purple"] },
-                                { n: "Abhinav Singh", p: "CS - Yr 2", r: "D-101", f: ["Paid"], c: ["emerald"] }
+                                { n: "Aryan Sharma", p: "B.Tech CS - Sem 6", r: "A-204", f: ["Dues Cleared"], c: ["emerald"] },
+                                { n: "Kunal Mathur", p: "Mech Eng - Sem 4", r: "B-110", f: ["Late Payment", "Warning Sent"], c: ["amber", "amber"] },
+                                { n: "Ritvik Kumar", p: "MBA - Sem 2", r: "C-305", f: ["Dues Cleared"], c: ["emerald"] },
+                                { n: "Devansh Patel", p: "ECE - Sem 8", r: "A-412", f: ["Active Leave"], c: ["purple"] },
+                                { n: "Abhinav Singh", p: "CS - Sem 4", r: "D-101", f: ["Dues Cleared"], c: ["emerald"] }
                             ].map((row, i) => (
-                                <div key={i} className="flex items-center gap-2 md:grid md:grid-cols-12 md:gap-4 px-2 md:px-6 py-2 md:py-4 hover:bg-slate-50 transition-colors">
-                                    <div className="md:col-span-4 flex items-center gap-2 md:gap-3 flex-1 min-w-0">
-                                        <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center font-bold text-slate-400 text-[10px] md:text-xs shrink-0">
+                                <motion.div 
+                                    key={i} 
+                                    initial={{ opacity: 0, x: -10 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: i * 0.1, duration: 0.4 }}
+                                    className="flex items-center gap-3 md:grid md:grid-cols-12 md:gap-4 px-4 md:px-8 py-3 md:py-5 hover:bg-blue-50/50 transition-colors cursor-pointer group/row"
+                                >
+                                    <div className="md:col-span-4 flex items-center gap-3 md:gap-4 flex-1 min-w-0">
+                                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center font-bold text-slate-600 text-xs md:text-sm shrink-0 group-hover/row:scale-110 group-hover/row:bg-blue-100 group-hover/row:text-blue-600 group-hover/row:border-blue-200 transition-all duration-300">
                                             {row.n.charAt(0)}
                                         </div>
                                         <div className="min-w-0">
-                                            <div className="text-[11px] md:text-sm font-bold text-slate-800 truncate">{row.n}</div>
-                                            <div className="text-[9px] md:text-[11px] text-slate-500">{row.p}</div>
+                                            <div className="text-sm md:text-base font-bold text-slate-900 truncate">{row.n}</div>
+                                            <div className="text-xs text-slate-500 font-medium mt-0.5">{row.p}</div>
                                         </div>
                                     </div>
-                                    <div className="md:col-span-2 shrink-0">
-                                        <div className="text-[10px] md:text-sm font-semibold text-slate-700">{row.r}</div>
+                                    <div className="md:col-span-2 shrink-0 flex items-center">
+                                        <div className="text-xs md:text-sm font-bold text-slate-700 bg-slate-100 px-2 py-1 rounded-md border border-slate-200">{row.r}</div>
                                     </div>
-                                    <div className="md:col-span-3 shrink-0">
+                                    <div className="md:col-span-3 shrink-0 flex items-center gap-1 flex-wrap">
                                         {row.f.map((flag, idx) => (
-                                            <span key={idx} className={`px-1.5 md:px-2 py-0.5 rounded text-[8px] md:text-[10px] font-bold border bg-${row.c[idx]}-50 text-${row.c[idx]}-600 border-${row.c[idx]}-200`}>
+                                            <span key={idx} className={`px-2 py-1 rounded-md text-[9px] md:text-[10px] font-bold border bg-${row.c[idx]}-50 text-${row.c[idx]}-700 border-${row.c[idx]}-200 uppercase tracking-wider shadow-sm`}>
                                                 {flag}
                                             </span>
                                         ))}
                                     </div>
-                                    <div className="hidden md:flex md:col-span-3 justify-end gap-2 items-center">
-                                        <div className="px-3 py-1 bg-white border border-slate-200 text-slate-600 text-xs rounded font-medium">Edit</div>
-                                        <div className="px-3 py-1 bg-blue-50 border border-blue-100 text-blue-600 text-xs rounded font-medium">Profile</div>
+                                    <div className="hidden md:flex md:col-span-3 justify-end gap-2 items-center opacity-0 group-hover/row:opacity-100 transition-opacity translate-x-4 group-hover/row:translate-x-0 duration-300">
+                                        <motion.button whileHover={{ scale: 1.05 }} className="px-3 py-1.5 bg-white border border-slate-200 text-slate-700 text-xs rounded-lg font-bold shadow-sm hover:text-blue-600 hover:border-blue-200 transition-colors">Edit</motion.button>
+                                        <motion.button whileHover={{ scale: 1.05 }} className="px-3 py-1.5 bg-blue-600 border border-blue-600 text-white text-xs rounded-lg font-bold shadow-md shadow-blue-600/20 hover:bg-blue-700 transition-all">Profile</motion.button>
                                     </div>
-                                </div>
+                                </motion.div>
                             ))}
                         </div>
                     </div>
@@ -207,93 +248,143 @@ export function ResMockup() {
 
 export function FinMockup() {
     return (
-        <div className="w-full h-full bg-[#110C1B] rounded-xl border border-purple-900/40 p-3 md:p-6 shadow-2xl relative overflow-hidden flex flex-col gap-3 md:gap-6 font-sans">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(168,85,247,0.15),transparent_40%)] pointer-events-none" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(236,72,153,0.1),transparent_40%)] pointer-events-none" />
+        <div className="w-full h-full bg-[#0D0914] rounded-[22px] border border-fuchsia-900/40 p-4 md:p-8 relative overflow-hidden flex flex-col gap-4 md:gap-8 font-sans group/fin">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(217,70,239,0.15),transparent_50%)] pointer-events-none transition-opacity duration-1000 group-hover/fin:opacity-100 opacity-50" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(236,72,153,0.1),transparent_50%)] pointer-events-none transition-opacity duration-1000 group-hover/fin:opacity-100 opacity-50" />
 
             {/* Header */}
             <div className="flex justify-between items-center relative z-10">
-                <div className="flex items-center gap-2 md:gap-3">
-                    <div className="p-1.5 md:p-2.5 rounded-lg md:rounded-xl bg-purple-500/20 text-purple-400 border border-purple-500/30">
-                        <Wallet size={14} className="md:hidden" />
-                        <Wallet size={20} className="hidden md:block" />
-                    </div>
+                <div className="flex items-center gap-3 md:gap-4">
+                    <motion.div whileHover={{ scale: 1.1, rotate: 10 }} className="p-2 md:p-3 rounded-xl md:rounded-2xl bg-fuchsia-500/20 text-fuchsia-400 border border-fuchsia-500/30 shadow-[0_0_20px_rgba(217,70,239,0.2)] cursor-pointer">
+                        <Wallet size={16} className="md:hidden" />
+                        <Wallet size={24} className="hidden md:block" />
+                    </motion.div>
                     <div>
-                        <div className="text-white font-bold text-sm md:text-lg">Financial Analytics</div>
-                        <div className="text-slate-400 text-[10px] md:text-xs font-medium">Q3 Revenue Ledger</div>
+                        <div className="text-white font-black text-base md:text-2xl tracking-tight">Ledger & Analytics</div>
+                        <div className="text-fuchsia-300/70 text-xs md:text-sm font-semibold tracking-wide">Q3 Revenue Operations</div>
                     </div>
                 </div>
-                <div className="px-2 md:px-4 py-1 md:py-2 bg-purple-600 rounded-md md:rounded-lg text-[10px] md:text-sm font-bold text-white">
-                    Report
-                </div>
+                <motion.button whileHover={{ scale: 1.05 }} className="px-4 md:px-6 py-2 md:py-2.5 bg-fuchsia-600 rounded-xl text-xs md:text-sm font-bold text-white shadow-[0_0_15px_rgba(217,70,239,0.4)] hover:bg-fuchsia-500 transition-colors">
+                    Export Report
+                </motion.button>
             </div>
 
             {/* Scorecards */}
-            <div className="grid grid-cols-3 gap-2 md:gap-6 relative z-10">
+            <div className="grid grid-cols-3 gap-3 md:gap-6 relative z-10">
                 {[
-                    { l: "Collected", v: "₹18.4M", p: "+15.2%", c: "emerald" },
-                    { l: "Pending", v: "₹4.2M", p: "-2.1%", c: "amber" },
-                    { l: "Refunds", v: "₹840K", p: "+0.4%", c: "rose" }
+                    { l: "Collected (MTD)", v: "₹18.4M", p: "+15.2%", c: "emerald" },
+                    { l: "Pending Dues", v: "₹4.2M", p: "-2.1%", c: "amber" },
+                    { l: "Refunds Processed", v: "₹840K", p: "+0.4%", c: "rose" }
                 ].map((card, i) => (
-                    <div key={i} className="h-16 md:h-28 bg-[#1B1428]/80 rounded-lg md:rounded-xl p-2 md:p-5 border border-purple-900/30 flex flex-col justify-between">
-                        <span className="text-[8px] md:text-xs font-medium text-slate-400 uppercase">{card.l}</span>
-                        <div className="flex justify-between items-end">
-                            <span className="text-sm md:text-3xl font-black text-white">{card.v}</span>
-                            <span className={`hidden md:inline text-xs font-bold text-${card.c}-400 bg-${card.c}-500/10 px-2 py-1 rounded-md`}>{card.p}</span>
+                    <motion.div 
+                        key={i} 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.15, duration: 0.5 }}
+                        whileHover={{ y: -5, backgroundColor: "rgba(255,255,255,0.05)" }}
+                        className="h-20 md:h-32 bg-[#171124] rounded-xl md:rounded-2xl p-3 md:p-6 border border-fuchsia-900/40 flex flex-col justify-between cursor-pointer shadow-lg relative overflow-hidden group"
+                    >
+                        <div className={`absolute -right-10 -bottom-10 w-24 h-24 bg-${card.c}-500/20 blur-2xl rounded-full group-hover:bg-${card.c}-500/30 transition-all duration-500`} />
+                        <span className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest relative z-10">{card.l}</span>
+                        <div className="flex justify-between items-end relative z-10">
+                            <span className="text-xl md:text-4xl font-black text-white tracking-tight">{card.v}</span>
+                            <span className={`hidden md:inline-flex text-xs font-black text-${card.c}-400 bg-${card.c}-500/10 px-2.5 py-1 rounded-md border border-${card.c}-500/20 shadow-sm`}>{card.p}</span>
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
 
             {/* Bottom Section */}
-            <div className="flex flex-col md:flex-row gap-3 md:gap-6 flex-grow relative z-10 min-h-0">
-                <div className="md:w-2/3 bg-[#1B1428]/80 border border-purple-900/30 rounded-lg md:rounded-xl p-3 md:p-6 flex flex-col min-h-[100px] md:min-h-0">
-                    <div className="flex justify-between items-center mb-3 md:mb-6">
-                        <span className="text-[10px] md:text-sm font-bold text-white">Revenue vs Deficit</span>
-                        <div className="hidden md:flex gap-2 text-xs text-slate-400">
-                            <span className="px-2 py-1 rounded bg-white/5">1M</span>
-                            <span className="px-2 py-1 rounded bg-purple-500/20 text-purple-300 font-bold border border-purple-500/30">6M</span>
-                            <span className="px-2 py-1 rounded bg-white/5">1Y</span>
+            <div className="flex flex-col md:flex-row gap-4 md:gap-6 flex-grow relative z-10 min-h-0">
+                <motion.div 
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.4, duration: 0.7 }}
+                    className="md:w-2/3 bg-[#171124] border border-fuchsia-900/40 rounded-xl md:rounded-3xl p-4 md:p-8 flex flex-col min-h-[140px] md:min-h-0 shadow-xl overflow-hidden relative group"
+                >
+                    <div className="absolute inset-0 bg-gradient-to-t from-fuchsia-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                    <div className="flex justify-between items-center mb-4 md:mb-8 relative z-10">
+                        <span className="text-xs md:text-base font-black text-white tracking-wide">Revenue Trajectory</span>
+                        <div className="hidden md:flex gap-2 text-xs font-bold text-slate-400 bg-black/40 p-1 rounded-lg border border-white/5">
+                            <motion.button whileHover={{ backgroundColor: "rgba(255,255,255,0.1)" }} className="px-3 py-1.5 rounded-md hover:text-white transition-colors">1M</motion.button>
+                            <motion.button className="px-3 py-1.5 rounded-md bg-fuchsia-500 text-white shadow-[0_0_10px_rgba(217,70,239,0.5)]">6M</motion.button>
+                            <motion.button whileHover={{ backgroundColor: "rgba(255,255,255,0.1)" }} className="px-3 py-1.5 rounded-md hover:text-white transition-colors">1Y</motion.button>
                         </div>
                     </div>
-                    <div className="flex-grow relative mt-2 md:mt-4">
+                    <div className="flex-grow relative mt-2 md:mt-4 z-10 overflow-hidden">
                         <svg className="absolute inset-0 w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 50">
-                            <path d="M0 45 Q 10 40, 20 35 T 40 25 T 60 15 T 80 20 T 100 10" fill="none" stroke="#A855F7" strokeWidth="2.5" strokeDasharray="200" strokeDashoffset="0" />
-                            <path d="M0 45 Q 10 40, 20 35 T 40 25 T 60 15 T 80 20 T 100 10 L 100 50 L 0 50 Z" fill="url(#purpleGrad)" opacity="0.3" />
+                            <motion.path 
+                                initial={{ pathLength: 0 }}
+                                animate={{ pathLength: 1 }}
+                                transition={{ duration: 2, ease: "easeInOut" }}
+                                d="M0 45 Q 10 40, 20 35 T 40 25 T 60 15 T 80 20 T 100 10" 
+                                fill="none" stroke="#D946EF" strokeWidth="2.5" 
+                                style={{ filter: "drop-shadow(0 0 8px rgba(217,70,239,0.8))" }}
+                            />
+                            <motion.path 
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 0.3 }}
+                                transition={{ duration: 1, delay: 1 }}
+                                d="M0 45 Q 10 40, 20 35 T 40 25 T 60 15 T 80 20 T 100 10 L 100 50 L 0 50 Z" 
+                                fill="url(#purpleGrad)" 
+                            />
                             <defs>
                                 <linearGradient id="purpleGrad" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stopColor="#A855F7" />
+                                    <stop offset="0%" stopColor="#D946EF" />
                                     <stop offset="100%" stopColor="#110C1B" stopOpacity="0" />
                                 </linearGradient>
                             </defs>
                         </svg>
                     </div>
-                </div>
+                </motion.div>
 
-                {/* Sidebar — hidden on mobile */}
+                {/* Sidebar */}
                 <div className="hidden md:flex md:w-1/3 flex-col gap-6">
-                    <div className="h-1/2 bg-[#1B1428]/80 border border-purple-900/30 rounded-xl p-5 flex flex-col">
-                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wide mb-4">Collection Channels</span>
+                    <motion.div 
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.5, duration: 0.6 }}
+                        className="h-1/2 bg-[#171124] border border-fuchsia-900/40 rounded-2xl p-6 flex flex-col shadow-xl cursor-pointer group hover:border-fuchsia-500/50 transition-colors"
+                    >
+                        <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Collection Channels</span>
                         <div className="flex justify-center flex-grow relative">
                             <svg className="w-full h-full pb-2" viewBox="0 0 100 100">
-                                <circle cx="50" cy="50" r="40" fill="none" stroke="#312e81" strokeWidth="12" />
-                                <circle cx="50" cy="50" r="40" fill="none" stroke="#A855F7" strokeWidth="12" strokeDasharray="160 250" strokeLinecap="round" className="origin-center -rotate-90" />
-                                <circle cx="50" cy="50" r="40" fill="none" stroke="#EC4899" strokeWidth="12" strokeDasharray="60 250" strokeDashoffset="-165" strokeLinecap="round" className="origin-center -rotate-90" />
+                                <circle cx="50" cy="50" r="40" fill="none" stroke="#2D1B4E" strokeWidth="12" />
+                                <motion.circle 
+                                    initial={{ strokeDasharray: "0 250" }}
+                                    animate={{ strokeDasharray: "160 250" }}
+                                    transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
+                                    cx="50" cy="50" r="40" fill="none" stroke="#D946EF" strokeWidth="12" strokeLinecap="round" className="origin-center -rotate-90 filter drop-shadow-[0_0_5px_rgba(217,70,239,0.6)]" 
+                                />
+                                <motion.circle 
+                                    initial={{ strokeDasharray: "0 250" }}
+                                    animate={{ strokeDasharray: "60 250" }}
+                                    transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
+                                    cx="50" cy="50" r="40" fill="none" stroke="#EC4899" strokeWidth="12" strokeDashoffset="-165" strokeLinecap="round" className="origin-center -rotate-90" 
+                                />
                             </svg>
-                            <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                <span className="text-xl font-bold text-white">65%</span>
-                                <span className="text-[9px] text-slate-400">Online</span>
+                            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                                <span className="text-2xl font-black text-white tracking-tight group-hover:scale-110 transition-transform duration-300">65%</span>
+                                <span className="text-[10px] font-bold text-fuchsia-300 uppercase tracking-wider">UPI / Online</span>
                             </div>
                         </div>
-                    </div>
-                    <div className="flex-1 bg-gradient-to-br from-purple-900/40 to-pink-900/20 border border-purple-500/30 rounded-xl flex items-center justify-center">
-                        <div className="text-center">
-                            <div className="w-10 h-10 mx-auto rounded-full bg-purple-500/20 border border-purple-400 text-purple-300 flex items-center justify-center mb-2">
-                                <AlertCircle size={18} />
+                    </motion.div>
+                    
+                    <motion.div 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.6, duration: 0.6 }}
+                        whileHover={{ scale: 1.02 }}
+                        className="flex-1 bg-gradient-to-br from-fuchsia-600/30 to-rose-600/10 border border-fuchsia-500/40 rounded-2xl flex items-center justify-center cursor-pointer shadow-[0_0_30px_rgba(217,70,239,0.15)] hover:shadow-[0_0_40px_rgba(217,70,239,0.3)] transition-all overflow-hidden relative group"
+                    >
+                        <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <div className="text-center relative z-10">
+                            <div className="w-12 h-12 mx-auto rounded-full bg-fuchsia-500/30 border border-fuchsia-400/50 text-white flex items-center justify-center mb-3 shadow-[0_0_15px_rgba(217,70,239,0.5)] group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500">
+                                <AlertCircle size={24} />
                             </div>
-                            <span className="text-sm font-bold text-white">Send Reminders</span>
+                            <span className="text-sm font-black text-white uppercase tracking-widest">Execute Reminders</span>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </div>
