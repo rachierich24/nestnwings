@@ -84,28 +84,21 @@ export default function FeaturesPage() {
 
     return (
         <main ref={containerRef} className="bg-[#020617] min-h-[300vh] text-white relative selection:bg-teal-500/30">
-            {/* Massive Parallax Background Text */}
-            <div className="fixed top-1/4 left-0 w-full overflow-hidden pointer-events-none z-0 flex justify-center opacity-10">
-                <motion.h1 style={{ y: yTransform, opacity: opacityTransform }} className="text-[25vw] font-black uppercase text-transparent bg-clip-text bg-gradient-to-b from-white to-[#020617] whitespace-nowrap leading-none tracking-tighter">
-                    FEATURES
-                </motion.h1>
-            </div>
-
-            <div className="container mx-auto px-4 md:px-8 max-w-[1400px] relative z-10 pt-48 pb-32">
+            <div className="container mx-auto px-4 md:px-8 max-w-[1400px] relative z-10 pt-32 md:pt-48 pb-32">
                 {/* Hero Sequence */}
-                <div className="mb-32 md:mb-64">
+                <div className="mb-24 md:mb-48">
                     <motion.div 
                         initial={{ opacity: 0, y: 100 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                        className="max-w-5xl"
+                        className="max-w-4xl"
                     >
-                        <h1 className="text-6xl md:text-[8vw] leading-[0.85] font-black uppercase tracking-tighter mb-8">
+                        <h1 className="text-5xl md:text-6xl lg:text-7xl leading-[1] font-black uppercase tracking-tighter mb-6">
                             Everything you need.<br/>
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-500 to-slate-700">Nothing you don&apos;t.</span>
                         </h1>
-                        <p className="text-xl md:text-3xl font-medium text-slate-400 max-w-3xl leading-snug">
+                        <p className="text-lg md:text-2xl font-medium text-slate-400 max-w-2xl leading-snug">
                             Say goodbye to disjointed SaaS tools. Nest OS replaces 7 different apps with one deeply integrated core engine.
                         </p>
                     </motion.div>
@@ -120,19 +113,16 @@ export default function FeaturesPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.8, delay: (i % 3) * 0.1, ease: "easeOut" }}
-                            className="group relative p-10 md:p-14 rounded-[2.5rem] bg-[#0A101D] border border-white/5 hover:border-white/20 transition-all duration-700 overflow-hidden flex flex-col h-full"
+                            className="group relative p-8 md:p-12 rounded-[2rem] bg-[#0A101D] border border-white/5 hover:border-white/20 transition-all duration-500 overflow-hidden flex flex-col h-full"
                         >
-                            {/* Cinematic Glow */}
-                            <div className={`absolute -top-[20%] -right-[20%] w-[140%] h-[140%] rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-1000 pointer-events-none bg-${feature.color}-500 blur-[100px]`} />
-                            
                             <div className="relative z-10 flex-1 flex flex-col">
-                                <div className={`w-16 h-16 rounded-[1.5rem] bg-${feature.color}-500/10 flex items-center justify-center border border-${feature.color}-500/20 mb-8 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-700 backdrop-blur-md`}>
+                                <div className={`w-14 h-14 rounded-2xl bg-${feature.color}-500/10 flex items-center justify-center border border-${feature.color}-500/20 mb-6 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500`}>
                                     {feature.icon}
                                 </div>
-                                <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-slate-500 transition-colors">
+                                <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-slate-500 transition-colors">
                                     {feature.title}
                                 </h3>
-                                <p className="text-lg text-slate-400 font-medium leading-relaxed">
+                                <p className="text-base text-slate-400 font-medium leading-relaxed">
                                     {feature.description}
                                 </p>
                             </div>
@@ -146,15 +136,14 @@ export default function FeaturesPage() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true, margin: "-200px" }}
                     transition={{ duration: 1.5, ease: "easeOut" }}
-                    className="mt-48 md:mt-64 relative rounded-[3rem] overflow-hidden bg-gradient-to-b from-[#11111a] to-[#020617] border border-white/10 p-12 md:p-32 text-center shadow-[0_40px_100px_rgba(0,0,0,0.8)]"
+                    className="mt-32 md:mt-48 relative rounded-[2rem] overflow-hidden bg-gradient-to-b from-[#11111a] to-[#020617] border border-white/10 p-10 md:p-24 text-center shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
                 >
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-teal-500/10 blur-[150px] pointer-events-none" />
-                    <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-8 relative z-10">
+                    <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8 relative z-10">
                         READY TO UPGRADE?
                     </h2>
                     <Link
                         href="/book-demo"
-                        className="relative z-10 inline-flex items-center justify-center gap-4 rounded-full text-lg md:text-xl font-black uppercase tracking-widest transition-all bg-white text-black shadow-[0_0_40px_rgba(255,255,255,0.2)] hover:shadow-[0_0_80px_rgba(255,255,255,0.4)] hover:scale-[1.05] active:scale-[0.98] h-20 px-14 group"
+                        className="relative z-10 inline-flex items-center justify-center gap-4 rounded-full text-base md:text-lg font-black uppercase tracking-widest transition-all bg-white text-black shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] h-16 px-10 group"
                     >
                         SEE DEMO 
                         <motion.span animate={{ x: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>

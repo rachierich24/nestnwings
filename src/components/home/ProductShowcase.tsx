@@ -451,11 +451,6 @@ export function ProductShowcase() {
                                 zIndex: index * 10
                             }}
                         >
-                            {/* Cinematic Glow */}
-                            <div className={`absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[150px] opacity-30 pointer-events-none ${
-                                index === 0 ? "bg-blue-600" : index === 1 ? "bg-teal-600" : "bg-purple-600"
-                            }`} />
-
                             <div className="w-full md:w-[40%] flex flex-col justify-center relative z-10">
                                 <div className="inline-block self-start px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-white font-bold tracking-widest text-xs uppercase mb-6 backdrop-blur-md">
                                     Module 0{index + 1}
