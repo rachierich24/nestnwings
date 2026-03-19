@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { UserPlus, BedDouble, Wallet, LayoutDashboard } from "lucide-react";
+import { UserPlus, BedDouble, Wallet, LayoutDashboard, ArrowRight } from "lucide-react";
 
 const steps = [
     {
