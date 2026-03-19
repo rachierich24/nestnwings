@@ -162,7 +162,7 @@ export function ResMockup() {
                     <div className="flex items-center gap-4 cursor-pointer hover:opacity-80 transition-opacity">
                         <div className="w-10 h-10 rounded-full border-2 border-slate-200 bg-slate-800 flex items-center justify-center text-sm font-bold text-white shadow-sm">JD</div>
                         <div>
-                            <div className="text-sm font-bold text-slate-900">John Doe</div>
+                            <div className="text-sm font-bold text-slate-900">Rahul Sharma</div>
                             <div className="text-xs text-slate-500 font-medium">Head Warden</div>
                         </div>
                     </div>
@@ -416,115 +416,65 @@ const dashboards = [
 ];
 
 export function ProductShowcase() {
-    const targetRef = useRef<HTMLDivElement>(null);
-
-    const { scrollYProgress } = useScroll({
-        target: targetRef,
-    });
-
-    const x = useTransform(scrollYProgress, [0, 1], ["2%", "-110vw"]);
-
     return (
-        <section ref={targetRef} className="relative md:h-[350vh] bg-[#020617] pb-24 md:pb-0">
-            <div className="md:sticky md:top-0 md:h-screen flex flex-col md:overflow-hidden">
+        <section className="relative bg-[#020617] pt-24 pb-32 md:pb-48">
+            <div className="w-full max-w-[1200px] mx-auto px-4 md:px-6 relative z-10">
                 {/* Header */}
-                <div className="w-full max-w-[1200px] mx-auto px-6 pt-24 pb-8 relative z-10 shrink-0">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-center"
-                    >
-                        <h2 className="font-heading text-4xl md:text-[56px] font-bold tracking-tight text-white mb-4 leading-tight">
-                            One Dashboard. <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#14B8A6] to-[#2563EB]">Total Control.</span>
-                        </h2>
-                        <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto">
-                            Scroll to explore our powerful interfaces — click any module to dive deeper.
-                        </p>
-                    </motion.div>
-                </div>
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="text-center mb-16 md:mb-32"
+                >
+                    <h2 className="font-heading text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-white mb-6 leading-[0.9]">
+                        ONE DASHBOARD.<br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">TOTAL CONTROL.</span>
+                    </h2>
+                    <p className="text-lg md:text-2xl text-slate-400 max-w-2xl mx-auto font-medium">
+                        A cinematic command center for modern hostels.
+                    </p>
+                </motion.div>
 
-                {/* Mobile View: Vertical Stack */}
-                <div className="md:hidden flex flex-col gap-16 px-5 w-full mt-4">
+                {/* Sticky Stack Layout (Flawless on Mobile & Desktop) */}
+                <div className="flex flex-col gap-6 md:gap-[15vh] pb-[5vh]">
                     {dashboards.map((dashboard, index) => (
-                        <div key={dashboard.id} className="w-full flex flex-col gap-5 group">
-                            <div className="px-1 shrink-0 flex flex-col items-start gap-3">
-                                <div className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white font-semibold tracking-widest text-[10px] uppercase backdrop-blur-md">
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ margin: "-100px", once: true }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                            key={dashboard.id}
+                            className="sticky top-[10vh] w-full flex flex-col md:flex-row gap-6 md:gap-10 p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] border border-white/10 shadow-[0_-20px_40px_rgba(0,0,0,0.8)] overflow-hidden group"
+                            style={{ 
+                                backgroundColor: index === 0 ? "#0a0f1c" : index === 1 ? "#11111a" : "#170a1a",
+                                zIndex: index * 10
+                            }}
+                        >
+                            {/* Cinematic Glow */}
+                            <div className={`absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[150px] opacity-30 pointer-events-none ${
+                                index === 0 ? "bg-blue-600" : index === 1 ? "bg-teal-600" : "bg-purple-600"
+                            }`} />
+
+                            <div className="w-full md:w-[40%] flex flex-col justify-center relative z-10">
+                                <div className="inline-block self-start px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-white font-bold tracking-widest text-xs uppercase mb-6 backdrop-blur-md">
                                     Module 0{index + 1}
                                 </div>
-                                <h3 className="font-heading text-3xl font-bold tracking-tight text-white mb-2 leading-tight">
+                                <h3 className="font-heading text-4xl md:text-6xl font-black tracking-tight text-white mb-6 uppercase">
                                     {dashboard.title}
                                 </h3>
+                                <p className="text-slate-400 text-lg md:text-xl leading-relaxed">
+                                    {dashboard.description}
+                                </p>
                             </div>
-                            <div className="w-full h-[550px] relative rounded-3xl p-1 bg-gradient-to-br from-white/10 to-transparent p-[1px] shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
-                                <div className="w-full h-full rounded-[23px] bg-[#020617] overflow-hidden">
-                                     {dashboard.image}
+
+                            <div className="w-full md:w-[60%] h-[400px] md:h-[600px] relative rounded-2xl md:rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl relative z-10 group-hover:border-white/20 transition-all duration-700">
+                                <div className="w-full h-full bg-[#020617]">
+                                    {dashboard.image}
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
-
-                {/* Desktop View: Horizontal Slider */}
-                <div className="hidden md:flex relative w-full overflow-hidden flex-1 min-h-0 items-center">
-                    {/* Subtle ambient glow */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50%] h-[60%] bg-primary/8 rounded-full blur-[180px] pointer-events-none" />
-
-                    <motion.div
-                        style={{ x }}
-                        className="flex gap-8 md:gap-14 px-6 md:px-[4vw] w-max items-stretch"
-                        // Fill height minus some breathing room
-                        // Each card stretches to this height
-                    >
-                        {dashboards.map((dashboard, index) => (
-                            <motion.div
-                                key={dashboard.id}
-                                whileHover={{ scale: 1.01 }}
-                                transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                                className="w-[80vw] lg:w-[75vw] flex-shrink-0 flex flex-col gap-4 group cursor-pointer"
-                                style={{ height: "calc(100vh - 220px)" }}
-                            >
-                                {/* Module Label + Title */}
-                                <div className="px-1 md:px-2 shrink-0 flex items-end gap-6">
-                                    <div>
-                                        <div className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white font-semibold tracking-widest text-[10px] md:text-xs uppercase mb-2 backdrop-blur-md">
-                                            Module 0{index + 1}
-                                        </div>
-                                        <h3 className="font-heading text-2xl md:text-3xl font-bold tracking-tight text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-primary transition-all">
-                                            {dashboard.title}
-                                        </h3>
-                                    </div>
-                                    <p className="text-slate-500 text-sm max-w-md hidden md:block mb-1">
-                                        {dashboard.description}
-                                    </p>
-                                </div>
-
-                                {/* Dashboard — fills remaining height, no cropping */}
-                                <div className="flex-1 min-h-0 w-full relative rounded-2xl md:rounded-[1.5rem] overflow-hidden border border-white/[0.08] group-hover:border-white/20 transition-all duration-500 shadow-[0_20px_80px_rgba(0,0,0,0.6)] group-hover:shadow-[0_20px_100px_rgba(20,184,166,0.15)]">
-                                    {/* Gradient border glow on hover */}
-                                    <div className="absolute inset-0 rounded-2xl md:rounded-[1.5rem] border border-transparent group-hover:border-primary/20 transition-all duration-500 pointer-events-none z-10" />
-                                    {/* The actual mockup fills the container */}
-                                    <div className="w-full h-full">
-                                        {dashboard.image}
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
-
-                {/* Scroll hint (Desktop only) */}
-                <div className="hidden md:flex shrink-0 pb-6 justify-center">
-                    <motion.div
-                        animate={{ x: [0, 8, 0] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                        className="flex items-center gap-2 text-slate-500 text-xs font-medium"
-                    >
-                        <span>Scroll to explore</span>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-slate-500">
-                            <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                    </motion.div>
                 </div>
             </div>
         </section>
