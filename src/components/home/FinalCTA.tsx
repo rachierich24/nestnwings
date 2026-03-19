@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { Logo } from "@/components/ui/Logo";
 
 export function FinalCTA() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -63,16 +64,20 @@ export function FinalCTA() {
                         whileInView={{ scale: 1, opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ type: "spring", duration: 1.5, bounce: 0.4 }}
-                        className="flex h-20 md:h-24 w-auto px-8 items-center justify-center rounded-2xl bg-white/5 border border-white/10 text-white font-bold mb-10 relative overflow-hidden group shadow-2xl"
+                        className="flex h-16 md:h-20 w-auto px-8 items-center justify-center gap-4 rounded-full bg-white/5 border border-white/10 text-white font-bold mb-10 relative overflow-hidden group shadow-2xl backdrop-blur-md"
                     >
                         <div className="absolute inset-0 bg-gradient-to-br from-[#14B8A6] to-[#2563EB] opacity-10 group-hover:opacity-100 transition-opacity duration-500" />
-                        <Image
-                            src="/logo_transparent.png"
-                            alt="Nest n Wings"
-                            width={240}
-                            height={60}
-                            className="relative z-10 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] object-contain"
-                        />
+                        
+                        <div className="relative z-10 flex items-center gap-3">
+                            <div className="bg-white rounded-full p-2 flex items-center justify-center">
+                                <Logo className="h-6 w-auto" />
+                            </div>
+                            <span className="font-bold tracking-[-0.01em] text-[20px] md:text-[24px] leading-none drop-shadow-md">
+                                <span className="text-white">Nest </span>
+                                <span className="text-[#14B8A6] italic drop-shadow-[0_0_8px_rgba(20,184,166,0.6)]">n</span>
+                                <span className="text-white"> Wings</span>
+                            </span>
+                        </div>
                     </motion.div>
 
                     {/* Refined Headline */}
