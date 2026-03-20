@@ -35,6 +35,7 @@ export default function BlogPage() {
                 <div className="flex flex-col gap-24 md:gap-32">
                     {/* Article 1 */}
                     <motion.article 
+                        id="article-1"
                         initial={{ opacity: 0, y: 100 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
@@ -54,7 +55,7 @@ export default function BlogPage() {
                                 <p className="text-lg text-slate-400 mb-8 leading-relaxed">
                                     How we transformed a chaotic, error-prone week-long room assignment process into a beautiful 4-step digital pipeline that executes perfectly.
                                 </p>
-                                <Link href="#" className="inline-flex items-center gap-2 font-black uppercase tracking-widest text-white hover:text-purple-400 transition-colors">
+                                <Link href="#article-1" className="inline-flex items-center gap-2 font-black uppercase tracking-widest text-white hover:text-purple-400 transition-colors">
                                     Read Article <ArrowRight size={20} />
                                 </Link>
                             </div>
@@ -73,6 +74,7 @@ export default function BlogPage() {
 
                     {/* Article 2 */}
                     <motion.article 
+                        id="article-2"
                         initial={{ opacity: 0, y: 100 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
@@ -94,14 +96,54 @@ export default function BlogPage() {
                                     <span>Feb 28, 2026</span>
                                 </div>
                                 <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight mb-6 group-hover:text-teal-400 transition-colors duration-500">
-                                    Killing the Spreadsheet
+                                    The Death of Manual Ops
                                 </h2>
                                 <p className="text-lg text-slate-400 mb-8 leading-relaxed">
-                                    Why building your operations on top of `room_allotment_final_v3.xlsx` is a ticking time bomb, and how a unified platform eliminates `#REF!` forever.
+                                    Why building your operations on top of fragmented legacy systems is a ticking time bomb, and how a unified platform eliminates data silos forever.
                                 </p>
-                                <Link href="#" className="inline-flex items-center gap-2 font-black uppercase tracking-widest text-white hover:text-teal-400 transition-colors">
+                                <Link href="#article-2" className="inline-flex items-center gap-2 font-black uppercase tracking-widest text-white hover:text-teal-400 transition-colors">
                                     Read Article <ArrowRight size={20} />
                                 </Link>
+                            </div>
+                        </div>
+                    </motion.article>
+
+                    {/* Article 3 */}
+                    <motion.article 
+                        id="article-3"
+                        initial={{ opacity: 0, y: 100 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 1.2 }}
+                        className="group"
+                    >
+                        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
+                            <div className="w-full lg:w-1/2 order-2 lg:order-1">
+                                <div className="flex gap-4 items-center text-xs font-bold uppercase tracking-widest text-slate-500 mb-6">
+                                    <span className="text-amber-400">Strategy</span>
+                                    <span>•</span>
+                                    <span>Feb 15, 2026</span>
+                                </div>
+                                <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight mb-6 group-hover:text-amber-400 transition-colors duration-500">
+                                    The Psychology of Space
+                                </h2>
+                                <p className="text-lg text-slate-400 mb-8 leading-relaxed">
+                                    How data-driven room assignments can reduce student conflicts by 60% and significantly improve annual retention through social-graph matching.
+                                </p>
+                                <Link href="#article-3" className="inline-flex items-center gap-2 font-black uppercase tracking-widest text-white hover:text-amber-400 transition-colors">
+                                    Read Article <ArrowRight size={20} />
+                                </Link>
+                            </div>
+                            <div className="w-full lg:w-1/2 order-1 lg:order-2">
+                                <div className="min-h-[350px] md:h-[500px] w-full rounded-[2rem] overflow-hidden bg-[#0A101D] border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.5)] group-hover:border-amber-500/30 transition-all duration-500 p-2 relative flex items-center justify-center">
+                                    <div className="text-amber-500/20 absolute inset-0 flex items-center justify-center">
+                                        <BookOpen size={200} strokeWidth={0.5} />
+                                    </div>
+                                    <div className="relative z-10 text-center p-8">
+                                        <div className="text-4xl font-black text-white mb-4">60%</div>
+                                        <div className="text-slate-400 font-bold uppercase tracking-widest text-xs">Reduction in Conflicts</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </motion.article>
