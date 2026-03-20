@@ -61,11 +61,11 @@ export function ProblemSection() {
             {/* Cinematic Background Glows */}
             <motion.div
                 style={{ y: bgY }}
-                className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[#14B8A6]/5 blur-[120px] pointer-events-none"
+                className="absolute top-[-20%] left-[-10%] w-[300px] md:w-[50%] h-[300px] md:h-[50%] rounded-full bg-[#14B8A6]/5 blur-[80px] md:blur-[120px] pointer-events-none"
             />
             <motion.div
                 style={{ y: bgY }}
-                className="absolute bottom-[-20%] right-[-10%] w-[40%] h-[40%] rounded-full bg-[#2563EB]/10 blur-[100px] pointer-events-none"
+                className="absolute bottom-[-20%] right-[-10%] w-[250px] md:w-[40%] h-[250px] md:h-[40%] rounded-full bg-[#2563EB]/10 blur-[70px] md:blur-[100px] pointer-events-none"
             />
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -140,7 +140,7 @@ export function ProblemSection() {
                                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${problem.iconBg} ${problem.iconColor} transition-transform duration-500 group-hover:scale-110`}>
                                     <problem.icon size={24} />
                                 </div>
-                                <div className="text-3xl font-black text-white/10 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#14B8A6]/40 group-hover:to-[#2563EB]/40 transition-colors duration-500 font-heading">
+                                <div className="text-3xl font-black text-white/40 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#14B8A6]/60 group-hover:to-[#2563EB]/60 transition-all duration-500 font-heading">
                                     {problem.number}
                                 </div>
                             </div>

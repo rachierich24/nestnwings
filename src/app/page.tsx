@@ -2,10 +2,14 @@
 
 import dynamic from "next/dynamic";
 import { Hero } from "@/components/home/Hero";
-import { ProblemSection } from "@/components/home/ProblemSection";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 // Dynamic Imports for Performance with Skeleton Loaders
+const ProblemSection = dynamic(() => import("@/components/home/ProblemSection").then(m => m.ProblemSection), { 
+    ssr: false,
+    loading: () => <div className="h-[600px] w-full bg-[#020617]/20 animate-pulse" />
+});
+
 const PathFlow = dynamic(() => import("@/components/home/PathFlow").then(m => m.PathFlow), { 
     ssr: false,
     loading: () => <div className="h-96 md:h-[600px] w-full bg-[#020617]/20 animate-pulse rounded-[2rem] mx-auto max-w-6xl" />
