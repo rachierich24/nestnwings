@@ -269,23 +269,23 @@ export function RoomAllocatorSim() {
                                     <motion.div
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
-                                        className="absolute inset-0 bg-white/5 border border-white/10 rounded-xl px-6 py-4 flex items-center justify-between"
+                                        className="absolute inset-x-0 bottom-0 top-[-20px] md:top-0 bg-white/5 border border-white/10 rounded-xl px-4 md:px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0"
                                     >
-                                        <div className="flex gap-8">
+                                        <div className="flex flex-row md:flex-row gap-6 md:gap-8 text-center md:text-left">
                                             <div>
-                                                <div className="text-xs text-slate-400 uppercase tracking-wider font-bold mb-1">Successfully Matched</div>
-                                                <div className="text-2xl font-black text-white">{stats.allocated} <span className="text-sm font-medium text-slate-500">students</span></div>
+                                                <div className="text-[10px] md:text-xs text-slate-400 uppercase tracking-wider font-bold mb-1">Matched</div>
+                                                <div className="text-xl md:text-2xl font-black text-white">{stats.allocated} <span className="text-[10px] md:text-sm font-medium text-slate-500">students</span></div>
                                             </div>
                                             {stats.waitlist > 0 && (
                                                 <div>
-                                                    <div className="text-xs text-amber-500 uppercase tracking-wider font-bold mb-1">Waitlisted (Capacity Full)</div>
-                                                    <div className="text-2xl font-black text-amber-400">{stats.waitlist} <span className="text-sm font-medium text-amber-500/50">students</span></div>
+                                                    <div className="text-[10px] md:text-xs text-amber-500 uppercase tracking-wider font-bold mb-1">Waitlisted</div>
+                                                    <div className="text-xl md:text-2xl font-black text-amber-400">{stats.waitlist} <span className="text-[10px] md:text-sm font-medium text-amber-500/50">students</span></div>
                                                 </div>
                                             )}
                                         </div>
 
-                                        <div className="hidden md:flex items-center gap-2 text-emerald-400 bg-emerald-500/10 px-4 py-2 border border-emerald-500/20 rounded-lg font-bold text-sm">
-                                            <ShieldCheck size={18} /> Zero Conflicts Detected
+                                        <div className="flex items-center gap-2 text-emerald-400 bg-emerald-500/10 px-3 py-1.5 md:px-4 md:py-2 border border-emerald-500/20 rounded-lg font-bold text-[10px] md:text-sm whitespace-nowrap">
+                                            <ShieldCheck size={16} className="md:w-[18px] md:h-[18px]" /> Zero Conflicts
                                         </div>
                                     </motion.div>
                                 )}

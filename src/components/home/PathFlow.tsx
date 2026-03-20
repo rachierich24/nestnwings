@@ -82,7 +82,7 @@ export function PathFlow() {
                                         <div className="text-[10px] font-bold text-white leading-none">{step.number}</div>
                                         {/* Downward Flow Arrow on line */}
                                         {index < steps.length - 1 && (
-                                            <div className="absolute -bottom-10 md:-bottom-16 left-1/2 -translate-x-1/2 opacity-40">
+                                            <div className="absolute -bottom-10 md:-bottom-16 left-8 md:left-1/2 -translate-x-1/2 opacity-40">
                                                     <motion.div
                                                         animate={{ y: [0, 5, 0] }}
                                                         transition={{ duration: 2, repeat: Infinity }}
