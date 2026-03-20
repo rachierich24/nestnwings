@@ -40,7 +40,7 @@ export function OpsMockup() {
             </div>
 
             {/* Top Metrics - Single Row Force */}
-            <div className="flex gap-2 min-w-full overflow-x-auto pb-2 scrollbar-hide relative z-10">
+            <div className="flex gap-2 min-w-full overflow-x-auto pb-2 scrollbar-hide relative z-10 justify-start md:justify-center">
                 {[
                     { label: "Total Capacity", val: "1,450", sub: "Beds Available", color: "blue", trend: "+0" },
                     { label: "Occupancy Rate", val: "94.2%", sub: "1,366 Filled", color: "emerald", trend: "+1.2%" },
@@ -213,7 +213,7 @@ export function ResMockup() {
                                     initial={{ opacity: 0, x: -10 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: i * 0.1, duration: 0.4 }}
-                                    className="flex items-center gap-2 md:grid md:grid-cols-12 md:gap-4 px-3 md:px-8 py-3 md:py-5 hover:bg-blue-50/50 transition-colors cursor-pointer group/row border-b border-slate-100 last:border-0"
+                                    className="flex items-center gap-2 md:grid md:grid-cols-12 md:gap-4 px-3 md:px-8 py-3 md:py-5 hover:bg-blue-50/50 transition-colors cursor-pointer group/row border-b border-slate-100 last:border-0 w-full justify-between md:justify-start"
                                 >
                                     <div className="md:col-span-4 flex items-center gap-2 md:gap-4 flex-1 min-w-0">
                                         <div className="w-8 h-8 md:w-12 md:h-12 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center font-bold text-slate-600 text-[10px] md:text-sm shrink-0 group-hover/row:scale-110 group-hover/row:bg-blue-100 group-hover/row:text-blue-600 group-hover/row:border-blue-200 transition-all duration-300">
@@ -273,7 +273,7 @@ export function FinMockup() {
             </div>
 
             {/* Scorecards - Stacked on Mobile */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 relative z-10 place-items-center md:place-items-stretch">
                 {[
                     { l: "Collected (MTD)", v: "₹18.4M", p: "+15.2%", c: "emerald" },
                     { l: "Pending Dues", v: "₹4.2M", p: "-2.1%", c: "amber" },

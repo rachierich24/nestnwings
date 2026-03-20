@@ -269,9 +269,9 @@ export function RoomAllocatorSim() {
                                     <motion.div
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
-                                        className="absolute inset-x-0 bottom-0 top-[-20px] md:top-0 bg-white/5 border border-white/10 rounded-xl px-4 md:px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0"
+                                        className="absolute inset-x-0 bottom-0 top-[-10px] md:top-0 bg-white/5 border border-white/10 rounded-xl px-4 md:px-6 py-4 flex flex-col md:flex-row items-center justify-center md:justify-between gap-3 md:gap-0"
                                     >
-                                        <div className="flex flex-row md:flex-row gap-6 md:gap-8 text-center md:text-left">
+                                        <div className="flex flex-row md:flex-row gap-6 md:gap-8 text-center md:text-left items-center justify-center">
                                             <div>
                                                 <div className="text-[10px] md:text-xs text-slate-400 uppercase tracking-wider font-bold mb-1">Matched</div>
                                                 <div className="text-xl md:text-2xl font-black text-white">{stats.allocated} <span className="text-[10px] md:text-sm font-medium text-slate-500">students</span></div>
