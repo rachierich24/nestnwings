@@ -194,10 +194,10 @@ function AllocationFlow() {
 
                 <div className="relative h-[120px] w-full mt-4 z-10">
                     {/* Background Connection Path */}
-                    <svg className="absolute top-1/2 left-0 w-full -translate-y-1/2 h-16 overflow-visible pointer-events-none" preserveAspectRatio="none">
-                        <path d="M 40,32 C 100,32 150,-10 200,32 C 250,74 300,32 360,32" fill="none" stroke="#E2E8F0" strokeWidth="2" strokeDasharray="4 4" />
+                    <svg className="absolute top-1/2 left-0 w-full -translate-y-1/2 h-16 overflow-hidden pointer-events-none" viewBox="0 0 400 64" preserveAspectRatio="xMidYMid meet">
+                        <path d="M 20,32 C 80,32 130,-10 200,32 C 270,74 320,32 380,32" fill="none" stroke="#E2E8F0" strokeWidth="2" strokeDasharray="4 4" />
                         <motion.path
-                            d="M 40,32 C 100,32 150,-10 200,32 C 250,74 300,32 360,32"
+                            d="M 20,32 C 80,32 130,-10 200,32 C 270,74 320,32 380,32"
                             fill="none"
                             stroke="url(#gradient)"
                             strokeWidth="3"
