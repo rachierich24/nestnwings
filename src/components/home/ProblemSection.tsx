@@ -79,9 +79,9 @@ export function ProblemSection() {
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 {/* Lando-style Masked Typography Reveal */}
-                <div className="max-w-3xl mb-16 md:mb-20 mx-auto md:mx-0">
+                <div className="max-w-3xl mb-16 md:mb-20 mx-auto">
                     {/* Small accent label */}
-                    <div className="overflow-hidden mb-6">
+                    <div className="flex justify-center mb-6 overflow-hidden">
                         <motion.div
                             initial="hidden"
                             animate={isInView ? "visible" : "hidden"}
@@ -89,13 +89,13 @@ export function ProblemSection() {
                             className="inline-flex items-center gap-3"
                         >
                             <span className="w-8 h-[1px] bg-white/20"></span>
-                            <span className="text-[12px] tracking-[0.2em] text-white/60 uppercase text-center w-full">The Broken Status Quo</span>
-                            <span className="w-8 h-[1px] bg-white/20 md:hidden"></span>
+                            <span className="text-[12px] tracking-[0.2em] text-white/60 uppercase whitespace-nowrap">The Broken Status Quo</span>
+                            <span className="w-8 h-[1px] bg-white/20"></span>
                         </motion.div>
                     </div>
 
                     {/* Massive Typography Set */}
-                    <h2 className="font-heading text-4xl md:text-[56px] font-bold tracking-[-0.03em] leading-[1.1] text-center md:text-left">
+                    <h2 className="font-heading text-4xl md:text-[56px] font-bold tracking-[-0.03em] leading-[1.1] text-center">
                         <div className="overflow-hidden py-1">
                             <motion.div initial="hidden" animate={isInView ? "visible" : "hidden"} variants={maskReveal} transition={{ delay: 0.1 }} className="text-white">
                                 Hostel management
@@ -118,7 +118,7 @@ export function ProblemSection() {
                                 initial="hidden"
                                 animate={isInView ? "visible" : "hidden"}
                                 variants={maskReveal}
-                                className="md:hidden text-white/20 text-center"
+                                className="md:hidden text-white/20"
                             >
                                 is still stuck
                             </motion.div>
