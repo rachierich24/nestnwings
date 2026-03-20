@@ -89,8 +89,8 @@ export function ProblemSection() {
                             className="inline-flex items-center gap-3"
                         >
                             <span className="w-8 h-[1px] bg-white/20"></span>
-                            <span className="text-[12px] tracking-[0.2em] text-white/60 uppercase text-center w-full">The Broken Status Quo</span>
-                            <span className="w-8 h-[1px] bg-white/20 md:hidden"></span>
+                            <span className="text-[12px] tracking-[0.2em] text-white/60 uppercase whitespace-nowrap">The Broken Status Quo</span>
+                            <span className="w-8 h-[1px] bg-white/20"></span>
                         </motion.div>
                     </div>
 
