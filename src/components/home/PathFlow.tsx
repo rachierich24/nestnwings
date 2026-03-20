@@ -83,12 +83,12 @@ export function PathFlow() {
                                         {/* Downward Flow Arrow on line */}
                                         {index < steps.length - 1 && (
                                             <div className="absolute -bottom-10 md:-bottom-16 left-1/2 -translate-x-1/2 opacity-40">
-                                                <motion.div
-                                                    animate={{ y: [0, 5, 0] }}
-                                                    transition={{ duration: 2, repeat: Infinity }}
-                                                >
-                                                    <ArrowRight size={12} className="rotate-90 text-blue-400 scale-y-150" />
-                                                </motion.div>
+                                                    <motion.div
+                                                        animate={{ y: [0, 5, 0] }}
+                                                        transition={{ duration: 2, repeat: Infinity }}
+                                                    >
+                                                        <ArrowRight size={14} className="rotate-90 text-blue-400" />
+                                                    </motion.div>
                                             </div>
                                         )}
                                     </div>

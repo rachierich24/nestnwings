@@ -346,7 +346,7 @@ export function FinMockup() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.5, duration: 0.6 }}
-                        className="h-1/2 bg-[#171124] border border-fuchsia-900/40 rounded-2xl p-6 flex flex-col shadow-xl cursor-pointer group hover:border-fuchsia-500/50 transition-colors"
+                        className="flex-1 min-h-[180px] bg-[#171124] border border-fuchsia-900/40 rounded-2xl p-6 flex flex-col shadow-xl cursor-pointer group hover:border-fuchsia-500/50 transition-colors"
                     >
                         <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Collection Channels</span>
                         <div className="flex justify-center flex-grow relative">

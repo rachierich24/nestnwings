@@ -32,7 +32,7 @@ export function Navbar() {
         >
             <div
                 className={cn(
-                    "mx-auto transition-all duration-500 ease-in-out",
+                    "w-full mx-auto transition-all duration-500 ease-in-out",
                     scrolled
                         ? "max-w-5xl bg-white/75 backdrop-blur-xl md:backdrop-blur-2xl shadow-[0_2px_16px_rgba(0,0,0,0.08)] border border-black/[0.06] rounded-2xl"
                         : "max-w-7xl bg-white border-b border-transparent"
