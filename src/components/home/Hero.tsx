@@ -87,7 +87,7 @@ export function Hero() {
                             initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                            className="flex flex-col items-start"
+                            className="flex flex-col items-center lg:items-start text-center lg:text-left"
                         >
                             {/* Refined Pill Badge */}
                             <div className="inline-flex items-center gap-2 px-[12px] py-[6px] rounded-full bg-white border border-black/[0.08] shadow-sm text-[#020617] text-[12px] font-semibold mb-[20px]">
@@ -95,14 +95,14 @@ export function Hero() {
                                 Next Generation Hostel Platform
                             </div>
 
-                            <h1 className="font-heading text-[36px] md:text-[50px] lg:text-[64px] font-bold tracking-[-0.04em] text-[#020617] mb-6 leading-[1.05] max-w-[600px]">
-                                Run Your Hostel <br />
-                                Like Modern <br />
+                            <h1 className="font-heading text-[36px] md:text-[50px] lg:text-[64px] font-bold tracking-[-0.04em] text-[#020617] mb-6 leading-[1.05] max-w-[600px] text-center lg:text-left">
+                                Run Your Hostel <br className="hidden md:block" />
+                                Like Modern <br className="hidden md:block" />
                                 <span className="text-[#020617]">Software.</span>
                             </h1>
 
                             {/* Subtext */}
-                            <p className="text-[16px] md:text-[19px] text-[#475569] mb-8 mt-2 max-w-[480px] leading-[1.6] font-medium tracking-tight">
+                            <p className="text-[16px] md:text-[19px] text-[#475569] mb-8 mt-2 max-w-[480px] leading-[1.6] font-medium tracking-tight mx-auto lg:mx-0">
                                 Automate allotment, payments, attendance and operations in one dashboard.
                             </p>
 
@@ -129,7 +129,7 @@ export function Hero() {
                                     <div className="w-7 h-7 rounded-full bg-gradient-to-br from-teal-100 to-teal-200 border-2 border-[#FAFAFA]" />
                                     <div className="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-100 to-indigo-200 border-2 border-[#FAFAFA]" />
                                 </div>
-                                <p>Used by modern campuses & co-living operators</p>
+                                <p className="text-center lg:text-left">Used by modern campuses & co-living operators</p>
                             </div>
                         </motion.div>
                     </motion.div>

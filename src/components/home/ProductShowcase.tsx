@@ -272,8 +272,8 @@ export function FinMockup() {
                 </motion.button>
             </div>
 
-            {/* Scorecards - 3 Equal Columns */}
-            <div className="grid grid-cols-3 gap-3 md:gap-4 relative z-10">
+            {/* Scorecards - Stacked on Mobile */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 relative z-10">
                 {[
                     { l: "Collected (MTD)", v: "₹18.4M", p: "+15.2%", c: "emerald" },
                     { l: "Pending Dues", v: "₹4.2M", p: "-2.1%", c: "amber" },
