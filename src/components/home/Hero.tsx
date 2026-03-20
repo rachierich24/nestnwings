@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import { ArrowRight, User, Home, Activity, CheckCircle2 } from "lucide-react";
 
 export function Hero() {
@@ -31,9 +32,9 @@ export function Hero() {
                 className="absolute inset-0 z-0 pointer-events-none flex items-center justify-center overflow-hidden"
             >
                 {/* Orange/Blue Mesh Gradient Aura */}
-                <div className="absolute top-[20%] right-[-10%] w-[800px] h-[800px] rounded-full bg-[#14B8A6]/10 blur-[120px] mix-blend-multiply" />
-                <div className="absolute top-[10%] right-[10%] w-[600px] h-[600px] rounded-full bg-[#2563EB]/10 blur-[120px] mix-blend-multiply" />
-                <div className="absolute bottom-[-10%] left-[20%] w-[700px] h-[700px] rounded-full bg-[#22D3EE]/10 blur-[150px] mix-blend-multiply" />
+                <div className="absolute top-[20%] right-[-10%] w-[400px] md:w-[800px] h-[400px] md:h-[800px] rounded-full bg-[#14B8A6]/10 blur-[80px] md:blur-[120px] mix-blend-multiply" />
+                <div className="absolute top-[10%] right-[10%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] rounded-full bg-[#2563EB]/10 blur-[80px] md:blur-[120px] mix-blend-multiply" />
+                <div className="absolute bottom-[-10%] left-[20%] w-[350px] md:w-[700px] h-[350px] md:h-[700px] rounded-full bg-[#22D3EE]/10 blur-[100px] md:blur-[150px] mix-blend-multiply" />
 
                 {/* Subtle noise texture overlay for organic feel */}
                 <div
@@ -48,15 +49,20 @@ export function Hero() {
                     className="absolute right-[-80px] bottom-[-40px] w-[140%] md:w-[130%] lg:w-[100%] max-w-[1200px]"
                     style={{
                         transform: "scale(1.15)",
-                        filter: "blur(0.4px)",
                     }}
                     animate={{ y: [-4, 4, -4] }}
                     transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
                 >
-                    <img
+                    <Image
                         src="/hero-illustration.png"
                         alt="Modern Hostel Campus Background"
+                        width={1200}
+                        height={800}
+                        priority
                         className="w-full h-auto object-contain transform-gpu"
+                        style={{
+                            filter: "blur(0.4px)",
+                        }}
                     />
                 </motion.div>
 

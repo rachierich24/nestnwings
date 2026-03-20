@@ -165,7 +165,7 @@ function MagneticCard({ index, persona, Icon, isInView }: { index: number, perso
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!cardRef.current) return;
+        if (!cardRef.current || !window.matchMedia("(hover: hover)").matches) return;
         const rect = cardRef.current.getBoundingClientRect();
         setMousePosition({
             x: e.clientX - rect.left,
@@ -183,9 +183,9 @@ function MagneticCard({ index, persona, Icon, isInView }: { index: number, perso
             className="flex flex-col h-[450px] md:h-[500px] bg-[#1E293B]/40 rounded-[32px] border border-white/[0.08] relative overflow-hidden group shadow-2xl"
             style={{ isolation: 'isolate' }}
         >
-            {/* Magnetic Flashlight Glow */}
+            {/* Magnetic Flashlight Glow (Enabled only on hover-capable devices) */}
             <div
-                className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden md:block"
                 style={{
                     background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 255, 255, 0.06), transparent 40%)`
                 }}

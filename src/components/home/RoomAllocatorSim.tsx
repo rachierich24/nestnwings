@@ -13,6 +13,14 @@ export function RoomAllocatorSim() {
     const [progress, setProgress] = useState(0);
     const [isComplete, setIsComplete] = useState(false);
 
+    // Initial values for mobile
+    useEffect(() => {
+        if (window.innerWidth < 768) {
+            setStudents(200);
+            setRooms(60);
+        }
+    }, []);
+
     // Grid generation (Visual representation of rooms)
     const [grid, setGrid] = useState<string[]>(Array(120).fill('empty')); // 'empty', 'processing', 'filled', 'overbooked'
 
