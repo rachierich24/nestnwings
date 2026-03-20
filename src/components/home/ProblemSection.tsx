@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 
 import { FileText, Unplug, UserX } from "lucide-react";
@@ -35,6 +35,11 @@ const problems = [
 export function ProblemSection() {
     const containerRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        setIsMobile(window.innerWidth < 768);
+    }, []);
 
     // Slight parallax for background elements
     const { scrollYProgress } = useScroll({
@@ -42,7 +47,7 @@ export function ProblemSection() {
         offset: ["start end", "end start"],
     });
 
-    const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+    const bgY = useTransform(scrollYProgress, [0, 1], ["0%", isMobile ? "0%" : "20%"]);
 
     // Cinematic Mask Reveal Variants
     const maskReveal = {
@@ -59,14 +64,18 @@ export function ProblemSection() {
             className="relative py-12 md:py-20 bg-[#0F172A] overflow-hidden"
         >
             {/* Cinematic Background Glows */}
-            <motion.div
-                style={{ y: bgY }}
-                className="absolute top-[-20%] left-[-10%] w-[300px] md:w-[50%] h-[300px] md:h-[50%] rounded-full bg-[#14B8A6]/5 blur-[80px] md:blur-[120px] pointer-events-none"
-            />
-            <motion.div
-                style={{ y: bgY }}
-                className="absolute bottom-[-20%] right-[-10%] w-[250px] md:w-[40%] h-[250px] md:h-[40%] rounded-full bg-[#2563EB]/10 blur-[70px] md:blur-[100px] pointer-events-none"
-            />
+            {!isMobile && (
+                <>
+                    <motion.div
+                        style={{ y: bgY }}
+                        className="absolute top-[-20%] left-[-10%] w-[300px] md:w-[50%] h-[300px] md:h-[50%] rounded-full bg-[#14B8A6]/5 blur-[80px] md:blur-[120px] pointer-events-none"
+                    />
+                    <motion.div
+                        style={{ y: bgY }}
+                        className="absolute bottom-[-20%] right-[-10%] w-[250px] md:w-[40%] h-[250px] md:h-[40%] rounded-full bg-[#2563EB]/10 blur-[70px] md:blur-[100px] pointer-events-none"
+                    />
+                </>
+            )}
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 {/* Lando-style Masked Typography Reveal */}

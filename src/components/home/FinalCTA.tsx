@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -9,13 +9,18 @@ import { Logo } from "@/components/ui/Logo";
 
 export function FinalCTA() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        setIsMobile(window.innerWidth < 768);
+    }, []);
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start end", "end end"],
     });
 
-    const y = useTransform(scrollYProgress, [0, 1], ["50%", "0%"]);
+    const y = useTransform(scrollYProgress, [0, 1], ["50%", isMobile ? "20%" : "0%"]);
     const scale = useTransform(scrollYProgress, [0, 1], [0.85, 1]);
     const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
@@ -27,18 +32,20 @@ export function FinalCTA() {
             {/* Cinematic background: Slow moving, massive brand gradient orb */}
             <div className="absolute inset-0 z-0 flex items-center justify-center">
                 <motion.div
-                    style={{ scale, opacity }}
-                    className="absolute w-[800px] h-[800px] pointer-events-none"
+                    style={isMobile ? { opacity: 0.6 } : { scale, opacity }}
+                    className="absolute w-[300px] md:w-[800px] h-[300px] md:h-[800px] pointer-events-none"
                 >
-                    <div className="absolute inset-0 bg-[#14B8A6]/10 blur-[150px] rounded-full mix-blend-screen" />
-                    <div className="absolute inset-10 bg-[#2563EB]/20 blur-[120px] rounded-full mix-blend-screen" />
+                    <div className="absolute inset-0 bg-[#14B8A6]/10 blur-[40px] md:blur-[150px] rounded-full mix-blend-screen" />
+                    <div className="absolute inset-10 bg-[#2563EB]/20 blur-[30px] md:blur-[120px] rounded-full mix-blend-screen" />
 
-                    {/* Slow breathing animation for the core glow */}
-                    <motion.div
-                        animate={{ scale: [1, 1.1, 1], opacity: [0.6, 0.9, 0.6] }}
-                        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute inset-20 bg-[#3B82F6]/20 blur-[100px] rounded-full mix-blend-screen"
-                    />
+                    {/* Slow breathing animation for the core glow - Disabled on mobile */}
+                    {!isMobile && (
+                        <motion.div
+                            animate={{ scale: [1, 1.1, 1], opacity: [0.6, 0.9, 0.6] }}
+                            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute inset-20 bg-[#3B82F6]/20 blur-[100px] rounded-full mix-blend-screen"
+                        />
+                    )}
                 </motion.div>
 
                 {/* Subtle Grid Overlay */}
