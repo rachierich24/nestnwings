@@ -1,8 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
-
+import { motion, useInView, useScroll, useTransform, Variants } from "framer-motion";
 import { FileText, Unplug, UserX } from "lucide-react";
 
 const problems = [
@@ -32,137 +31,127 @@ const problems = [
     },
 ];
 
+// Move variants outside to prevent re-renders
+const maskReveal: Variants = {
+    hidden: { y: "110%" },
+    visible: {
+        y: "0%",
+        transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] }
+    }
+};
+
+const cardVariant: Variants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: (i: number) => ({
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        transition: {
+            duration: 0.8,
+            delay: i * 0.15,
+            ease: [0.16, 1, 0.3, 1]
+        }
+    })
+};
+
 export function ProblemSection() {
     const containerRef = useRef<HTMLDivElement>(null);
-    const isInView = useInView(containerRef, { once: true, margin: "-100px" });
-    const [isMobile, setIsMobile] = useState(false);
+    const isInView = useInView(containerRef, { once: true, margin: "-15% 0px" });
 
-    useEffect(() => {
-        setIsMobile(window.innerWidth < 768);
-    }, []);
-
-    // Slight parallax for background elements
+    // Parallax logic
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start end", "end start"],
     });
-
-    const bgY = useTransform(scrollYProgress, [0, 1], ["0%", isMobile ? "0%" : "20%"]);
-
-    // Cinematic Mask Reveal Variants
-    const maskReveal = {
-        hidden: { y: "120%" },
-        visible: {
-            y: "0%",
-            transition: { duration: 1, ease: [0.16, 1, 0.3, 1] as const }
-        }
-    };
+    const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
 
     return (
         <section
             ref={containerRef}
-            className="relative py-12 md:py-20 bg-[#0F172A] overflow-hidden"
+            className="relative py-20 md:py-32 bg-[#0F172A] overflow-hidden"
         >
-            {/* Cinematic Background Glows */}
-            {!isMobile && (
-                <>
-                    <motion.div
-                        style={{ y: bgY }}
-                        className="absolute top-[-20%] left-[-10%] w-[300px] md:w-[50%] h-[300px] md:h-[50%] rounded-full bg-[#14B8A6]/5 blur-[80px] md:blur-[120px] pointer-events-none"
-                    />
-                    <motion.div
-                        style={{ y: bgY }}
-                        className="absolute bottom-[-20%] right-[-10%] w-[250px] md:w-[40%] h-[250px] md:h-[40%] rounded-full bg-[#2563EB]/10 blur-[70px] md:blur-[100px] pointer-events-none"
-                    />
-                </>
-            )}
+            {/* Cinematic Background Glows - Using CSS for responsiveness to avoid JS flickering */}
+            <motion.div
+                style={{ y: bgY }}
+                className="absolute top-[-10%] left-[-5%] w-[60%] h-[50%] rounded-full bg-[#14B8A6]/10 blur-[120px] pointer-events-none hidden md:block"
+            />
+            <motion.div
+                style={{ y: bgY }}
+                className="absolute bottom-[-10%] right-[-5%] w-[50%] h-[50%] rounded-full bg-[#2563EB]/10 blur-[120px] pointer-events-none hidden md:block"
+            />
 
-            <div className="container mx-auto px-4 md:px-6 relative z-10">
-                {/* Lando-style Masked Typography Reveal */}
-                <div className="max-w-3xl mb-16 md:mb-20 mx-auto md:mx-0">
-                    {/* Small accent label */}
-                    <div className="overflow-hidden mb-6">
-                        <motion.div
-                            initial="hidden"
-                            animate={isInView ? "visible" : "hidden"}
-                            variants={maskReveal}
-                            className="inline-flex items-center gap-3"
-                        >
-                            <span className="w-8 h-[1px] bg-white/20"></span>
-                            <span className="text-[12px] tracking-[0.2em] text-white/60 uppercase whitespace-nowrap">The Broken Status Quo</span>
-                            <span className="w-8 h-[1px] bg-white/20"></span>
-                        </motion.div>
-                    </div>
+            <div className="container mx-auto px-6 relative z-10">
+                <div className="max-w-4xl mb-20">
 
-                    {/* Massive Typography Set */}
-                    <h2 className="font-heading text-4xl md:text-[56px] font-bold tracking-[-0.03em] leading-[1.1] text-center md:text-left">
-                        <div className="overflow-hidden py-1">
-                            <motion.div initial="hidden" animate={isInView ? "visible" : "hidden"} variants={maskReveal} transition={{ delay: 0.1 }} className="text-white">
+
+                    {/* Typography Set */}
+                    <h2 className="text-4xl md:text-7xl font-bold tracking-tight leading-[1.05] text-balance">
+                        <div className="overflow-hidden pb-2">
+                            <motion.span
+                                variants={maskReveal}
+                                initial="hidden"
+                                animate={isInView ? "visible" : "hidden"}
+                                className="block text-white"
+                            >
                                 Hostel management
-                            </motion.div>
+                            </motion.span>
                         </div>
-                        <div className="overflow-hidden py-1">
-                            <motion.div
+                        <div className="overflow-hidden pb-2">
+                            <motion.span
+                                variants={maskReveal}
                                 initial="hidden"
                                 animate={isInView ? "visible" : "hidden"}
-                                variants={maskReveal}
-                                style={{
-                                    WebkitTextStroke: "1px rgba(255,255,255,0.15)",
-                                    color: "transparent"
-                                }}
-                                className="hidden md:block"
+                                transition={{ delay: 0.1 }}
+                                className="block text-transparent bg-clip-text bg-gradient-to-r from-white/20 to-white/5"
+                                style={{ WebkitTextStroke: "1px rgba(255,255,255,0.1)" }}
                             >
                                 is still stuck
-                            </motion.div>
-                            <motion.div
+                            </motion.span>
+                        </div>
+                        <div className="overflow-hidden pb-2">
+                            <motion.span
+                                variants={maskReveal}
                                 initial="hidden"
                                 animate={isInView ? "visible" : "hidden"}
-                                variants={maskReveal}
-                                className="md:hidden text-white/20 text-center"
+                                transition={{ delay: 0.2 }}
+                                className="block text-white"
                             >
-                                is still stuck
-                            </motion.div>
-                        </div>
-                        <div className="overflow-hidden py-1">
-                            <motion.div initial="hidden" animate={isInView ? "visible" : "hidden"} variants={maskReveal} transition={{ delay: 0.2 }} className="text-white">
                                 in the past.
-                            </motion.div>
+                            </motion.span>
                         </div>
                     </h2>
                 </div>
 
-                {/* Problems Grid List */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Problems Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {problems.map((problem, idx) => (
                         <motion.div
                             key={problem.number}
-                            initial={{ opacity: 0, y: 50, scale: 0.95, rotateX: 10 }}
-                            whileInView={{ opacity: 1, y: 0, scale: 1, rotateX: 0 }}
+                            custom={idx}
+                            initial="hidden"
+                            whileInView="visible"
                             viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.8, delay: idx * 0.2, ease: [0.16, 1, 0.3, 1] }}
-                            className="group relative flex flex-col items-start gap-6 p-6 md:p-8 rounded-2xl bg-[#1E293B]/30 border border-white/5 backdrop-blur-md hover:bg-[#1E293B]/60 hover:scale-[1.02] hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.15)] transition-all duration-500 overflow-hidden"
-                            style={{ transformStyle: "preserve-3d" }}
+                            variants={cardVariant}
+                            className="group relative p-8 rounded-3xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm hover:bg-white/[0.06] transition-colors duration-500"
                         >
-                            {/* Hover animated background glow inside card */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-[#14B8A6]/0 via-[#2563EB]/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out pointer-events-none" />
-
-                            <div className="flex items-center justify-between w-full">
-                                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${problem.iconBg} ${problem.iconColor} transition-transform duration-500 group-hover:scale-110`}>
-                                    <problem.icon size={24} />
+                            <div className="flex justify-between items-start mb-8">
+                                <div className={`p-3 rounded-2xl ${problem.iconBg} ${problem.iconColor}`}>
+                                    <problem.icon size={28} />
                                 </div>
-                                <div className="text-3xl font-black text-white/40 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#14B8A6]/60 group-hover:to-[#2563EB]/60 transition-all duration-500 font-heading">
+                                <span className="text-4xl font-black text-white/5 group-hover:text-white/10 transition-colors">
                                     {problem.number}
-                                </div>
+                                </span>
                             </div>
 
-                            <div className="flex-1 mt-2">
-                                <h3 className="text-xl font-bold text-white mb-3 tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#14B8A6] group-hover:to-[#2563EB] transition-colors duration-300">
-                                    {problem.title}
-                                </h3>
-                                <p className="text-[#94A3B8] text-base leading-relaxed font-medium">
-                                    {problem.description}
-                                </p>
-                            </div>
+                            <h3 className="text-xl font-semibold text-white mb-4">
+                                {problem.title}
+                            </h3>
+                            <p className="text-slate-400 leading-relaxed">
+                                {problem.description}
+                            </p>
+
+                            {/* Subtle bottom highlight */}
+                            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent group-hover:w-full transition-all duration-700" />
                         </motion.div>
                     ))}
                 </div>
