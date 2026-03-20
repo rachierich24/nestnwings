@@ -55,7 +55,7 @@ export default function BlogPage() {
                                 <p className="text-lg text-slate-400 mb-8 leading-relaxed">
                                     How we transformed a chaotic, error-prone week-long room assignment process into a beautiful 4-step digital pipeline that executes perfectly.
                                 </p>
-                                <Link href="#article-1" className="inline-flex items-center gap-2 font-black uppercase tracking-widest text-white hover:text-purple-400 transition-colors">
+                                <Link href="/blog/allocation-pipeline" className="inline-flex items-center gap-2 font-black uppercase tracking-widest text-white hover:text-purple-400 transition-colors">
                                     Read Article <ArrowRight size={20} />
                                 </Link>
                             </div>
@@ -101,7 +101,7 @@ export default function BlogPage() {
                                 <p className="text-lg text-slate-400 mb-8 leading-relaxed">
                                     Why building your operations on top of fragmented legacy systems is a ticking time bomb, and how a unified platform eliminates data silos forever.
                                 </p>
-                                <Link href="#article-2" className="inline-flex items-center gap-2 font-black uppercase tracking-widest text-white hover:text-teal-400 transition-colors">
+                                <Link href="/blog/death-of-manual-ops" className="inline-flex items-center gap-2 font-black uppercase tracking-widest text-white hover:text-teal-400 transition-colors">
                                     Read Article <ArrowRight size={20} />
                                 </Link>
                             </div>
@@ -130,7 +130,7 @@ export default function BlogPage() {
                                 <p className="text-lg text-slate-400 mb-8 leading-relaxed">
                                     How data-driven room assignments can reduce student conflicts by 60% and significantly improve annual retention through social-graph matching.
                                 </p>
-                                <Link href="#article-3" className="inline-flex items-center gap-2 font-black uppercase tracking-widest text-white hover:text-amber-400 transition-colors">
+                                <Link href="/blog/psychology-of-space" className="inline-flex items-center gap-2 font-black uppercase tracking-widest text-white hover:text-amber-400 transition-colors">
                                     Read Article <ArrowRight size={20} />
                                 </Link>
                             </div>
