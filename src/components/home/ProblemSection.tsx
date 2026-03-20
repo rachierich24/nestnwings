@@ -81,11 +81,11 @@ export function ProblemSection() {
             />
 
             <div className="container mx-auto px-6 relative z-10">
-                <div className="max-w-4xl mb-20">
+                <div className="max-w-4xl mb-20 flex flex-col items-center md:items-start text-center md:text-left mx-auto md:mx-0">
 
 
                     {/* Typography Set */}
-                    <h2 className="text-4xl md:text-7xl font-bold tracking-tight leading-[1.05] text-balance">
+                    <h2 className="text-4xl md:text-7xl font-bold tracking-tight leading-[1.05] text-balance text-center md:text-left w-full">
                         <div className="overflow-hidden pb-2">
                             <motion.span
                                 variants={maskReveal}
