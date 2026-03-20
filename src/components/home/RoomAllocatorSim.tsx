@@ -112,7 +112,7 @@ export function RoomAllocatorSim() {
     }, [rooms]);
 
     return (
-        <section className="py-24 md:py-32 bg-[#020617] relative overflow-hidden">
+        <section className="py-16 md:py-32 bg-[#020617] relative overflow-hidden">
             {/* Ambient Backgrounds */}
             <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[150px] pointer-events-none" />

@@ -24,7 +24,7 @@ export function Hero() {
         <motion.section
             ref={containerRef}
             style={{ backgroundColor }}
-            className="relative min-h-[100vh] flex flex-col items-center justify-center overflow-hidden pt-[120px] md:pt-[180px] pb-[48px] md:pb-[80px]"
+            className="relative min-h-[85vh] md:min-h-[100vh] flex flex-col items-center justify-center overflow-hidden pt-[100px] md:pt-[180px] pb-[48px] md:pb-[80px]"
         >
             {/* The $1B Aesthetic Background: Massive, heavily blurred organic brand aura */}
             <motion.div

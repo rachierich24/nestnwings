@@ -90,14 +90,14 @@ const features = [
             <div className="absolute right-0 bottom-0 w-[85%] h-[80%] bg-[#0F172A] rounded-tl-xl border-t border-l border-white/10 shadow-[-10px_-10px_30px_rgba(0,0,0,0.5)] p-5">
                 {/* Timeline UI */}
                 <div className="text-xs font-medium text-white mb-4">Gate Logs - Today</div>
-                <div className="relative pl-4 space-y-4 before:absolute before:inset-y-0 before:left-1.5 before:w-px before:bg-white/10">
+                <div className="relative pl-6 space-y-4 before:absolute before:inset-y-0 before:left-1.5 before:w-px before:bg-white/10">
                     {[
                         { t: "10:42 AM", act: "Exited Campus", c: "border-primary bg-[#0F172A]" },
                         { t: "09:15 AM", act: "Entered Campus", c: "border-emerald-500 bg-emerald-500" },
                         { t: "08:30 AM", act: "Breakfast Scan", c: "border-slate-500 bg-slate-500" }
                     ].map((log, i) => (
                         <div key={i} className="relative">
-                            <div className={`absolute -left-[21px] top-1 w-3 h-3 rounded-full border-2 ${log.c}`} />
+                            <div className={`absolute -left-[22.5px] top-1 w-3 h-3 rounded-full border-2 ${log.c}`} />
                             <div className="text-[10px] text-slate-500 mb-0.5">{log.t}</div>
                             <div className="text-xs text-white font-medium">{log.act}</div>
                         </div>

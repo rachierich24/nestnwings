@@ -108,7 +108,7 @@ export function PersonaCards() {
     const isInView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
-        <section className="py-24 bg-[#0F172A] relative overflow-hidden">
+        <section className="py-16 md:py-24 bg-[#0F172A] relative overflow-hidden">
             {/* Ambient Background Glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] rounded-full bg-gradient-to-r from-[#14B8A6]/5 to-[#2563EB]/5 blur-[120px] pointer-events-none" />
 
