@@ -139,7 +139,7 @@ export function Hero() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                        className="lg:col-span-7 relative h-[400px] md:h-[500px] lg:h-[650px] w-full mt-12 lg:mt-0 flex flex-col lg:block z-20 perspective-[2000px]"
+                        className="lg:col-span-7 relative h-[340px] md:h-[500px] lg:h-[650px] w-full mt-6 md:mt-12 lg:mt-0 flex flex-col lg:block z-20 perspective-[2000px]"
                     >
                         <AllocationFlow />
                     </motion.div>
@@ -169,7 +169,7 @@ export function Hero() {
 // New Interactive Allocation Flow Visualizer
 function AllocationFlow() {
     return (
-        <div className="w-full h-full relative flex items-center justify-center perspective-[2000px]">
+        <div className="w-full h-full relative flex items-start md:items-center justify-center perspective-[2000px]">
             {/* Background glowing orb */}
             <div className="absolute w-[300px] h-[300px] bg-[#14B8A6]/15 rounded-full blur-[80px]" />
             <div className="absolute w-[200px] h-[200px] bg-[#2563EB]/15 rounded-full blur-[60px] translate-x-20 translate-y-20" />
